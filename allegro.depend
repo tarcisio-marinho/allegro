@@ -1,0 +1,4 @@
+# depslib dependency file v1.0
+1508352019 source:/home/tarcisio/Desktop/allegro/main.c
+	<allegro5/allegro.h>
+
