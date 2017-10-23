@@ -1,4 +1,13 @@
 # depslib dependency file v1.0
-1508352019 source:/home/tarcisio/Desktop/allegro/main.c
+1508364892 source:/home/tarcisio/Desktop/allegro/main.c
 	<allegro5/allegro.h>
+	"src/initializer.h"
+
+1508353170 source:/home/tarcisio/Desktop/allegro/src/initializer.c
+	"initializer.h"
+
+1508353070 /home/tarcisio/Desktop/allegro/src/initializer.h
+	<allegro5/allegro.h>
+	<stdio.h>
+	<stdlib.h>
 
