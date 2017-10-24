@@ -2,11 +2,29 @@
 #include <allegro5/allegro_image.h>
 #include<stdio.h>
 
+typedef struct animal{
+    char *nome;
+    ALLEGRO_BITMAP * imagem;
+    // som do animal
+}Animal;
 
+void modo1(ALLEGRO_DISPLAY *janela); // som +  foto de animais, objetos
+void modo2(); // silaba inicial do animal + foto de animais, objetos
+void modo3(); // silabas são iguais ou diferentes, KA KA, KA LA
+void modo4(); // palavras são iguais ou diferentes, faca e vaca
 
 int main(){
 
+    al_init();
+    al_init_image_addon();
+
     ALLEGRO_DISPLAY *janela = NULL;
+
+    modo1(janela);
+    return 0;
+}
+
+void modo1(ALLEGRO_DISPLAY *janela){
 
     ALLEGRO_BITMAP * aguia = NULL;
     ALLEGRO_BITMAP * baleia = NULL;
@@ -36,11 +54,8 @@ int main(){
     ALLEGRO_BITMAP * vaca = NULL;
     ALLEGRO_BITMAP * zebra = NULL;
 
-    // Inicializa a Allegro
-    al_init();
 
-    // Inicializa o add-on para utilização de imagens
-    al_init_image_addon();
+
 
     // Configura a janela
     janela = al_create_display(1920, 1080);
@@ -75,10 +90,9 @@ int main(){
     zebra = al_load_bitmap("img/zebra.jpg");
 
 
-    al_draw_bitmap(zebra, 0, 0, 0);
+    al_draw_bitmap(aguia, 0, 0, 0);
     al_flip_display();
     al_rest(10.0);
     al_destroy_display(janela);
 
-    return 0;
 }
