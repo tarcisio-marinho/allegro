@@ -111,14 +111,26 @@ void modo1(ALLEGRO_DISPLAY *janela){
 
 
 
-
-
     // Configura a janela
     janela = al_create_display(1920, 1080);
 
-    al_draw_bitmap(touro.imagem, 0, 0, 0);
+    al_draw_bitmap(vaca.imagem, , 1, 1);
     al_flip_display();
     al_rest(10.0);
     al_destroy_display(janela);
 
+
+
+
+
+
+
+
+
+
 }
+
+
+
+
+
