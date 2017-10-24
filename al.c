@@ -1,9 +1,17 @@
+// Inclui o cabeçalho da bibilioteca Allegro 5
 #include <allegro5/allegro.h>
-#include "src/initializer.h"
-
-
-int main(){
-    al_init();
+ 
+// Inclui o cabeçalho do add-on para uso de imagens
+#include <allegro5/allegro_image.h>
+ 
+int main(void)
+{
+    
+    // Variável representando a janela principal
+    ALLEGRO_DISPLAY *janela = NULL;
+ 
+    // Variável representando a imagem
+    ALLEGRO_BITMAP *imagem = NULL;
     ALLEGRO_BITMAP * aguia = NULL;
     ALLEGRO_BITMAP * baleia = NULL;
     ALLEGRO_BITMAP * cabra = NULL;
@@ -31,12 +39,21 @@ int main(){
     ALLEGRO_BITMAP * touro = NULL;
     ALLEGRO_BITMAP * vaca = NULL;
     ALLEGRO_BITMAP * zebra = NULL;
-
-    ALLEGRO_DISPLAY * janela = NULL;
-
+ 
+    // Inicializa a Allegro
+    al_init();
+ 
+    // Inicializa o add-on para utilização de imagens
+    al_init_image_addon();
+ 
+    // Configura a janela
+    janela = al_create_display(1920, 1080);
+ 
+    // Carrega a imagem
+    imagem = al_load_bitmap("img/pato.png");
     aguia = al_load_bitmap("img/aguia.jpg");
     baleia = al_load_bitmap("img/baleia.png");
-    cabra = al_load_bitmap("img/cabra.jpg");
+    cabra = al_load_bitmap("cabra.jpg");
     cachorro = al_load_bitmap("img/cachorro.jpeg");
     camelo = al_load_bitmap("img/camelo.jpg");
     caranguejo = al_load_bitmap("img/caranguejo.jpg");
@@ -62,15 +79,18 @@ int main(){
     vaca = al_load_bitmap("img/vaca.jpg");
     zebra = al_load_bitmap("img/zebra.jpg");
 
-    al_init_image_addon();
-
-    janela = al_create_display(640, 480); // cria a janela
-    al_draw_bitmap(vaca, 0, 0, 0); // imprime a imagem na tela
-    al_flip_display(); // atualiza a tela
-
-
-    al_rest(10.0); // Segura a execução por 10 segundos
-    al_destroy_display(janela); //destroy
-
+ 
+    // Desenha a imagem na tela
+    al_draw_bitmap(camelo, 0, 0, 0);
+ 
+    // Atualiza a tela
+    al_flip_display();
+ 
+    // Segura a execução por 10 segundos
+    al_rest(10.0);
+ 
+    // Finaliza a janela
+    al_destroy_display(janela);
+ 
     return 0;
 }
