@@ -1,17 +1,13 @@
-// Inclui o cabeçalho da bibilioteca Allegro 5
 #include <allegro5/allegro.h>
- 
-// Inclui o cabeçalho do add-on para uso de imagens
 #include <allegro5/allegro_image.h>
- 
-int main(void)
-{
-    
-    // Variável representando a janela principal
+#include<stdio.h>
+
+
+
+int main(){
+
     ALLEGRO_DISPLAY *janela = NULL;
- 
-    // Variável representando a imagem
-    ALLEGRO_BITMAP *imagem = NULL;
+
     ALLEGRO_BITMAP * aguia = NULL;
     ALLEGRO_BITMAP * baleia = NULL;
     ALLEGRO_BITMAP * cabra = NULL;
@@ -39,23 +35,22 @@ int main(void)
     ALLEGRO_BITMAP * touro = NULL;
     ALLEGRO_BITMAP * vaca = NULL;
     ALLEGRO_BITMAP * zebra = NULL;
- 
+
     // Inicializa a Allegro
     al_init();
- 
+
     // Inicializa o add-on para utilização de imagens
     al_init_image_addon();
- 
+
     // Configura a janela
     janela = al_create_display(1920, 1080);
- 
+
     // Carrega a imagem
-    imagem = al_load_bitmap("img/pato.png");
-    aguia = al_load_bitmap("img/aguia.jpg");
+    aguia = al_load_bitmap("img/aguia.png");
     baleia = al_load_bitmap("img/baleia.png");
-    cabra = al_load_bitmap("cabra.jpg");
+    cabra = al_load_bitmap("img/cabra.jpg");
     cachorro = al_load_bitmap("img/cachorro.jpeg");
-    camelo = al_load_bitmap("img/camelo.jpg");
+    camelo = al_load_bitmap("img/camelo.JPG");
     caranguejo = al_load_bitmap("img/caranguejo.jpg");
     cavalo = al_load_bitmap("img/cavalo.jpg");
     cobra = al_load_bitmap("img/cobra.jpg");
@@ -65,32 +60,25 @@ int main(void)
     galo = al_load_bitmap("img/galo.jpg");
     gato = al_load_bitmap("img/gato.jpg");
     girafa = al_load_bitmap("img/girafa.jpg");
-    leao = al_load_bitmap("img/leao.jpg");
+    leao = al_load_bitmap("img/leao.jpeg");
     lobo = al_load_bitmap("img/lobo.jpg");
-    macaco = al_load_bitmap("img/macaco.jpg");
-    passarinho = al_load_bitmap("img/pato.png");
+    macaco = al_load_bitmap("img/macaco.jpeg");
+    passarinho = al_load_bitmap("img/pato.jpg");
     pato = al_load_bitmap("img/aguia.jpg");
     peixe = al_load_bitmap("img/peixe.jpg");
     porco = al_load_bitmap("img/porco.jpg");
-    sapo = al_load_bitmap("img/sapo.jpg");
-    tatu = al_load_bitmap("img/tatu.png");
+    sapo = al_load_bitmap("img/sapo.jpeg");
+    tatu = al_load_bitmap("img/tatu.jpg");
     tigre = al_load_bitmap("img/tigre.jpg");
-    touro = al_load_bitmap("img/touro.jpg");
+    touro = al_load_bitmap("img/touro.jpeg");
     vaca = al_load_bitmap("img/vaca.jpg");
     zebra = al_load_bitmap("img/zebra.jpg");
 
- 
-    // Desenha a imagem na tela
-    al_draw_bitmap(camelo, 0, 0, 0);
- 
-    // Atualiza a tela
+
+    al_draw_bitmap(zebra, 0, 0, 0);
     al_flip_display();
- 
-    // Segura a execução por 10 segundos
     al_rest(10.0);
- 
-    // Finaliza a janela
     al_destroy_display(janela);
- 
+
     return 0;
 }
