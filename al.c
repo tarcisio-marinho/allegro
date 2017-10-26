@@ -32,6 +32,10 @@ void modo1(ALLEGRO_DISPLAY *janela){
     strcpy(aguia.nome, "aguia");
     aguia.imagem = al_load_bitmap("img/aguia.png");
 
+    strcpy(caranguejo.nome, "aguia");
+    caranguejo.imagem = al_load_bitmap("img/caranguejo.jpg");
+
+
     strcpy(baleia.nome, "baleia");
     baleia.imagem = al_load_bitmap("img/baleia.png");
 
@@ -112,15 +116,15 @@ void modo1(ALLEGRO_DISPLAY *janela){
 
 
     // Configura a janela
-    janela = al_create_display(1080, 700);
+    janela = al_create_display(1350, 700);
 
     al_draw_bitmap(vaca.imagem, 0, 0, 0);
-    al_draw_bitmap(cavalo.imagem, 0, 320, 0);
+    al_draw_bitmap(caranguejo.imagem, 0, 390, 0);
     al_draw_bitmap(galo.imagem, 450, 0, 0);
-    al_draw_bitmap(aguia.imagem, 450, 320, 0);
+    al_draw_bitmap(aguia.imagem, 450, 390, 0);
 
     al_flip_display();
-    al_rest(10.0);
+    al_rest(2);
     al_destroy_display(janela);
 
 
