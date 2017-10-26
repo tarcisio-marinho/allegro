@@ -22,7 +22,7 @@ int main(){
     al_init_font_addon();
     al_init_ttf_addon();
 
-
+    
     
     ALLEGRO_DISPLAY *janela = NULL;
 
@@ -35,6 +35,8 @@ void modo1(ALLEGRO_DISPLAY *janela){
     Animal elefante, galo, gato, girafa, leao, lobo, macaco, passarinho, pato, peixe;
     Animal porco, sapo, tatu, tigre, touro, vaca, zebra;
 
+    ALLEGRO_EVENT_QUEUE *fila_eventos = NULL;
+    
 
     ALLEGRO_FONT *wood = NULL;
     ALLEGRO_FONT *cubic = NULL;
@@ -42,13 +44,16 @@ void modo1(ALLEGRO_DISPLAY *janela){
     ALLEGRO_FONT *sculock = NULL;
 
     ALLEGRO_BITMAP * wallpaper = NULL;
-    wood = al_load_font("fontes/wood.ttf", 48, 0);
-    cubic = al_load_font("fontes/cubic.ttf", 48, 0);
-    elfic = al_load_font("fontes/orderElfic.ttf", 48, 0);
-    sculock = al_load_font("fontes/sculock.ttf", 48, 0);
     
-    //al_draw_textf(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA / 2, 250, ALLEGRO_ALIGN_CENTRE, "Teste %d - %s", i, texto);
+    janela = al_create_display(1350, 700);
     
+    wood = al_load_font("fontes/wood.ttf", 70, 0);
+    cubic = al_load_font("fontes/cubic.ttf", 70, 0);
+    elfic = al_load_font("fontes/orderElfic.ttf", 70, 0);
+    sculock = al_load_font("fontes/sculock.ttf", 70, 0);
+
+
+  
     
     wallpaper = al_load_bitmap("img/wallpaper.jpg");
 
@@ -135,22 +140,38 @@ void modo1(ALLEGRO_DISPLAY *janela){
     strcpy(zebra.nome, "zebra");
     zebra.imagem = al_load_bitmap("img/zebra.jpg");
 
+    fila_eventos = al_create_event_queue();
+    al_register_event_source(fila_eventos, al_get_display_event_source(janela));
+    
 
+    while (1){
+        ALLEGRO_EVENT evento;
+        ALLEGRO_TIMEOUT timeout;
+        al_init_timeout(&timeout, 0.05);
 
-    // Configura a janela
-    janela = al_create_display(1350, 700);
+        int tem_eventos = al_wait_for_event_until(fila_eventos, &evento, &timeout);
  
-    al_draw_bitmap(wallpaper, 0, 0, 0);
-    al_draw_text(sculock, al_map_rgb(0, 0, 0), 1350 , 50, ALLEGRO_ALIGN_RIGHT, "Qual animal "); 
-    al_draw_text(sculock, al_map_rgb(0, 0, 0), 1350 , 90, ALLEGRO_ALIGN_RIGHT, "emite esse som? ");    
-    al_draw_bitmap(vaca.imagem, 0, 0, 0);
-    al_draw_bitmap(caranguejo.imagem, 0, 390, 0);
-    al_draw_bitmap(baleia.imagem, 450, 0, 0);
-    al_draw_bitmap(tigre.imagem, 450, 390, 0);
+        if (tem_eventos && evento.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
+            break;
+        }
+        
+        // Configura a janela
 
-    al_flip_display();
-    al_rest(2);
+
+        al_draw_bitmap(wallpaper, 0, 0, 0);
+        al_draw_text(sculock, al_map_rgb(0, 0, 0), 1350 , 50, ALLEGRO_ALIGN_RIGHT, "Qual animal "); 
+        al_draw_text(sculock, al_map_rgb(0, 0, 0), 1350 , 90, ALLEGRO_ALIGN_RIGHT, "emite esse som? ");    
+        al_draw_bitmap(vaca.imagem, 0, 0, 0);
+        al_draw_bitmap(caranguejo.imagem, 0, 390, 0);
+        al_draw_bitmap(baleia.imagem, 450, 0, 0);
+        al_draw_bitmap(tigre.imagem, 450, 390, 0);
+        al_flip_display();
+
+    }
+
+    al_destroy_font(sculock);
     al_destroy_display(janela);
+    al_destroy_event_queue(fila_eventos);
 
 
 
