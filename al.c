@@ -141,7 +141,8 @@ void modo1(ALLEGRO_DISPLAY *janela){
     janela = al_create_display(1350, 700);
  
     al_draw_bitmap(wallpaper, 0, 0, 0);
-    al_draw_text(elfic, al_map_rgb(0, 0, 0), 1350 - 10, 50, ALLEGRO_ALIGN_RIGHT, "Qual animal emite esse som?");    
+    al_draw_text(sculock, al_map_rgb(0, 0, 0), 1350 , 50, ALLEGRO_ALIGN_RIGHT, "Qual animal "); 
+    al_draw_text(sculock, al_map_rgb(0, 0, 0), 1350 , 90, ALLEGRO_ALIGN_RIGHT, "emite esse som? ");    
     al_draw_bitmap(vaca.imagem, 0, 0, 0);
     al_draw_bitmap(caranguejo.imagem, 0, 390, 0);
     al_draw_bitmap(baleia.imagem, 450, 0, 0);
