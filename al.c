@@ -1,5 +1,7 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_ttf.h>
 #include<stdio.h>
 
 typedef struct animal{
@@ -17,7 +19,11 @@ int main(){
 
     al_init();
     al_init_image_addon();
+    al_init_font_addon();
+    al_init_ttf_addon();
 
+
+    
     ALLEGRO_DISPLAY *janela = NULL;
 
     modo1(janela);
@@ -29,15 +35,28 @@ void modo1(ALLEGRO_DISPLAY *janela){
     Animal elefante, galo, gato, girafa, leao, lobo, macaco, passarinho, pato, peixe;
     Animal porco, sapo, tatu, tigre, touro, vaca, zebra;
 
+
+    ALLEGRO_FONT *wood = NULL;
+    ALLEGRO_FONT *cubic = NULL;
+    ALLEGRO_FONT *elfic = NULL;
+    ALLEGRO_FONT *sculock = NULL;
+
     ALLEGRO_BITMAP * wallpaper = NULL;
+    wood = al_load_font("fontes/wood.ttf", 48, 0);
+    cubic = al_load_font("fontes/cubic.ttf", 48, 0);
+    elfic = al_load_font("fontes/orderElfic.ttf", 48, 0);
+    sculock = al_load_font("fontes/sculock.ttf", 48, 0);
+    
+    //al_draw_textf(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA / 2, 250, ALLEGRO_ALIGN_CENTRE, "Teste %d - %s", i, texto);
+    
+    
     wallpaper = al_load_bitmap("img/wallpaper.jpg");
 
     strcpy(aguia.nome, "aguia");
     aguia.imagem = al_load_bitmap("img/aguia.png");
 
-    strcpy(caranguejo.nome, "aguia");
+    strcpy(caranguejo.nome, "caranguejo");
     caranguejo.imagem = al_load_bitmap("img/caranguejo.jpg");
-
 
     strcpy(baleia.nome, "baleia");
     baleia.imagem = al_load_bitmap("img/baleia.jpg");
@@ -120,12 +139,13 @@ void modo1(ALLEGRO_DISPLAY *janela){
 
     // Configura a janela
     janela = al_create_display(1350, 700);
-
+ 
     al_draw_bitmap(wallpaper, 0, 0, 0);
+    al_draw_text(elfic, al_map_rgb(0, 0, 0), 1350 - 10, 50, ALLEGRO_ALIGN_RIGHT, "Qual animal emite esse som?");    
     al_draw_bitmap(vaca.imagem, 0, 0, 0);
     al_draw_bitmap(caranguejo.imagem, 0, 390, 0);
     al_draw_bitmap(baleia.imagem, 450, 0, 0);
-    al_draw_bitmap(aguia.imagem, 450, 390, 0);
+    al_draw_bitmap(tigre.imagem, 450, 390, 0);
 
     al_flip_display();
     al_rest(2);
@@ -142,7 +162,21 @@ void modo1(ALLEGRO_DISPLAY *janela){
 
 }
 
+void modo2(ALLEGRO_DISPLAY *janela){
 
+
+    ALLEGRO_BITMAP * wallpaper = NULL;
+    wallpaper = al_load_bitmap("img/wallpaper.jpg");
+
+
+    janela = al_create_display(1350, 700);
+    
+    al_draw_bitmap(wallpaper, 0, 0, 0);
+    al_flip_display();
+    al_rest(2);
+    al_destroy_display(janela);
+    
+}
 
 
 
