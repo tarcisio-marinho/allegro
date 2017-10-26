@@ -29,6 +29,9 @@ void modo1(ALLEGRO_DISPLAY *janela){
     Animal elefante, galo, gato, girafa, leao, lobo, macaco, passarinho, pato, peixe;
     Animal porco, sapo, tatu, tigre, touro, vaca, zebra;
 
+    ALLEGRO_BITMAP * wallpaper = NULL;
+    wallpaper = al_load_bitmap("img/wallpaper.png");
+
     strcpy(aguia.nome, "aguia");
     aguia.imagem = al_load_bitmap("img/aguia.png");
 
@@ -37,7 +40,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
 
 
     strcpy(baleia.nome, "baleia");
-    baleia.imagem = al_load_bitmap("img/baleia.png");
+    baleia.imagem = al_load_bitmap("img/baleia.jpg");
 
     strcpy(cabra.nome, "cabra");
     cabra.imagem = al_load_bitmap("img/cabra.jpg");
@@ -118,9 +121,10 @@ void modo1(ALLEGRO_DISPLAY *janela){
     // Configura a janela
     janela = al_create_display(1350, 700);
 
+    al_draw_bitmap(wallpaper, 0, 0, 0);
     al_draw_bitmap(vaca.imagem, 0, 0, 0);
     al_draw_bitmap(caranguejo.imagem, 0, 390, 0);
-    al_draw_bitmap(galo.imagem, 450, 0, 0);
+    al_draw_bitmap(baleia.imagem, 450, 0, 0);
     al_draw_bitmap(aguia.imagem, 450, 390, 0);
 
     al_flip_display();
