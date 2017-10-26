@@ -30,7 +30,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
     Animal porco, sapo, tatu, tigre, touro, vaca, zebra;
 
     ALLEGRO_BITMAP * wallpaper = NULL;
-    wallpaper = al_load_bitmap("img/wallpaper.png");
+    wallpaper = al_load_bitmap("img/wallpaper.jpg");
 
     strcpy(aguia.nome, "aguia");
     aguia.imagem = al_load_bitmap("img/aguia.png");
