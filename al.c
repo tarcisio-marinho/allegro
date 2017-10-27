@@ -167,9 +167,9 @@ void modo1(ALLEGRO_DISPLAY *janela){
             exit(-1);
         }
 
-        /* Estiver na area selecionada */
+        /* Estiver na area selecionada 
         if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
-            /* Verificamos se ele está sobre a região do retângulo central */
+            /* Verificamos se ele está sobre a região do retângulo central 
             if (evento.mouse.x >= LARGURA_TELA / 2 - al_get_bitmap_width(area_central) / 2 &&
                 evento.mouse.x <= LARGURA_TELA / 2 + al_get_bitmap_width(area_central) / 2 &&
                 evento.mouse.y >= ALTURA_TELA / 2 - al_get_bitmap_height(area_central) / 2 &&
@@ -189,7 +189,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
             }
         }*/
 
-        /* Colorir a area */
+        /* Colorir a area 
         al_set_target_bitmap(area_central);
         if (!na_area_central){
             al_clear_to_color(al_map_rgb(255, 255, 255));
@@ -203,7 +203,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
         al_draw_bitmap(area_central, LARGURA_TELA / 2 - al_get_bitmap_width(area_central) / 2,
                         ALTURA_TELA / 2 - al_get_bitmap_height(area_central) / 2, 0);
 
-
+        */
 
         /* Configura a janela */
         al_draw_bitmap(wallpaper, 0, 0, 0);
