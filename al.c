@@ -11,9 +11,11 @@ typedef struct animal{
 }Animal;
 
 void modo1(ALLEGRO_DISPLAY *janela); // som +  foto de animais, objetos
-void modo2(); // silaba inicial do animal + foto de animais, objetos
-void modo3(); // silabas são iguais ou diferentes, KA KA, KA LA
-void modo4(); // palavras são iguais ou diferentes, faca e vaca
+void modo2(ALLEGRO_DISPLAY *janela); // silaba inicial do animal + foto de animais, objetos
+void modo3(ALLEGRO_DISPLAY *janela); // silabas são iguais ou diferentes, KA KA, KA LA
+void modo4(ALLEGRO_DISPLAY *janela); // palavras são iguais ou diferentes, faca e vaca
+void menu(ALLEGRO_DISPLAY *janela);
+
 
 int main(){
 
@@ -21,12 +23,18 @@ int main(){
     al_init_image_addon();
     al_init_font_addon();
     al_init_ttf_addon();
-
-    
+    al_install_mouse();
     
     ALLEGRO_DISPLAY *janela = NULL;
-
+    janela = al_create_display(1350, 700);
+    al_set_system_mouse_cursor(janela, ALLEGRO_SYSTEM_MOUSE_CURSOR_DEFAULT);
+    al_set_window_title(janela, "Jogo da audição");
+    
+    //menu(janela);
     modo1(janela);
+   // modo2(janela);
+   // modo3(janela);
+   // modo4(janela);
     return 0;
 }
 
@@ -37,7 +45,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
 
     ALLEGRO_EVENT_QUEUE *fila_eventos = NULL;
     
-
+    ALLEGRO_BITMAP *botao_sair = NULL, *area_central = 0;
     ALLEGRO_FONT *wood = NULL;
     ALLEGRO_FONT *cubic = NULL;
     ALLEGRO_FONT *elfic = NULL;
@@ -45,7 +53,9 @@ void modo1(ALLEGRO_DISPLAY *janela){
 
     ALLEGRO_BITMAP * wallpaper = NULL;
     
-    janela = al_create_display(1350, 700);
+    
+
+    
     
     wood = al_load_font("fontes/wood.ttf", 70, 0);
     cubic = al_load_font("fontes/cubic.ttf", 70, 0);
@@ -144,6 +154,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
     al_register_event_source(fila_eventos, al_get_display_event_source(janela));
     
 
+    /* Loop principal do jogo */
     while (1){
         ALLEGRO_EVENT evento;
         ALLEGRO_TIMEOUT timeout;
