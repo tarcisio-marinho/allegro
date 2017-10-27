@@ -48,7 +48,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
 
     ALLEGRO_EVENT_QUEUE *fila_eventos = NULL;
     
-    ALLEGRO_BITMAP *botao_sair = NULL, *area_central = 0;
+    ALLEGRO_BITMAP *area_central = 0;
     ALLEGRO_FONT *fonte = NULL;
 
     ALLEGRO_BITMAP * wallpaper = NULL;
@@ -168,27 +168,44 @@ void modo1(ALLEGRO_DISPLAY *janela){
         }
 
         /* Estiver na area selecionada */
-        if (evento.type == ALLEGRO_EVENT_MOUSE_AXES)
-        {
-            // Verificamos se ele está sobre a região do retângulo central
+        if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
+            /* Verificamos se ele está sobre a região do retângulo central */
             if (evento.mouse.x >= LARGURA_TELA / 2 - al_get_bitmap_width(area_central) / 2 &&
                 evento.mouse.x <= LARGURA_TELA / 2 + al_get_bitmap_width(area_central) / 2 &&
                 evento.mouse.y >= ALTURA_TELA / 2 - al_get_bitmap_height(area_central) / 2 &&
-                evento.mouse.y <= ALTURA_TELA / 2 + al_get_bitmap_height(area_central) / 2)
-            {
+                evento.mouse.y <= ALTURA_TELA / 2 + al_get_bitmap_height(area_central) / 2){
                 na_area_central = 1;
             }
-            else
-            {
+            else{
                 na_area_central = 0;
             }
         }
+        /* Ou se o evento foi um clique do mouse */
+        /*else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
+            if (evento.mouse.x >= LARGURA_TELA - al_get_bitmap_width(botao_sair) - 10 &&
+                evento.mouse.x <= LARGURA_TELA - 10 && evento.mouse.y <= ALTURA_TELA - 10 &&
+                evento.mouse.y >= ALTURA_TELA - al_get_bitmap_height(botao_sair) - 10){
+                //sair = 1;
+            }
+        }*/
 
-        
-        
+        /* Colorir a area */
+        al_set_target_bitmap(area_central);
+        if (!na_area_central){
+            al_clear_to_color(al_map_rgb(255, 255, 255));
+        }
+        else{
+            al_clear_to_color(al_map_rgb(0, 255, 0));
+        }
+
+        // Desenhamos os retângulos na tela
+        al_set_target_bitmap(al_get_backbuffer(janela));
+        al_draw_bitmap(area_central, LARGURA_TELA / 2 - al_get_bitmap_width(area_central) / 2,
+                        ALTURA_TELA / 2 - al_get_bitmap_height(area_central) / 2, 0);
+
+
+
         /* Configura a janela */
-
-        
         al_draw_bitmap(wallpaper, 0, 0, 0);
         al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 50, ALLEGRO_ALIGN_RIGHT, "Qual animal emite"); 
         al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 100, ALLEGRO_ALIGN_RIGHT, "esse som? ");    
