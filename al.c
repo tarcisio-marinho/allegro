@@ -10,6 +10,9 @@ typedef struct animal{
     // som do animal
 }Animal;
 
+const int LARGURA_TELA = 1350;
+const int ALTURA_TELA = 700;
+
 void modo1(ALLEGRO_DISPLAY *janela); // som +  foto de animais, objetos
 void modo2(ALLEGRO_DISPLAY *janela); // silaba inicial do animal + foto de animais, objetos
 void modo3(ALLEGRO_DISPLAY *janela); // silabas são iguais ou diferentes, KA KA, KA LA
@@ -26,7 +29,7 @@ int main(){
     al_install_mouse();
     
     ALLEGRO_DISPLAY *janela = NULL;
-    janela = al_create_display(1350, 700);
+    janela = al_create_display(LARGURA_TELA, ALTURA_TELA);
     al_set_system_mouse_cursor(janela, ALLEGRO_SYSTEM_MOUSE_CURSOR_DEFAULT);
     al_set_window_title(janela, "Jogo da audição");
     
@@ -147,26 +150,49 @@ void modo1(ALLEGRO_DISPLAY *janela){
 
     fila_eventos = al_create_event_queue();
     al_register_event_source(fila_eventos, al_get_display_event_source(janela));
+    al_register_event_source(fila_eventos, al_get_mouse_event_source());
     
-
+    
     /* Loop principal do jogo */
+    int na_area_central = 0;
     while (1){
         ALLEGRO_EVENT evento;
         ALLEGRO_TIMEOUT timeout;
         al_init_timeout(&timeout, 0.05);
 
         int tem_eventos = al_wait_for_event_until(fila_eventos, &evento, &timeout);
- 
-        if (tem_eventos && evento.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
-            break;
-        }
         
-        // Configura a janela
+        /* Sair */
+        if (tem_eventos && evento.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
+            exit(-1);
+        }
 
+        /* Estiver na area selecionada */
+        if (evento.type == ALLEGRO_EVENT_MOUSE_AXES)
+        {
+            // Verificamos se ele está sobre a região do retângulo central
+            if (evento.mouse.x >= LARGURA_TELA / 2 - al_get_bitmap_width(area_central) / 2 &&
+                evento.mouse.x <= LARGURA_TELA / 2 + al_get_bitmap_width(area_central) / 2 &&
+                evento.mouse.y >= ALTURA_TELA / 2 - al_get_bitmap_height(area_central) / 2 &&
+                evento.mouse.y <= ALTURA_TELA / 2 + al_get_bitmap_height(area_central) / 2)
+            {
+                na_area_central = 1;
+            }
+            else
+            {
+                na_area_central = 0;
+            }
+        }
 
+        
+        
+        /* Configura a janela */
+
+        
         al_draw_bitmap(wallpaper, 0, 0, 0);
-        al_draw_text(fonte, al_map_rgb(0, 0, 0), 1350 , 50, ALLEGRO_ALIGN_RIGHT, "Qual animal emite"); 
-        al_draw_text(fonte, al_map_rgb(0, 0, 0), 1350 , 100, ALLEGRO_ALIGN_RIGHT, "esse som? ");    
+        al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 50, ALLEGRO_ALIGN_RIGHT, "Qual animal emite"); 
+        al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 100, ALLEGRO_ALIGN_RIGHT, "esse som? ");    
+        area_central = al_create_bitmap(500, 400);
         al_draw_bitmap(vaca.imagem, 0, 0, 0);
         al_draw_bitmap(caranguejo.imagem, 0, 390, 0);
         al_draw_bitmap(baleia.imagem, 450, 0, 0);
