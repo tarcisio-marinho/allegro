@@ -46,10 +46,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
     ALLEGRO_EVENT_QUEUE *fila_eventos = NULL;
     
     ALLEGRO_BITMAP *botao_sair = NULL, *area_central = 0;
-    ALLEGRO_FONT *wood = NULL;
-    ALLEGRO_FONT *cubic = NULL;
-    ALLEGRO_FONT *elfic = NULL;
-    ALLEGRO_FONT *sculock = NULL;
+    ALLEGRO_FONT *fonte = NULL;
 
     ALLEGRO_BITMAP * wallpaper = NULL;
     
@@ -57,10 +54,8 @@ void modo1(ALLEGRO_DISPLAY *janela){
 
     
     
-    wood = al_load_font("fontes/wood.ttf", 70, 0);
-    cubic = al_load_font("fontes/cubic.ttf", 70, 0);
-    elfic = al_load_font("fontes/orderElfic.ttf", 70, 0);
-    sculock = al_load_font("fontes/sculock.ttf", 70, 0);
+    fonte = al_load_font("fontes/coolvetica.ttf", 60, 0);
+
 
 
   
@@ -170,8 +165,8 @@ void modo1(ALLEGRO_DISPLAY *janela){
 
 
         al_draw_bitmap(wallpaper, 0, 0, 0);
-        al_draw_text(sculock, al_map_rgb(0, 0, 0), 1350 , 50, ALLEGRO_ALIGN_RIGHT, "Qual animal "); 
-        al_draw_text(sculock, al_map_rgb(0, 0, 0), 1350 , 90, ALLEGRO_ALIGN_RIGHT, "emite esse som? ");    
+        al_draw_text(fonte, al_map_rgb(0, 0, 0), 1350 , 50, ALLEGRO_ALIGN_RIGHT, "Qual animal emite"); 
+        al_draw_text(fonte, al_map_rgb(0, 0, 0), 1350 , 100, ALLEGRO_ALIGN_RIGHT, "esse som? ");    
         al_draw_bitmap(vaca.imagem, 0, 0, 0);
         al_draw_bitmap(caranguejo.imagem, 0, 390, 0);
         al_draw_bitmap(baleia.imagem, 450, 0, 0);
@@ -180,7 +175,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
 
     }
 
-    al_destroy_font(sculock);
+    al_destroy_font(fonte);
     al_destroy_display(janela);
     al_destroy_event_queue(fila_eventos);
 
