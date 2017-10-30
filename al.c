@@ -48,7 +48,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
 
     ALLEGRO_EVENT_QUEUE *fila_eventos = NULL;
     
-    ALLEGRO_BITMAP *area_central = 0;
+    ALLEGRO_BITMAP *quadrado1 = 0, *quadrado2 = 0, *quadrado3 = 0, *quadrado4 = 0;
     ALLEGRO_FONT *fonte = NULL;
 
     ALLEGRO_BITMAP * wallpaper = NULL;
@@ -154,7 +154,8 @@ void modo1(ALLEGRO_DISPLAY *janela){
     
     
     /* Loop principal do jogo */
-    int na_area_central = 0;
+    int no_quadrado1 = 0, no_quadrado2 = 0, no_quadrado3 = 0, no_quadrado4 = 0;
+    
     while (1){
         ALLEGRO_EVENT evento;
         ALLEGRO_TIMEOUT timeout;
@@ -170,28 +171,28 @@ void modo1(ALLEGRO_DISPLAY *janela){
         /* Estiver na area selecionada 
         if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
             /* Verificamos se ele está sobre a região do retângulo central 
-            if (evento.mouse.x >= LARGURA_TELA / 2 - al_get_bitmap_width(area_central) / 2 &&
-                evento.mouse.x <= LARGURA_TELA / 2 + al_get_bitmap_width(area_central) / 2 &&
-                evento.mouse.y >= ALTURA_TELA / 2 - al_get_bitmap_height(area_central) / 2 &&
-                evento.mouse.y <= ALTURA_TELA / 2 + al_get_bitmap_height(area_central) / 2){
-                na_area_central = 1;
+            if (evento.mouse.x >= LARGURA_TELA / 2 - al_get_bitmap_width(quadrado1) / 2 &&
+                evento.mouse.x <= LARGURA_TELA / 2 + al_get_bitmap_width(quadrado1) / 2 &&
+                evento.mouse.y >= ALTURA_TELA / 2 - al_get_bitmap_height(quadrado1) / 2 &&
+                evento.mouse.y <= ALTURA_TELA / 2 + al_get_bitmap_height(quadrado1) / 2){
+                no_quadrado1 = 1;
             }
             else{
-                na_area_central = 0;
+                no_quadrado1 = 0;
             }
         }
-        /* Ou se o evento foi um clique do mouse */
-        /*else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
+        /* Ou se o evento foi um clique do mouse 
+        else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
             if (evento.mouse.x >= LARGURA_TELA - al_get_bitmap_width(botao_sair) - 10 &&
                 evento.mouse.x <= LARGURA_TELA - 10 && evento.mouse.y <= ALTURA_TELA - 10 &&
                 evento.mouse.y >= ALTURA_TELA - al_get_bitmap_height(botao_sair) - 10){
                 //sair = 1;
             }
-        }*/
+        }
 
-        /* Colorir a area 
-        al_set_target_bitmap(area_central);
-        if (!na_area_central){
+        /* Colorir a area */ 
+        al_set_target_bitmap(quadrado1);
+        if (!no_quadrado1){
             al_clear_to_color(al_map_rgb(255, 255, 255));
         }
         else{
@@ -200,16 +201,22 @@ void modo1(ALLEGRO_DISPLAY *janela){
 
         // Desenhamos os retângulos na tela
         al_set_target_bitmap(al_get_backbuffer(janela));
-        al_draw_bitmap(area_central, LARGURA_TELA / 2 - al_get_bitmap_width(area_central) / 2,
-                        ALTURA_TELA / 2 - al_get_bitmap_height(area_central) / 2, 0);
+        al_draw_bitmap(quadrado1, LARGURA_TELA / 2 - al_get_bitmap_width(quadrado1) / 2,
+                        ALTURA_TELA / 2 - al_get_bitmap_height(quadrado1) / 2, 0);
 
-        */
+        
+
+
+                        
 
         /* Configura a janela */
         al_draw_bitmap(wallpaper, 0, 0, 0);
         al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 50, ALLEGRO_ALIGN_RIGHT, "Qual animal emite"); 
         al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 100, ALLEGRO_ALIGN_RIGHT, "esse som? ");    
-        area_central = al_create_bitmap(500, 400);
+        quadrado1 = al_create_bitmap(450, 350);
+        quadrado2 = al_create_bitmap(450, 350);
+        quadrado3 = al_create_bitmap(450, 350);
+        quadrado4 = al_create_bitmap(450, 350);
         al_draw_bitmap(vaca.imagem, 0, 0, 0);
         al_draw_bitmap(caranguejo.imagem, 0, 390, 0);
         al_draw_bitmap(baleia.imagem, 450, 0, 0);
