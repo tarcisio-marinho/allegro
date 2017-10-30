@@ -152,6 +152,10 @@ void modo1(ALLEGRO_DISPLAY *janela){
     al_register_event_source(fila_eventos, al_get_display_event_source(janela));
     al_register_event_source(fila_eventos, al_get_mouse_event_source());
     
+    quadrado1 = al_create_bitmap(450, 350);
+    quadrado2 = al_create_bitmap(450, 350);
+    quadrado3 = al_create_bitmap(450, 350);
+    quadrado4 = al_create_bitmap(450, 350);
     
     /* Loop principal do jogo */
     int no_quadrado1 = 0, no_quadrado2 = 0, no_quadrado3 = 0, no_quadrado4 = 0;
@@ -190,7 +194,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
             }
         }
 
-        /* Colorir a area */ 
+        /* Colorir a area */
         al_set_target_bitmap(quadrado1);
         if (!no_quadrado1){
             al_clear_to_color(al_map_rgb(255, 255, 255));
@@ -213,10 +217,6 @@ void modo1(ALLEGRO_DISPLAY *janela){
         al_draw_bitmap(wallpaper, 0, 0, 0);
         al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 50, ALLEGRO_ALIGN_RIGHT, "Qual animal emite"); 
         al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 100, ALLEGRO_ALIGN_RIGHT, "esse som? ");    
-        quadrado1 = al_create_bitmap(450, 350);
-        quadrado2 = al_create_bitmap(450, 350);
-        quadrado3 = al_create_bitmap(450, 350);
-        quadrado4 = al_create_bitmap(450, 350);
         al_draw_bitmap(vaca.imagem, 0, 0, 0);
         al_draw_bitmap(caranguejo.imagem, 0, 390, 0);
         al_draw_bitmap(baleia.imagem, 450, 0, 0);
