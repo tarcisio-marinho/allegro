@@ -55,98 +55,96 @@ void modo1(ALLEGRO_DISPLAY *janela){
     
     
 
+    if(1){
     
-    
-    fonte = al_load_font("fontes/coolvetica.ttf", 60, 0);
+        fonte = al_load_font("fontes/coolvetica.ttf", 60, 0);
+        
+        wallpaper = al_load_bitmap("img/wallpaper.jpg");
+
+        strcpy(aguia.nome, "aguia");
+        aguia.imagem = al_load_bitmap("img/aguia.png");
+
+        strcpy(caranguejo.nome, "caranguejo");
+        caranguejo.imagem = al_load_bitmap("img/caranguejo.jpg");
+
+        strcpy(baleia.nome, "baleia");
+        baleia.imagem = al_load_bitmap("img/baleia.jpg");
+
+        strcpy(cabra.nome, "cabra");
+        cabra.imagem = al_load_bitmap("img/cabra.jpg");
+
+        strcpy(cachorro.nome, "cachorro");
+        cachorro.imagem = al_load_bitmap("img/cachorro.jpeg");
+
+        strcpy(camelo.nome, "camelo");
+        camelo.imagem = al_load_bitmap("img/camelo.JPG");
+
+        strcpy(cavalo.nome, "cavalo");
+        cavalo.imagem = al_load_bitmap("img/cavalo.jpg");
+
+        strcpy(cobra.nome, "cobra");
+        cobra.imagem = al_load_bitmap("img/cobra.jpg");
+
+        strcpy(coelho.nome, "coelho");
+        coelho.imagem = al_load_bitmap("img/coelho.jpg");
+
+        strcpy(coruja.nome, "coruja");
+        coruja.imagem = al_load_bitmap("img/coruja.jpg");
+
+        strcpy(elefante.nome, "elefante");
+        elefante.imagem = al_load_bitmap("img/elefante.jpg");
+
+        strcpy(galo.nome, "galo");
+        galo.imagem = al_load_bitmap("img/galo.jpg");
+
+        strcpy(gato.nome, "gato");
+        gato.imagem = al_load_bitmap("img/gato.jpg");
+
+        strcpy(girafa.nome, "girafa");
+        girafa.imagem = al_load_bitmap("img/girafa.jpg");
+
+        strcpy(leao.nome, "leao");
+        leao.imagem = al_load_bitmap("img/leao.jpeg");
+
+        strcpy(lobo.nome, "lobo");
+        lobo.imagem = al_load_bitmap("img/lobo.jpg");
+
+        strcpy(macaco.nome, "macaco");
+        macaco.imagem = al_load_bitmap("img/macaco.jpeg");
+
+        strcpy(passarinho.nome, "passarinho");
+        passarinho.imagem = al_load_bitmap("img/passarinho.jpg");
+
+        strcpy(pato.nome, "pato");
+        pato.imagem = al_load_bitmap("img/pato.jpg");
+
+        strcpy(peixe.nome, "peixe");
+        peixe.imagem = al_load_bitmap("img/peixe.jpg");
+
+        strcpy(porco.nome, "porco");
+        porco.imagem = al_load_bitmap("img/porco.jpg");
+
+        strcpy(sapo.nome, "sapo");
+        sapo.imagem = al_load_bitmap("img/sapo.jpeg");
+
+        strcpy(tatu.nome, "tatu");
+        tatu.imagem = al_load_bitmap("img/tatu.jpg");
+
+        strcpy(tigre.nome, "tigre");
+        tigre.imagem = al_load_bitmap("img/tigre.jpg");
 
 
-
-  
-    
-    wallpaper = al_load_bitmap("img/wallpaper.jpg");
-
-    strcpy(aguia.nome, "aguia");
-    aguia.imagem = al_load_bitmap("img/aguia.png");
-
-    strcpy(caranguejo.nome, "caranguejo");
-    caranguejo.imagem = al_load_bitmap("img/caranguejo.jpg");
-
-    strcpy(baleia.nome, "baleia");
-    baleia.imagem = al_load_bitmap("img/baleia.jpg");
-
-    strcpy(cabra.nome, "cabra");
-    cabra.imagem = al_load_bitmap("img/cabra.jpg");
-
-    strcpy(cachorro.nome, "cachorro");
-    cachorro.imagem = al_load_bitmap("img/cachorro.jpeg");
-
-    strcpy(camelo.nome, "camelo");
-    camelo.imagem = al_load_bitmap("img/camelo.JPG");
-
-    strcpy(cavalo.nome, "cavalo");
-    cavalo.imagem = al_load_bitmap("img/cavalo.jpg");
-
-    strcpy(cobra.nome, "cobra");
-    cobra.imagem = al_load_bitmap("img/cobra.jpg");
-
-    strcpy(coelho.nome, "coelho");
-    coelho.imagem = al_load_bitmap("img/coelho.jpg");
-
-    strcpy(coruja.nome, "coruja");
-    coruja.imagem = al_load_bitmap("img/coruja.jpg");
-
-    strcpy(elefante.nome, "elefante");
-    elefante.imagem = al_load_bitmap("img/elefante.jpg");
-
-    strcpy(galo.nome, "galo");
-    galo.imagem = al_load_bitmap("img/galo.jpg");
-
-    strcpy(gato.nome, "gato");
-    gato.imagem = al_load_bitmap("img/gato.jpg");
-
-    strcpy(girafa.nome, "girafa");
-    girafa.imagem = al_load_bitmap("img/girafa.jpg");
-
-    strcpy(leao.nome, "leao");
-    leao.imagem = al_load_bitmap("img/leao.jpeg");
-
-    strcpy(lobo.nome, "lobo");
-    lobo.imagem = al_load_bitmap("img/lobo.jpg");
-
-    strcpy(macaco.nome, "macaco");
-    macaco.imagem = al_load_bitmap("img/macaco.jpeg");
-
-    strcpy(passarinho.nome, "passarinho");
-    passarinho.imagem = al_load_bitmap("img/passarinho.jpg");
-
-    strcpy(pato.nome, "pato");
-    pato.imagem = al_load_bitmap("img/pato.jpg");
-
-    strcpy(peixe.nome, "peixe");
-    peixe.imagem = al_load_bitmap("img/peixe.jpg");
-
-    strcpy(porco.nome, "porco");
-    porco.imagem = al_load_bitmap("img/porco.jpg");
-
-    strcpy(sapo.nome, "sapo");
-    sapo.imagem = al_load_bitmap("img/sapo.jpeg");
-
-    strcpy(tatu.nome, "tatu");
-    tatu.imagem = al_load_bitmap("img/tatu.jpg");
-
-    strcpy(tigre.nome, "tigre");
-    tigre.imagem = al_load_bitmap("img/tigre.jpg");
+        strcpy(touro.nome, "touro");
+        touro.imagem = al_load_bitmap("img/touro.jpeg");
 
 
-    strcpy(touro.nome, "touro");
-    touro.imagem = al_load_bitmap("img/touro.jpeg");
+        strcpy(vaca.nome, "vaca");
+        vaca.imagem = al_load_bitmap("img/vaca.jpg");
 
+        strcpy(zebra.nome, "zebra");
+        zebra.imagem = al_load_bitmap("img/zebra.jpg");
 
-    strcpy(vaca.nome, "vaca");
-    vaca.imagem = al_load_bitmap("img/vaca.jpg");
-
-    strcpy(zebra.nome, "zebra");
-    zebra.imagem = al_load_bitmap("img/zebra.jpg");
+    }
 
     fila_eventos = al_create_event_queue();
     al_register_event_source(fila_eventos, al_get_display_event_source(janela));
