@@ -172,17 +172,18 @@ void modo1(ALLEGRO_DISPLAY *janela){
             exit(-1);
         }
 
-        /* Estiver na area selecionada 
+        /* Estiver na area selecionada */
+        al_set_target_bitmap(quadrado1); 
         if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
-            /* Verificamos se ele está sobre a região do retângulo central 
+            /* Verificamos se ele está sobre a região do retângulo central */
             if (evento.mouse.x >= LARGURA_TELA / 2 - al_get_bitmap_width(quadrado1) / 2 &&
                 evento.mouse.x <= LARGURA_TELA / 2 + al_get_bitmap_width(quadrado1) / 2 &&
                 evento.mouse.y >= ALTURA_TELA / 2 - al_get_bitmap_height(quadrado1) / 2 &&
                 evento.mouse.y <= ALTURA_TELA / 2 + al_get_bitmap_height(quadrado1) / 2){
-                no_quadrado1 = 1;
+                al_clear_to_color(al_map_rgb(0, 255, 0));
             }
             else{
-                no_quadrado1 = 0;
+                al_clear_to_color(al_map_rgb(255, 255, 255));
             }
         }
         /* Ou se o evento foi um clique do mouse 
@@ -192,22 +193,15 @@ void modo1(ALLEGRO_DISPLAY *janela){
                 evento.mouse.y >= ALTURA_TELA - al_get_bitmap_height(botao_sair) - 10){
                 //sair = 1;
             }
-        }
+        }*/
 
-        /* Colorir a area */
-        al_set_target_bitmap(quadrado1);
-        if (!no_quadrado1){
-            al_clear_to_color(al_map_rgb(255, 255, 255));
-        }
-        else{
-            al_clear_to_color(al_map_rgb(0, 255, 0));
-        }
 
-        // Desenhamos os retângulos na tela
+
+        /* Desenhamos os retângulos na tela
         al_set_target_bitmap(al_get_backbuffer(janela));
         al_draw_bitmap(quadrado1, LARGURA_TELA / 2 - al_get_bitmap_width(quadrado1) / 2,
                         ALTURA_TELA / 2 - al_get_bitmap_height(quadrado1) / 2, 0);
-
+        */
         
 
 
@@ -229,16 +223,11 @@ void modo1(ALLEGRO_DISPLAY *janela){
     al_destroy_display(janela);
     al_destroy_event_queue(fila_eventos);
 
-
-
-
-
-
-
-
-
-
 }
+
+
+
+
 
 void modo2(ALLEGRO_DISPLAY *janela){
 
@@ -255,6 +244,3 @@ void modo2(ALLEGRO_DISPLAY *janela){
     al_destroy_display(janela);
     
 }
-
-
-
