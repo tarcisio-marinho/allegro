@@ -170,10 +170,10 @@ void modo1(ALLEGRO_DISPLAY *janela){
             exit(-1);
         }
 
-        /* Estiver na area selecionada 
+        /* Estiver na area selecionada */
         al_set_target_bitmap(quadrado1); 
         if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
-            /* Verificamos se ele está sobre a região do retângulo central 
+            /* Verificamos se ele está sobre a região do retângulo central */ 
             if (evento.mouse.x >= LARGURA_TELA / 2 - al_get_bitmap_width(quadrado1) / 2 &&
                 evento.mouse.x <= LARGURA_TELA / 2 + al_get_bitmap_width(quadrado1) / 2 &&
                 evento.mouse.y >= ALTURA_TELA / 2 - al_get_bitmap_height(quadrado1) / 2 &&
@@ -195,11 +195,8 @@ void modo1(ALLEGRO_DISPLAY *janela){
 
 
 
-        /* Desenhamos os retângulos na tela
-        al_set_target_bitmap(al_get_backbuffer(janela));
-        al_draw_bitmap(quadrado1, LARGURA_TELA / 2 - al_get_bitmap_width(quadrado1) / 2,
-                        ALTURA_TELA / 2 - al_get_bitmap_height(quadrado1) / 2, 0);
-        */
+        
+        
         
 
 
@@ -207,12 +204,17 @@ void modo1(ALLEGRO_DISPLAY *janela){
 
         /* Configura a janela */
         al_draw_bitmap(wallpaper, 0, 0, 0);
+
+        /* Desenhamos os retângulos na tela*/
+        al_set_target_bitmap(al_get_backbuffer(janela));
+        al_draw_bitmap(quadrado1, al_get_bitmap_width(quadrado1) , al_get_bitmap_height(quadrado1) , 0);
+
         al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 50, ALLEGRO_ALIGN_RIGHT, "Qual animal emite"); 
         al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 100, ALLEGRO_ALIGN_RIGHT, "esse som? ");    
-        //al_draw_bitmap(vaca.imagem, 0, 0, 0);
-        //al_draw_bitmap(caranguejo.imagem, 0, 390, 0);
-        //al_draw_bitmap(baleia.imagem, 450, 0, 0);
-        //al_draw_bitmap(tigre.imagem, 450, 390, 0);
+        al_draw_bitmap(leao.imagem, 0, 0, 0);
+        al_draw_bitmap(caranguejo.imagem, 0, 390, 0);
+        al_draw_bitmap(baleia.imagem, 450, 0, 0);
+        al_draw_bitmap(tigre.imagem, 450, 390, 0);
         al_flip_display();
 
     }
