@@ -177,10 +177,10 @@ void modo1(ALLEGRO_DISPLAY *janela){
                 evento.mouse.x <= LARGURA_TELA / 2 + al_get_bitmap_width(quadrado1) / 2 &&
                 evento.mouse.y >= ALTURA_TELA / 2 - al_get_bitmap_height(quadrado1) / 2 &&
                 evento.mouse.y <= ALTURA_TELA / 2 + al_get_bitmap_height(quadrado1) / 2){
-                al_clear_to_color(al_map_rgb(0, 255, 0));
+                //al_clear_to_color(al_map_rgb(0, 255, 0));
             }
             else{
-                al_clear_to_color(al_map_rgb(255, 255, 255));
+                //al_clear_to_color(al_map_rgb(255, 255, 255));
             }
         }
         /* Ou se o evento foi um clique do mouse
@@ -202,10 +202,10 @@ void modo1(ALLEGRO_DISPLAY *janela){
 
 
         /* Configura a janela */
+        al_set_target_bitmap(al_get_backbuffer(janela));
         al_draw_bitmap(wallpaper, 0, 0, 0);
 
         /* Desenhamos os retângulos na tela*/
-        al_set_target_bitmap(al_get_backbuffer(janela));
         al_draw_bitmap(quadrado1, al_get_bitmap_width(quadrado1) , al_get_bitmap_height(quadrado1) , 0);
 
         al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 50, ALLEGRO_ALIGN_RIGHT, "Qual animal emite");
