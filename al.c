@@ -150,10 +150,10 @@ void modo1(ALLEGRO_DISPLAY *janela){
     al_register_event_source(fila_eventos, al_get_display_event_source(janela));
     al_register_event_source(fila_eventos, al_get_mouse_event_source());
 
-    quadrado1 = al_create_bitmap(450, 350);
-    quadrado2 = al_create_bitmap(450, 350);
-    quadrado3 = al_create_bitmap(450, 350);
-    quadrado4 = al_create_bitmap(450, 350);
+    quadrado1 = al_create_bitmap(410, 320);
+    quadrado2 = al_create_bitmap(410, 320);
+    quadrado3 = al_create_bitmap(410, 320);
+    quadrado4 = al_create_bitmap(410, 320);
 
     /* Loop principal do jogo */
 
@@ -168,28 +168,103 @@ void modo1(ALLEGRO_DISPLAY *janela){
         if (tem_eventos && evento.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
             exit(-1);
         }
+        if(1){
 
-        /* Estiver na area selecionada */
-        al_set_target_bitmap(quadrado1);
-        if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
-            /* Verificamos se ele está sobre a região do retângulo central */
-            if (evento.mouse.x >= LARGURA_TELA / 2 - al_get_bitmap_width(quadrado1) / 2 &&
-                evento.mouse.x <= LARGURA_TELA / 2 + al_get_bitmap_width(quadrado1) / 2 &&
-                evento.mouse.y >= ALTURA_TELA / 2 - al_get_bitmap_height(quadrado1) / 2 &&
-                evento.mouse.y <= ALTURA_TELA / 2 + al_get_bitmap_height(quadrado1) / 2){
-                //al_clear_to_color(al_map_rgb(0, 255, 0));
+
+
+            /* quadrado1 */
+            al_set_target_bitmap(quadrado1);
+            if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
+                /* Verificamos se ele está sobre a região do retângulo central */
+                if (evento.mouse.x >= LARGURA_TELA / 2 - al_get_bitmap_width(quadrado1) / 2 &&
+                    evento.mouse.x <= LARGURA_TELA / 2 + al_get_bitmap_width(quadrado1) / 2 &&
+                    evento.mouse.y >= ALTURA_TELA / 2 - al_get_bitmap_height(quadrado1) / 2 &&
+                    evento.mouse.y <= ALTURA_TELA / 2 + al_get_bitmap_height(quadrado1) / 2){
+                    //al_clear_to_color(al_map_rgb(102, 102, 255));
+                }
+                else{
+                    al_clear_to_color(al_map_rgb(0, 3, 123));
+                }
             }
-            else{
-                //al_clear_to_color(al_map_rgb(255, 255, 255));
+            /* Ou se o evento foi um clique do mouse
+            else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
+                if (evento.mouse.x >= LARGURA_TELA - al_get_bitmap_width(botao_sair) - 10 &&
+                    evento.mouse.x <= LARGURA_TELA - 10 && evento.mouse.y <= ALTURA_TELA - 10 &&
+                    evento.mouse.y >= ALTURA_TELA - al_get_bitmap_height(botao_sair) - 10){
+                    //sair = 1;
+                }
+            }*/
+
+            /* quadrado2 */
+            al_set_target_bitmap(quadrado2);
+            if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
+                /* Verificamos se ele está sobre a região do retângulo central */
+                if (evento.mouse.x >= LARGURA_TELA / 2 - al_get_bitmap_width(quadrado1) / 2 &&
+                    evento.mouse.x <= LARGURA_TELA / 2 + al_get_bitmap_width(quadrado1) / 2 &&
+                    evento.mouse.y >= ALTURA_TELA / 2 - al_get_bitmap_height(quadrado1) / 2 &&
+                    evento.mouse.y <= ALTURA_TELA / 2 + al_get_bitmap_height(quadrado1) / 2){
+                    //al_clear_to_color(al_map_rgb(102, 102, 255));
+                }
+                else{
+                    al_clear_to_color(al_map_rgb(0, 3, 123));
+                }
             }
-        }
-        /* Ou se o evento foi um clique do mouse
-        else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
-            if (evento.mouse.x >= LARGURA_TELA - al_get_bitmap_width(botao_sair) - 10 &&
-                evento.mouse.x <= LARGURA_TELA - 10 && evento.mouse.y <= ALTURA_TELA - 10 &&
-                evento.mouse.y >= ALTURA_TELA - al_get_bitmap_height(botao_sair) - 10){
-                //sair = 1;
+            /* Ou se o evento foi um clique do mouse
+            else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
+                if (evento.mouse.x >= LARGURA_TELA - al_get_bitmap_width(botao_sair) - 10 &&
+                    evento.mouse.x <= LARGURA_TELA - 10 && evento.mouse.y <= ALTURA_TELA - 10 &&
+                    evento.mouse.y >= ALTURA_TELA - al_get_bitmap_height(botao_sair) - 10){
+                    //sair = 1;
+                }
+            }*/
+
+            /* quadrado3 */
+            al_set_target_bitmap(quadrado3);
+            if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
+                /* Verificamos se ele está sobre a região do retângulo central */
+                if (evento.mouse.x >= LARGURA_TELA / 2 - al_get_bitmap_width(quadrado1) / 2 &&
+                    evento.mouse.x <= LARGURA_TELA / 2 + al_get_bitmap_width(quadrado1) / 2 &&
+                    evento.mouse.y >= ALTURA_TELA / 2 - al_get_bitmap_height(quadrado1) / 2 &&
+                    evento.mouse.y <= ALTURA_TELA / 2 + al_get_bitmap_height(quadrado1) / 2){
+                    //al_clear_to_color(al_map_rgb(102, 102, 255));
+                }
+                else{
+                    al_clear_to_color(al_map_rgb(0, 3, 123));
+                }
             }
+            /* Ou se o evento foi um clique do mouse
+            else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
+                if (evento.mouse.x >= LARGURA_TELA - al_get_bitmap_width(botao_sair) - 10 &&
+                    evento.mouse.x <= LARGURA_TELA - 10 && evento.mouse.y <= ALTURA_TELA - 10 &&
+                    evento.mouse.y >= ALTURA_TELA - al_get_bitmap_height(botao_sair) - 10){
+                    //sair = 1;
+                }
+            }*/
+
+            /* quadrado4 */
+            al_set_target_bitmap(quadrado4);
+            if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
+                /* Verificamos se ele está sobre a região do retângulo central */
+                if (evento.mouse.x >= LARGURA_TELA / 2 - al_get_bitmap_width(quadrado1) / 2 &&
+                    evento.mouse.x <= LARGURA_TELA / 2 + al_get_bitmap_width(quadrado1) / 2 &&
+                    evento.mouse.y >= ALTURA_TELA / 2 - al_get_bitmap_height(quadrado1) / 2 &&
+                    evento.mouse.y <= ALTURA_TELA / 2 + al_get_bitmap_height(quadrado1) / 2){
+                    //al_clear_to_color(al_map_rgb(102, 102, 255));
+                }
+                else{
+                    al_clear_to_color(al_map_rgb(0, 3, 123));
+                }
+            }
+            /* Ou se o evento foi um clique do mouse
+            else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
+                if (evento.mouse.x >= LARGURA_TELA - al_get_bitmap_width(botao_sair) - 10 &&
+                    evento.mouse.x <= LARGURA_TELA - 10 && evento.mouse.y <= ALTURA_TELA - 10 &&
+                    evento.mouse.y >= ALTURA_TELA - al_get_bitmap_height(botao_sair) - 10){
+                    //sair = 1;
+                }
+            }*/
+
+
         }
 
 
@@ -205,8 +280,11 @@ void modo1(ALLEGRO_DISPLAY *janela){
         al_set_target_bitmap(al_get_backbuffer(janela));
         al_draw_bitmap(wallpaper, 0, 0, 0);
 
-        /* Desenhamos os retângulos na tela*/
-        al_draw_bitmap(quadrado1, al_get_bitmap_width(quadrado1) , al_get_bitmap_height(quadrado1) , 0);
+        /* Desenhamos os retângulos na tela   (410, 320)  */
+        al_draw_bitmap(quadrado1, 0, 0, 0);
+        al_draw_bitmap(quadrado2, 420, 0, 0);
+        al_draw_bitmap(quadrado3, 0, 340, 0);
+        al_draw_bitmap(quadrado4, 420, 340, 0);
 
         al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 50, ALLEGRO_ALIGN_RIGHT, "Qual animal emite");
         al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 100, ALLEGRO_ALIGN_RIGHT, "esse som? ");
