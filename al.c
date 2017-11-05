@@ -176,11 +176,11 @@ void modo1(ALLEGRO_DISPLAY *janela){
             al_set_target_bitmap(quadrado1);
             if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
                 /* Verificamos se ele está sobre a região do retângulo central */
-                if (evento.mouse.x >= LARGURA_TELA / 2 - al_get_bitmap_width(quadrado1) / 2 &&
-                    evento.mouse.x <= LARGURA_TELA / 2 + al_get_bitmap_width(quadrado1) / 2 &&
-                    evento.mouse.y >= ALTURA_TELA / 2 - al_get_bitmap_height(quadrado1) / 2 &&
-                    evento.mouse.y <= ALTURA_TELA / 2 + al_get_bitmap_height(quadrado1) / 2){
-                    //al_clear_to_color(al_map_rgb(102, 102, 255));
+                if (evento.mouse.x >= 0 &&
+                    evento.mouse.x <= 420 &&
+                    evento.mouse.y >= 0 &&
+                    evento.mouse.y <= 320){
+                    al_clear_to_color(al_map_rgb(102, 102, 255));
                 }
                 else{
                     al_clear_to_color(al_map_rgb(0, 3, 123));
