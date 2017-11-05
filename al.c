@@ -150,10 +150,10 @@ void modo1(ALLEGRO_DISPLAY *janela){
     al_register_event_source(fila_eventos, al_get_display_event_source(janela));
     al_register_event_source(fila_eventos, al_get_mouse_event_source());
 
-    quadrado1 = al_create_bitmap(410, 320);
-    quadrado2 = al_create_bitmap(410, 320);
-    quadrado3 = al_create_bitmap(410, 320);
-    quadrado4 = al_create_bitmap(410, 320);
+    quadrado1 = al_create_bitmap(420, 320);
+    quadrado2 = al_create_bitmap(420, 320);
+    quadrado3 = al_create_bitmap(420, 320);
+    quadrado4 = al_create_bitmap(420, 320);
 
     /* Loop principal do jogo */
 
@@ -282,14 +282,14 @@ void modo1(ALLEGRO_DISPLAY *janela){
 
         /* Desenhamos os retângulos na tela   (410, 320)  */
         al_draw_bitmap(quadrado1, 0, 0, 0);
-        al_draw_bitmap(quadrado2, 420, 0, 0);
-        al_draw_bitmap(quadrado3, 0, 340, 0);
-        al_draw_bitmap(quadrado4, 420, 340, 0);
+        al_draw_bitmap(quadrado2, 440, 0, 0);
+        al_draw_bitmap(quadrado3, 0, 360, 0);
+        al_draw_bitmap(quadrado4, 440, 360, 0);
 
         al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 50, ALLEGRO_ALIGN_RIGHT, "Qual animal emite");
         al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 100, ALLEGRO_ALIGN_RIGHT, "esse som? ");
-        al_draw_bitmap(leao.imagem, 0, 0, 0);
-        al_draw_bitmap(caranguejo.imagem, 0, 390, 0);
+        al_draw_bitmap(vaca.imagem, 0, 0, 0);
+        al_draw_bitmap(cabra.imagem, 0, 390, 0);
         al_draw_bitmap(baleia.imagem, 450, 0, 0);
         al_draw_bitmap(tigre.imagem, 450, 390, 0);
         al_flip_display();
