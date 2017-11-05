@@ -50,9 +50,6 @@
 		<Unit filename="al.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/initializer.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/initializer.h" />
 		<Extensions>
 			<code_completion />

@@ -27,12 +27,12 @@ int main(){
     al_init_font_addon();
     al_init_ttf_addon();
     al_install_mouse();
-    
+
     ALLEGRO_DISPLAY *janela = NULL;
     janela = al_create_display(LARGURA_TELA, ALTURA_TELA);
     al_set_system_mouse_cursor(janela, ALLEGRO_SYSTEM_MOUSE_CURSOR_DEFAULT);
     al_set_window_title(janela, "Jogo da audição");
-    
+
     //menu(janela);
     modo1(janela);
    // modo2(janela);
@@ -47,18 +47,18 @@ void modo1(ALLEGRO_DISPLAY *janela){
     Animal porco, sapo, tatu, tigre, touro, vaca, zebra;
 
     ALLEGRO_EVENT_QUEUE *fila_eventos = NULL;
-    
+
     ALLEGRO_BITMAP *quadrado1 = 0, *quadrado2 = 0, *quadrado3 = 0, *quadrado4 = 0;
     ALLEGRO_FONT *fonte = NULL;
 
     ALLEGRO_BITMAP * wallpaper = NULL;
-    
-    
+
+
 
     if(1){
-    
+
         fonte = al_load_font("fontes/coolvetica.ttf", 60, 0);
-        
+
         wallpaper = al_load_bitmap("img/wallpaper.jpg");
 
         strcpy(aguia.nome, "aguia");
@@ -149,31 +149,30 @@ void modo1(ALLEGRO_DISPLAY *janela){
     fila_eventos = al_create_event_queue();
     al_register_event_source(fila_eventos, al_get_display_event_source(janela));
     al_register_event_source(fila_eventos, al_get_mouse_event_source());
-    
+
     quadrado1 = al_create_bitmap(450, 350);
     quadrado2 = al_create_bitmap(450, 350);
     quadrado3 = al_create_bitmap(450, 350);
     quadrado4 = al_create_bitmap(450, 350);
-    
+
     /* Loop principal do jogo */
-    int no_quadrado1 = 0, no_quadrado2 = 0, no_quadrado3 = 0, no_quadrado4 = 0;
-    
+
     while (1){
         ALLEGRO_EVENT evento;
         ALLEGRO_TIMEOUT timeout;
         al_init_timeout(&timeout, 0.05);
 
         int tem_eventos = al_wait_for_event_until(fila_eventos, &evento, &timeout);
-        
+
         /* Sair */
         if (tem_eventos && evento.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
             exit(-1);
         }
 
         /* Estiver na area selecionada */
-        al_set_target_bitmap(quadrado1); 
+        al_set_target_bitmap(quadrado1);
         if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
-            /* Verificamos se ele está sobre a região do retângulo central */ 
+            /* Verificamos se ele está sobre a região do retângulo central */
             if (evento.mouse.x >= LARGURA_TELA / 2 - al_get_bitmap_width(quadrado1) / 2 &&
                 evento.mouse.x <= LARGURA_TELA / 2 + al_get_bitmap_width(quadrado1) / 2 &&
                 evento.mouse.y >= ALTURA_TELA / 2 - al_get_bitmap_height(quadrado1) / 2 &&
@@ -184,7 +183,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
                 al_clear_to_color(al_map_rgb(255, 255, 255));
             }
         }
-        /* Ou se o evento foi um clique do mouse 
+        /* Ou se o evento foi um clique do mouse
         else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
             if (evento.mouse.x >= LARGURA_TELA - al_get_bitmap_width(botao_sair) - 10 &&
                 evento.mouse.x <= LARGURA_TELA - 10 && evento.mouse.y <= ALTURA_TELA - 10 &&
@@ -195,12 +194,12 @@ void modo1(ALLEGRO_DISPLAY *janela){
 
 
 
-        
-        
-        
 
 
-                        
+
+
+
+
 
         /* Configura a janela */
         al_draw_bitmap(wallpaper, 0, 0, 0);
@@ -209,8 +208,8 @@ void modo1(ALLEGRO_DISPLAY *janela){
         al_set_target_bitmap(al_get_backbuffer(janela));
         al_draw_bitmap(quadrado1, al_get_bitmap_width(quadrado1) , al_get_bitmap_height(quadrado1) , 0);
 
-        al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 50, ALLEGRO_ALIGN_RIGHT, "Qual animal emite"); 
-        al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 100, ALLEGRO_ALIGN_RIGHT, "esse som? ");    
+        al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 50, ALLEGRO_ALIGN_RIGHT, "Qual animal emite");
+        al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 100, ALLEGRO_ALIGN_RIGHT, "esse som? ");
         al_draw_bitmap(leao.imagem, 0, 0, 0);
         al_draw_bitmap(caranguejo.imagem, 0, 390, 0);
         al_draw_bitmap(baleia.imagem, 450, 0, 0);
@@ -237,10 +236,10 @@ void modo2(ALLEGRO_DISPLAY *janela){
 
 
     janela = al_create_display(1350, 700);
-    
+
     al_draw_bitmap(wallpaper, 0, 0, 0);
     al_flip_display();
     al_rest(2);
     al_destroy_display(janela);
-    
+
 }
