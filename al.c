@@ -424,8 +424,7 @@ void modo2(ALLEGRO_DISPLAY *janela){
     wallpaper = al_load_bitmap("img/wallpaper.jpg");
 
 
-    janela = al_create_display(1350, 700);
-
+    
     al_draw_bitmap(wallpaper, 0, 0, 0);
     al_flip_display();
     al_rest(2);
