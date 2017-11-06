@@ -19,14 +19,7 @@ void modo1(ALLEGRO_DISPLAY *janela); // som +  foto de animais, objetos
 void modo2(ALLEGRO_DISPLAY *janela); // silaba inicial do animal + foto de animais, objetos
 void modo3(ALLEGRO_DISPLAY *janela); // silabas são iguais ou diferentes, KA KA, KA LA
 void modo4(ALLEGRO_DISPLAY *janela); // palavras são iguais ou diferentes, faca e vaca
-
-
-int main(){
-    ALLEGRO_EVENT_QUEUE *fila_eventos = NULL;
-    ALLEGRO_BITMAP *quadrado1 = 0, *quadrado2 = 0, *sair = 0;
-    ALLEGRO_FONT *fonte = NULL;
-    ALLEGRO_BITMAP * wallpaper = NULL;
-    ALLEGRO_DISPLAY *janela = NULL;
+void init(){
     al_init();
     al_init_image_addon();
     al_init_font_addon();
@@ -35,6 +28,15 @@ int main(){
     al_install_audio();
     al_init_acodec_addon();
     al_reserve_samples(1);
+}
+
+int main(){
+    ALLEGRO_EVENT_QUEUE *fila_eventos = NULL;
+    ALLEGRO_BITMAP *quadrado1 = 0, *quadrado2 = 0, *sair = 0;
+    ALLEGRO_FONT *fonte = NULL;
+    ALLEGRO_BITMAP * wallpaper = NULL;
+    ALLEGRO_DISPLAY *janela = NULL;
+    init();
     
     
     janela = al_create_display(LARGURA_TELA, ALTURA_TELA);
@@ -166,9 +168,9 @@ void modo1(ALLEGRO_DISPLAY *janela){
 
     ALLEGRO_EVENT_QUEUE *fila_eventos = NULL;
 
-    ALLEGRO_BITMAP *quadrado1 = 0, *quadrado2 = 0, *quadrado3 = 0, *quadrado4 = 0, *retornar = 0;
+    ALLEGRO_BITMAP *quadrado1 = 0, *quadrado2 = 0, *quadrado3 = 0, *quadrado4 = 0, *retornar = 0, *tocar = 0;
     ALLEGRO_FONT *fonte = NULL;
-
+    int i = 0;
     ALLEGRO_BITMAP * wallpaper = NULL;
     
     //ALLEGRO_AUDIO_STREAM *musica = NULL;
@@ -292,6 +294,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
     quadrado3 = al_create_bitmap(420, 320);
     quadrado4 = al_create_bitmap(420, 320);
     retornar = al_create_bitmap(100, 100);
+    tocar = al_create_bitmap(100, 100);
 
     /* Loop principal do jogo */
 
@@ -428,47 +431,74 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     return;
                 }
             }
+            /* tocar dnv */
+            al_set_target_bitmap(tocar);
+            if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
+                /* Verificamos se ele está sobre a região do retângulo central */
+                if (evento.mouse.x >=  1250 &&
+                    evento.mouse.x <=  1350 &&
+                    evento.mouse.y >=  300 &&
+                    evento.mouse.y <= 400){
+                    al_clear_to_color(al_map_rgb(145, 9, 9));
+                }
+                else{
+                    al_clear_to_color(al_map_rgb(255, 0, 0));
+                }
+            }
+            /* Ou se o evento foi um clique do mouse */
+            else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
+                if (evento.mouse.x >= 1250 &&
+                    evento.mouse.x <= 1350 &&
+                    evento.mouse.y >= 300 &&
+                    evento.mouse.y <= 400){
+                    al_play_sample(elefante.som, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                }
+            }
 
 
-        }
-
-
-
-
-
-
-
-
-
-
-        /* Configura a janela */
-        al_set_target_bitmap(al_get_backbuffer(janela));
-        al_draw_bitmap(wallpaper, 0, 0, 0);
-
-        /* Desenhamos os retângulos na tela */
-        al_draw_bitmap(quadrado1, 0, 0, 0);
-        al_draw_bitmap(quadrado2, 440, 0, 0);
-        al_draw_bitmap(quadrado3, 0, 360, 0);
-        al_draw_bitmap(quadrado4, 440, 360, 0);
-        al_draw_bitmap(retornar, 1250, 600, 0);
-
-        al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 50, ALLEGRO_ALIGN_RIGHT, "Qual animal emite");
-        al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 100, ALLEGRO_ALIGN_RIGHT, "esse som? ");
-        al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 600, ALLEGRO_ALIGN_CENTRE, "Menu");
-        al_draw_bitmap(vaca.imagem, 0, 0, 0);
-        al_draw_bitmap(cabra.imagem, 0, 390, 0);
-        al_draw_bitmap(baleia.imagem, 450, 0, 0);
-        al_draw_bitmap(tigre.imagem, 450, 390, 0);
-        al_flip_display();
         
-        if(1){ // condicao pra tocar musica
-            al_play_sample(porco.som, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+
+
+
+
+
+
+
+
+
+
+            /* Configura a janela */
+            al_set_target_bitmap(al_get_backbuffer(janela));
+            al_draw_bitmap(wallpaper, 0, 0, 0);
+
+            /* Desenhamos os retângulos na tela */
+            al_draw_bitmap(quadrado1, 0, 0, 0);
+            al_draw_bitmap(quadrado2, 440, 0, 0);
+            al_draw_bitmap(quadrado3, 0, 360, 0);
+            al_draw_bitmap(quadrado4, 440, 360, 0);
+            al_draw_bitmap(retornar, 1250, 600, 0);
+            al_draw_bitmap(retornar, 1250, 300, 0);
+
+            al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 50, ALLEGRO_ALIGN_RIGHT, "Qual animal emite");
+            al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 100, ALLEGRO_ALIGN_RIGHT, "esse som? ");
+            al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 600, ALLEGRO_ALIGN_CENTRE, "Menu");
+            al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 300, ALLEGRO_ALIGN_CENTRE, "Tocar");
+            al_draw_bitmap(vaca.imagem, 0, 0, 0);
+            al_draw_bitmap(cabra.imagem, 0, 390, 0);
+            al_draw_bitmap(baleia.imagem, 450, 0, 0);
+            al_draw_bitmap(tigre.imagem, 450, 390, 0);
+            al_flip_display();
+            i++; // condicional para tocar musica
+            
+            if(i < 1){ // condicao pra tocar musica
+                al_play_sample(elefante.som, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+            }
         }
     }
 
     al_destroy_font(fonte);
     al_destroy_event_queue(fila_eventos);
-   // al_destroy_audio_stream(musica);
+   
 
 }
 
