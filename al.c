@@ -180,7 +180,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.x <= 420 &&
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
-                    al_clear_to_color(al_map_rgb(102, 102, 255));
+                    al_clear_to_color(al_map_rgb(153, 0, 153));
                 }
                 else{
                     al_clear_to_color(al_map_rgb(0, 3, 123));
@@ -204,7 +204,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.x <=  860 &&
                     evento.mouse.y >=  0&&
                     evento.mouse.y <= 320){
-                    al_clear_to_color(al_map_rgb(102, 102, 255));
+                    al_clear_to_color(al_map_rgb(153, 0, 153));
                 }
                 else{
                     al_clear_to_color(al_map_rgb(0, 3, 123));
@@ -228,7 +228,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.x <=  420 &&
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680 ){
-                    al_clear_to_color(al_map_rgb(102, 102, 255));
+                    al_clear_to_color(al_map_rgb(153, 0, 153));
                 }
                 else{
                     al_clear_to_color(al_map_rgb(0, 3, 123));
@@ -252,7 +252,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.x <=  860 &&
                     evento.mouse.y >=  360 &&
                     evento.mouse.y <= 680){
-                    al_clear_to_color(al_map_rgb(102, 102, 255));
+                    al_clear_to_color(al_map_rgb(153, 0, 153));
                 }
                 else{
                     al_clear_to_color(al_map_rgb(0, 3, 123));
