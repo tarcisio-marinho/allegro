@@ -191,6 +191,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
         strcpy(aguia.nome, "aguia");
         aguia.imagem = al_load_bitmap("img/aguia.png");
         aguia.som = al_load_sample("sound/animais/aguia.wav");
+        aguia.id = NULL
 
         strcpy(caranguejo.nome, "caranguejo");
         caranguejo.imagem = al_load_bitmap("img/caranguejo.jpg");
@@ -201,10 +202,12 @@ void modo1(ALLEGRO_DISPLAY *janela){
         strcpy(cabra.nome, "cabra");
         cabra.imagem = al_load_bitmap("img/cabra.jpg");
         cabra.som = al_load_sample("sound/animais/cabra.wav");
+        cabra.id = NULL
 
         strcpy(cachorro.nome, "cachorro");
         cachorro.imagem = al_load_bitmap("img/cachorro.jpeg");
         cachorro.som = al_load_sample("sound/animais/cachorro.wav");
+        cachorro.id = NULL
 
         strcpy(camelo.nome, "camelo");
         camelo.imagem = al_load_bitmap("img/camelo.JPG");
@@ -212,6 +215,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
         strcpy(cavalo.nome, "cavalo");
         cavalo.imagem = al_load_bitmap("img/cavalo.jpg");
         cavalo.som  = al_load_sample("sound/animais/cavalo.wav");
+        cavalo.id = NULL
 
         strcpy(cobra.nome, "cobra");
         cobra.imagem = al_load_bitmap("img/cobra.jpg");
@@ -230,25 +234,30 @@ void modo1(ALLEGRO_DISPLAY *janela){
         strcpy(galo.nome, "galo");
         galo.imagem = al_load_bitmap("img/galo.jpg");
         galo.som = al_load_sample("sound/animais/galo.wav");
+        galo.id = NULL
 
         strcpy(gato.nome, "gato");
         gato.imagem = al_load_bitmap("img/gato.jpg");
         gato.som = al_load_sample("sound/animais/gato.wav");
-
+        gato.id = NULL
+        
         strcpy(girafa.nome, "girafa");
         girafa.imagem = al_load_bitmap("img/girafa.jpg");
 
         strcpy(leao.nome, "leao");
         leao.imagem = al_load_bitmap("img/leao.jpeg");
         leao.som = al_load_sample("sound/animais/leao.wav");
+        leao.id = NULL
 
         strcpy(lobo.nome, "lobo");
         lobo.imagem = al_load_bitmap("img/lobo.jpg");
         lobo.som = al_load_sample("sound/animais/lobo.wav");
+        lobo.id = NULL
 
         strcpy(macaco.nome, "macaco");
         macaco.imagem = al_load_bitmap("img/macaco.jpeg");
         macaco.som = al_load_sample("sound/animais/macaco.wav");
+        macaco.id = NULL
 
         strcpy(passarinho.nome, "passarinho");
         passarinho.imagem = al_load_bitmap("img/passarinho.jpg");
@@ -256,6 +265,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
         strcpy(pato.nome, "pato");
         pato.imagem = al_load_bitmap("img/pato.jpg");
         pato.som = al_load_sample("sound/animais/pato.wav");
+        pato.id = NULL
 
         strcpy(peixe.nome, "peixe");
         peixe.imagem = al_load_bitmap("img/peixe.jpg");
@@ -263,6 +273,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
         strcpy(porco.nome, "porco");
         porco.imagem = al_load_bitmap("img/porco.jpg");
         porco.som  = al_load_sample("sound/animais/porco.wav");
+        porco.id = NULL
 
         strcpy(sapo.nome, "sapo");
         sapo.imagem = al_load_bitmap("img/sapo.jpeg");
@@ -281,7 +292,8 @@ void modo1(ALLEGRO_DISPLAY *janela){
         strcpy(vaca.nome, "vaca");
         vaca.imagem = al_load_bitmap("img/vaca.jpg");
         vaca.som = al_load_sample("sound/animais/vaca.wav");
-
+        vaca.id = NULL
+        
         strcpy(zebra.nome, "zebra");
         zebra.imagem = al_load_bitmap("img/zebra.jpg");
 
