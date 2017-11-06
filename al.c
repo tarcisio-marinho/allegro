@@ -170,7 +170,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
 
     ALLEGRO_BITMAP *quadrado1 = 0, *quadrado2 = 0, *quadrado3 = 0, *quadrado4 = 0, *retornar = 0, *tocar = 0;
     ALLEGRO_FONT *fonte = NULL;
-    int i = 0;
+    int i = 0, aleatorio; 
     ALLEGRO_BITMAP * wallpaper = NULL;
     
     //ALLEGRO_AUDIO_STREAM *musica = NULL;
@@ -309,6 +309,8 @@ void modo1(ALLEGRO_DISPLAY *janela){
         if (tem_eventos && evento.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
             exit(-1);
         }
+
+        //  "aleatorio"
         if(1){
 
 
@@ -455,18 +457,6 @@ void modo1(ALLEGRO_DISPLAY *janela){
                 }
             }
 
-
-        
-
-
-
-
-
-
-
-
-
-
             /* Configura a janela */
             al_set_target_bitmap(al_get_backbuffer(janela));
             al_draw_bitmap(wallpaper, 0, 0, 0);
@@ -477,7 +467,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
             al_draw_bitmap(quadrado3, 0, 360, 0);
             al_draw_bitmap(quadrado4, 440, 360, 0);
             al_draw_bitmap(retornar, 1250, 600, 0);
-            al_draw_bitmap(retornar, 1250, 300, 0);
+            al_draw_bitmap(tocar, 1250, 300, 0);
 
             al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 50, ALLEGRO_ALIGN_RIGHT, "Qual animal emite");
             al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 100, ALLEGRO_ALIGN_RIGHT, "esse som? ");
