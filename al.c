@@ -186,14 +186,15 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     al_clear_to_color(al_map_rgb(0, 3, 123));
                 }
             }
-            /* Ou se o evento foi um clique do mouse
+            /* Ou se o evento foi um clique do mouse */
             else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
-                if (evento.mouse.x >= LARGURA_TELA - al_get_bitmap_width(botao_sair) - 10 &&
-                    evento.mouse.x <= LARGURA_TELA - 10 && evento.mouse.y <= ALTURA_TELA - 10 &&
-                    evento.mouse.y >= ALTURA_TELA - al_get_bitmap_height(botao_sair) - 10){
-                    //sair = 1;
+                if (evento.mouse.x >= 0 &&
+                    evento.mouse.x <= 420 &&
+                    evento.mouse.y >= 0 &&
+                    evento.mouse.y <= 320){
+                    al_clear_to_color(al_map_rgb(255, 255, 255));
                 }
-            }*/
+            }
 
             /* quadrado2 */
             al_set_target_bitmap(quadrado2);
@@ -209,21 +210,22 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     al_clear_to_color(al_map_rgb(0, 3, 123));
                 }
             }
-            /* Ou se o evento foi um clique do mouse
+            /* Ou se o evento foi um clique do mouse */
             else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
-                if (evento.mouse.x >= LARGURA_TELA - al_get_bitmap_width(botao_sair) - 10 &&
-                    evento.mouse.x <= LARGURA_TELA - 10 && evento.mouse.y <= ALTURA_TELA - 10 &&
-                    evento.mouse.y >= ALTURA_TELA - al_get_bitmap_height(botao_sair) - 10){
-                    //sair = 1;
+                if (evento.mouse.x >= 440 &&
+                    evento.mouse.x <= 860 &&
+                    evento.mouse.y >= 0 &&
+                    evento.mouse.y <= 320){
+                    al_clear_to_color(al_map_rgb(255, 255, 255));
                 }
-            }*/
+            }
 
             /* quadrado3 */
             al_set_target_bitmap(quadrado3);
             if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
                 /* Verificamos se ele está sobre a região do retângulo central */
                 if (evento.mouse.x >=  0 &&
-                    evento.mouse.x <=  420 && 
+                    evento.mouse.x <=  420 &&
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680 ){
                     al_clear_to_color(al_map_rgb(102, 102, 255));
@@ -232,14 +234,15 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     al_clear_to_color(al_map_rgb(0, 3, 123));
                 }
             }
-            /* Ou se o evento foi um clique do mouse
+            /* Ou se o evento foi um clique do mouse */
             else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
-                if (evento.mouse.x >= LARGURA_TELA - al_get_bitmap_width(botao_sair) - 10 &&
-                    evento.mouse.x <= LARGURA_TELA - 10 && evento.mouse.y <= ALTURA_TELA - 10 &&
-                    evento.mouse.y >= ALTURA_TELA - al_get_bitmap_height(botao_sair) - 10){
-                    //sair = 1;
+                if (evento.mouse.x >= 0 &&
+                    evento.mouse.x <= 420 &&
+                    evento.mouse.y >= 360 &&
+                    evento.mouse.y <= 680){
+                    al_clear_to_color(al_map_rgb(255, 255, 255));
                 }
-            }*/
+            }
 
             /* quadrado4 */
             al_set_target_bitmap(quadrado4);
@@ -255,14 +258,15 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     al_clear_to_color(al_map_rgb(0, 3, 123));
                 }
             }
-            /* Ou se o evento foi um clique do mouse
+            /* Ou se o evento foi um clique do mouse */
             else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
-                if (evento.mouse.x >= LARGURA_TELA - al_get_bitmap_width(botao_sair) - 10 &&
-                    evento.mouse.x <= LARGURA_TELA - 10 && evento.mouse.y <= ALTURA_TELA - 10 &&
-                    evento.mouse.y >= ALTURA_TELA - al_get_bitmap_height(botao_sair) - 10){
-                    //sair = 1;
+                if (evento.mouse.x >= 440 &&
+                    evento.mouse.x <= 860 &&
+                    evento.mouse.y >= 360 &&
+                    evento.mouse.y <= 680){
+                    al_clear_to_color(al_map_rgb(255, 255, 255));
                 }
-            }*/
+            }
 
 
         }
