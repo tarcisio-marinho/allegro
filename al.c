@@ -34,7 +34,7 @@ int main(){
     
     janela = al_create_display(LARGURA_TELA, ALTURA_TELA);
     al_set_system_mouse_cursor(janela, ALLEGRO_SYSTEM_MOUSE_CURSOR_DEFAULT);
-    fonte = al_load_font("fontes/coolvetica.ttf", 60, 0);
+    fonte = al_load_font("fontes/coolvetica.ttf", 40, 0);
     al_set_window_title(janela, "Jogo da audição");
     wallpaper = al_load_bitmap("img/wallpaper.png");
 
@@ -115,10 +115,10 @@ int main(){
                 evento.mouse.x <=  1350 &&
                 evento.mouse.y >= 600 &&
                 evento.mouse.y <= 700 ){
-                al_clear_to_color(al_map_rgb(250, 0, 0));
+                al_clear_to_color(al_map_rgb(145, 9, 9));
             }
             else{
-                al_clear_to_color(al_map_rgb(145, 9, 9));
+                al_clear_to_color(al_map_rgb(255, 0, 0));
             }
         }
         /* Ou se o evento foi um clique do mouse */
@@ -139,6 +139,10 @@ int main(){
         al_draw_text(fonte, al_map_rgb(0, 0, 0), 1000 , 0, ALLEGRO_ALIGN_RIGHT, "Bem vindo ao jogo da audição");
         al_draw_text(fonte, al_map_rgb(255, 255, 255), 500 , 100, ALLEGRO_ALIGN_CENTRE, "Modo 1");
         al_draw_text(fonte, al_map_rgb(255, 255, 255), 500 , 400, ALLEGRO_ALIGN_CENTRE, "Modo 2");
+        al_draw_text(fonte, al_map_rgb(0, 0, 0), 1000 , 100, ALLEGRO_ALIGN_CENTRE, "Escolha qual animal emite o som tocado");
+        al_draw_text(fonte, al_map_rgb(0, 0, 0), 900 , 400, ALLEGRO_ALIGN_CENTRE, "Diferença entre sílabas");
+        al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 600, ALLEGRO_ALIGN_CENTRE, "Sair");
+        
         
         al_flip_display();
     }
