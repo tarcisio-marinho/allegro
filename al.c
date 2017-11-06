@@ -34,9 +34,9 @@ int main(){
     
     janela = al_create_display(LARGURA_TELA, ALTURA_TELA);
     al_set_system_mouse_cursor(janela, ALLEGRO_SYSTEM_MOUSE_CURSOR_DEFAULT);
-    
+    fonte = al_load_font("fontes/coolvetica.ttf", 60, 0);
     al_set_window_title(janela, "Jogo da audição");
-    wallpaper = al_load_bitmap("img/wallpaper.jpg");
+    wallpaper = al_load_bitmap("img/wallpaper.png");
 
     fila_eventos = al_create_event_queue();
     al_register_event_source(fila_eventos, al_get_display_event_source(janela));
@@ -44,7 +44,7 @@ int main(){
     
     quadrado1 = al_create_bitmap(420, 320);
     quadrado2 = al_create_bitmap(420, 320);
-    sair = al_create_bitmap(420, 320);
+    sair = al_create_bitmap(100, 100);
 
     /* Loop para decidir o modo do jogo */
     while(1){
@@ -112,21 +112,21 @@ int main(){
         if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
             /* Verificamos se ele está sobre a região do retângulo central */
             if (evento.mouse.x >=  0 &&
-                evento.mouse.x <=  420 &&
-                evento.mouse.y >= 360 &&
-                evento.mouse.y <= 680 ){
-                al_clear_to_color(al_map_rgb(153, 0, 153));
+                evento.mouse.x <=  100 &&
+                evento.mouse.y >= 600 &&
+                evento.mouse.y <= 700 ){
+                al_clear_to_color(al_map_rgb(250, 0, 0));
             }
             else{
-                al_clear_to_color(al_map_rgb(0, 3, 123));
+                al_clear_to_color(al_map_rgb(145, 9, 9));
             }
         }
         /* Ou se o evento foi um clique do mouse */
         else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
             if (evento.mouse.x >= 0 &&
-                evento.mouse.x <= 420 &&
-                evento.mouse.y >= 360 &&
-                evento.mouse.y <= 680){
+                evento.mouse.x <= 100 &&
+                evento.mouse.y >= 600 &&
+                evento.mouse.y <= 700){
                 return 0;
             }
         }
@@ -134,17 +134,13 @@ int main(){
         al_draw_bitmap(wallpaper, 0, 0, 0);
         al_draw_bitmap(quadrado1, 0, 0, 0);
         al_draw_bitmap(quadrado2, 440, 0, 0);
-        al_draw_bitmap(sair, 0, 360, 0);
+        al_draw_bitmap(sair, 0, 600, 0);
+
+        al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 50, ALLEGRO_ALIGN_RIGHT, "Bem vindo ao jogo");
+        //al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 100, ALLEGRO_ALIGN_RIGHT, "esse som? ");
+
         al_flip_display();
     }
-
-
-
-    //modo1(janela);
-   // modo2(janela);
-   // modo3(janela);
-   // modo4(janela);
-   
 
 
    al_destroy_font(fonte);
