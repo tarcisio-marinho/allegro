@@ -161,7 +161,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
 
     ALLEGRO_EVENT_QUEUE *fila_eventos = NULL;
 
-    ALLEGRO_BITMAP *quadrado1 = 0, *quadrado2 = 0, *quadrado3 = 0, *quadrado4 = 0;
+    ALLEGRO_BITMAP *quadrado1 = 0, *quadrado2 = 0, *quadrado3 = 0, *quadrado4 = 0, *retornar = 0;
     ALLEGRO_FONT *fonte = NULL;
 
     ALLEGRO_BITMAP * wallpaper = NULL;
@@ -170,7 +170,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
 
     if(1){
 
-        fonte = al_load_font("fontes/coolvetica.ttf", 60, 0);
+        fonte = al_load_font("fontes/coolvetica.ttf", 40, 0);
 
         wallpaper = al_load_bitmap("img/wallpaper.jpg");
 
@@ -267,6 +267,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
     quadrado2 = al_create_bitmap(420, 320);
     quadrado3 = al_create_bitmap(420, 320);
     quadrado4 = al_create_bitmap(420, 320);
+    retornar = al_create_bitmap(100, 100);
 
     /* Loop principal do jogo */
 
@@ -380,6 +381,29 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     al_clear_to_color(al_map_rgb(255, 255, 255));
                 }
             }
+            /* retornar */
+            al_set_target_bitmap(retornar);
+            if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
+                /* Verificamos se ele está sobre a região do retângulo central */
+                if (evento.mouse.x >=  1250 &&
+                    evento.mouse.x <=  1350 &&
+                    evento.mouse.y >=  600 &&
+                    evento.mouse.y <= 700){
+                    al_clear_to_color(al_map_rgb(145, 9, 9));
+                }
+                else{
+                    al_clear_to_color(al_map_rgb(255, 0, 0));
+                }
+            }
+            /* Ou se o evento foi um clique do mouse */
+            else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
+                if (evento.mouse.x >= 1250 &&
+                    evento.mouse.x <= 1350 &&
+                    evento.mouse.y >= 600 &&
+                    evento.mouse.y <= 700){
+                    return;
+                }
+            }
 
 
         }
@@ -397,14 +421,16 @@ void modo1(ALLEGRO_DISPLAY *janela){
         al_set_target_bitmap(al_get_backbuffer(janela));
         al_draw_bitmap(wallpaper, 0, 0, 0);
 
-        /* Desenhamos os retângulos na tela   (410, 320)  */
+        /* Desenhamos os retângulos na tela */
         al_draw_bitmap(quadrado1, 0, 0, 0);
         al_draw_bitmap(quadrado2, 440, 0, 0);
         al_draw_bitmap(quadrado3, 0, 360, 0);
         al_draw_bitmap(quadrado4, 440, 360, 0);
+        al_draw_bitmap(retornar, 1250, 600, 0);
 
         al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 50, ALLEGRO_ALIGN_RIGHT, "Qual animal emite");
         al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 100, ALLEGRO_ALIGN_RIGHT, "esse som? ");
+        al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 600, ALLEGRO_ALIGN_CENTRE, "Menu");
         al_draw_bitmap(vaca.imagem, 0, 0, 0);
         al_draw_bitmap(cabra.imagem, 0, 390, 0);
         al_draw_bitmap(baleia.imagem, 450, 0, 0);
