@@ -10,6 +10,7 @@ typedef struct animal{
     char nome[30];
     ALLEGRO_BITMAP * imagem;
     ALLEGRO_SAMPLE * som;
+    ALLEGRO_SAMPLE_ID *id;
 }Animal;
 
 const int LARGURA_TELA = 1350;
@@ -224,6 +225,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
         strcpy(elefante.nome, "elefante");
         elefante.imagem = al_load_bitmap("img/elefante.jpg");
         elefante.som = al_load_sample("sound/animais/elefante.wav");
+        elefante.id = NULL;
 
         strcpy(galo.nome, "galo");
         galo.imagem = al_load_bitmap("img/galo.jpg");
@@ -340,6 +342,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
                     acertou("elefante");
+                    al_stop_sample(&elefante.id);
                     return; //  pra ser um break
                 }
             }
@@ -458,7 +461,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.x <= 1350 &&
                     evento.mouse.y >= 200 &&
                     evento.mouse.y <= 300){
-                    al_play_sample(elefante.som, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                    al_play_sample(elefante.som, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, elefante.id);
                 }
             }
 
