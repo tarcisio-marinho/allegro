@@ -19,6 +19,8 @@ void modo1(ALLEGRO_DISPLAY *janela); // som +  foto de animais, objetos
 void modo2(ALLEGRO_DISPLAY *janela); // silaba inicial do animal + foto de animais, objetos
 void modo3(ALLEGRO_DISPLAY *janela); // silabas são iguais ou diferentes, KA KA, KA LA
 void modo4(ALLEGRO_DISPLAY *janela); // palavras são iguais ou diferentes, faca e vaca
+void acertou(char string[]);
+
 void init(){
     al_init();
     al_init_image_addon();
@@ -337,7 +339,8 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.x <= 420 &&
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
-                    al_clear_to_color(al_map_rgb(255, 255, 255));
+                    acertou("elefante");
+                    return; //  pra ser um break
                 }
             }
 
@@ -504,7 +507,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
             al_draw_text(fonte, al_map_rgb(255, 255, 255), 1280 , 400, ALLEGRO_ALIGN_CENTRE, "Proximo");
             
             /* Animais */
-            al_draw_bitmap(vaca.imagem, 0, 0, 0);
+            al_draw_bitmap(elefante.imagem, 0, 0, 0);
             al_draw_bitmap(cabra.imagem, 0, 390, 0);
             al_draw_bitmap(baleia.imagem, 450, 0, 0);
             al_draw_bitmap(tigre.imagem, 450, 390, 0);
@@ -539,5 +542,10 @@ void modo2(ALLEGRO_DISPLAY *janela){
     al_flip_display();
     al_rest(2);
     al_destroy_display(janela);
+
+}
+
+void acertou(char string[]){
+    printf("PARABENS VOCE ACERTOU\nÉ um %s\n", string);
 
 }
