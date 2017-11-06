@@ -17,27 +17,140 @@ void modo1(ALLEGRO_DISPLAY *janela); // som +  foto de animais, objetos
 void modo2(ALLEGRO_DISPLAY *janela); // silaba inicial do animal + foto de animais, objetos
 void modo3(ALLEGRO_DISPLAY *janela); // silabas são iguais ou diferentes, KA KA, KA LA
 void modo4(ALLEGRO_DISPLAY *janela); // palavras são iguais ou diferentes, faca e vaca
-void menu(ALLEGRO_DISPLAY *janela);
 
 
 int main(){
-
+    ALLEGRO_EVENT_QUEUE *fila_eventos = NULL;
+    ALLEGRO_BITMAP *quadrado1 = 0, *quadrado2 = 0, *sair = 0;
+    ALLEGRO_FONT *fonte = NULL;
+    ALLEGRO_BITMAP * wallpaper = NULL;
+    ALLEGRO_DISPLAY *janela = NULL;
     al_init();
     al_init_image_addon();
     al_init_font_addon();
     al_init_ttf_addon();
     al_install_mouse();
-
-    ALLEGRO_DISPLAY *janela = NULL;
+    
+    
     janela = al_create_display(LARGURA_TELA, ALTURA_TELA);
     al_set_system_mouse_cursor(janela, ALLEGRO_SYSTEM_MOUSE_CURSOR_DEFAULT);
+    
     al_set_window_title(janela, "Jogo da audição");
+    wallpaper = al_load_bitmap("img/wallpaper.jpg");
 
-    //menu(janela);
-    modo1(janela);
+    fila_eventos = al_create_event_queue();
+    al_register_event_source(fila_eventos, al_get_display_event_source(janela));
+    al_register_event_source(fila_eventos, al_get_mouse_event_source());
+    
+    quadrado1 = al_create_bitmap(420, 320);
+    quadrado2 = al_create_bitmap(420, 320);
+    sair = al_create_bitmap(420, 320);
+
+    /* Loop para decidir o modo do jogo */
+    while(1){
+        ALLEGRO_EVENT evento;
+        ALLEGRO_TIMEOUT timeout;
+        al_init_timeout(&timeout, 0.05);
+
+        int tem_eventos = al_wait_for_event_until(fila_eventos, &evento, &timeout);
+
+        /* Sair */
+        if (tem_eventos && evento.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
+            return 0;
+        }
+
+        /* quadrado1 */
+        al_set_target_bitmap(quadrado1);
+        if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
+            /* Verificamos se ele está sobre a região do retângulo central */
+            if (evento.mouse.x >= 0 &&
+                evento.mouse.x <= 420 &&
+                evento.mouse.y >= 0 &&
+                evento.mouse.y <= 320){
+                al_clear_to_color(al_map_rgb(153, 0, 153));
+            }
+            else{
+                al_clear_to_color(al_map_rgb(0, 3, 123));
+            }
+        }
+        /* Ou se o evento foi um clique do mouse */
+        else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
+            if (evento.mouse.x >= 0 &&
+                evento.mouse.x <= 420 &&
+                evento.mouse.y >= 0 &&
+                evento.mouse.y <= 320){
+                al_clear_to_color(al_map_rgb(255, 255, 255));
+            }
+        }
+
+        /* quadrado2 */
+        al_set_target_bitmap(quadrado2);
+        if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
+            /* Verificamos se ele está sobre a região do retângulo central */
+            if (evento.mouse.x >= 440 &&
+                evento.mouse.x <=  860 &&
+                evento.mouse.y >=  0&&
+                evento.mouse.y <= 320){
+                al_clear_to_color(al_map_rgb(153, 0, 153));
+            }
+            else{
+                al_clear_to_color(al_map_rgb(0, 3, 123));
+            }
+        }
+        /* Ou se o evento foi um clique do mouse */
+        else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
+            if (evento.mouse.x >= 440 &&
+                evento.mouse.x <= 860 &&
+                evento.mouse.y >= 0 &&
+                evento.mouse.y <= 320){
+                al_clear_to_color(al_map_rgb(255, 255, 255));
+            }
+        }
+
+        /* sair */
+        al_set_target_bitmap(sair);
+        if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
+            /* Verificamos se ele está sobre a região do retângulo central */
+            if (evento.mouse.x >=  0 &&
+                evento.mouse.x <=  420 &&
+                evento.mouse.y >= 360 &&
+                evento.mouse.y <= 680 ){
+                al_clear_to_color(al_map_rgb(153, 0, 153));
+            }
+            else{
+                al_clear_to_color(al_map_rgb(0, 3, 123));
+            }
+        }
+        /* Ou se o evento foi um clique do mouse */
+        else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
+            if (evento.mouse.x >= 0 &&
+                evento.mouse.x <= 420 &&
+                evento.mouse.y >= 360 &&
+                evento.mouse.y <= 680){
+                al_clear_to_color(al_map_rgb(255, 255, 255));
+            }
+        }
+        al_set_target_bitmap(al_get_backbuffer(janela));
+        al_draw_bitmap(wallpaper, 0, 0, 0);
+        al_draw_bitmap(quadrado1, 0, 0, 0);
+        al_draw_bitmap(quadrado2, 440, 0, 0);
+        al_draw_bitmap(sair, 0, 360, 0);
+        al_flip_display();
+        al_rest(2);
+    }
+
+
+
+    //modo1(janela);
    // modo2(janela);
    // modo3(janela);
    // modo4(janela);
+   
+
+
+   al_destroy_font(fonte);
+   al_destroy_event_queue(fila_eventos);
+   al_destroy_display(janela);
     return 0;
 }
 
@@ -301,7 +414,6 @@ void modo1(ALLEGRO_DISPLAY *janela){
     }
 
     al_destroy_font(fonte);
-    al_destroy_display(janela);
     al_destroy_event_queue(fila_eventos);
 
 }
