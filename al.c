@@ -42,8 +42,8 @@ int main(){
     al_register_event_source(fila_eventos, al_get_display_event_source(janela));
     al_register_event_source(fila_eventos, al_get_mouse_event_source());
     
-    quadrado1 = al_create_bitmap(420, 320);
-    quadrado2 = al_create_bitmap(420, 320);
+    quadrado1 = al_create_bitmap(200, 200);
+    quadrado2 = al_create_bitmap(200, 200);
     sair = al_create_bitmap(100, 100);
 
     /* Loop para decidir o modo do jogo */
@@ -63,10 +63,10 @@ int main(){
         al_set_target_bitmap(quadrado1);
         if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
             /* Verificamos se ele está sobre a região do retângulo central */
-            if (evento.mouse.x >= 0 &&
-                evento.mouse.x <= 420 &&
-                evento.mouse.y >= 0 &&
-                evento.mouse.y <= 320){
+            if (evento.mouse.x >= 400 &&
+                evento.mouse.x <= 600 &&
+                evento.mouse.y >= 100 &&
+                evento.mouse.y <= 300){
                 al_clear_to_color(al_map_rgb(153, 0, 153));
             }
             else{
@@ -75,10 +75,10 @@ int main(){
         }
         /* Ou se o evento foi um clique do mouse */
         else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
-            if (evento.mouse.x >= 0 &&
-                evento.mouse.x <= 420 &&
-                evento.mouse.y >= 0 &&
-                evento.mouse.y <= 320){
+            if (evento.mouse.x >= 400 &&
+                evento.mouse.x <= 600 &&
+                evento.mouse.y >= 100 &&
+                evento.mouse.y <= 300){
                 modo1(janela);
             }
         }
@@ -87,10 +87,10 @@ int main(){
         al_set_target_bitmap(quadrado2);
         if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
             /* Verificamos se ele está sobre a região do retângulo central */
-            if (evento.mouse.x >= 440 &&
-                evento.mouse.x <=  860 &&
-                evento.mouse.y >=  0&&
-                evento.mouse.y <= 320){
+            if (evento.mouse.x >= 400 &&
+                evento.mouse.x <= 600 &&
+                evento.mouse.y >= 400 &&
+                evento.mouse.y <= 600){
                 al_clear_to_color(al_map_rgb(153, 0, 153));
             }
             else{
@@ -111,8 +111,8 @@ int main(){
         al_set_target_bitmap(sair);
         if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
             /* Verificamos se ele está sobre a região do retângulo central */
-            if (evento.mouse.x >=  0 &&
-                evento.mouse.x <=  100 &&
+            if (evento.mouse.x >=  1250 &&
+                evento.mouse.x <=  1350 &&
                 evento.mouse.y >= 600 &&
                 evento.mouse.y <= 700 ){
                 al_clear_to_color(al_map_rgb(250, 0, 0));
@@ -123,8 +123,8 @@ int main(){
         }
         /* Ou se o evento foi um clique do mouse */
         else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
-            if (evento.mouse.x >= 0 &&
-                evento.mouse.x <= 100 &&
+            if (evento.mouse.x >= 1250 &&
+                evento.mouse.x <= 1350 &&
                 evento.mouse.y >= 600 &&
                 evento.mouse.y <= 700){
                 return 0;
@@ -132,9 +132,9 @@ int main(){
         }
         al_set_target_bitmap(al_get_backbuffer(janela));
         al_draw_bitmap(wallpaper, 0, 0, 0);
-        al_draw_bitmap(quadrado1, 0, 0, 0);
-        al_draw_bitmap(quadrado2, 440, 0, 0);
-        al_draw_bitmap(sair, 0, 600, 0);
+        al_draw_bitmap(quadrado1, 400, 100, 0);
+        al_draw_bitmap(quadrado2, 400, 400, 0);
+        al_draw_bitmap(sair, 1250, 600, 0);
 
         al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 50, ALLEGRO_ALIGN_RIGHT, "Bem vindo ao jogo");
         //al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 100, ALLEGRO_ALIGN_RIGHT, "esse som? ");
