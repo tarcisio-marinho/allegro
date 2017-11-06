@@ -79,7 +79,7 @@ int main(){
                 evento.mouse.x <= 420 &&
                 evento.mouse.y >= 0 &&
                 evento.mouse.y <= 320){
-                al_clear_to_color(al_map_rgb(255, 255, 255));
+                modo1(janela);
             }
         }
 
@@ -103,7 +103,7 @@ int main(){
                 evento.mouse.x <= 860 &&
                 evento.mouse.y >= 0 &&
                 evento.mouse.y <= 320){
-                al_clear_to_color(al_map_rgb(255, 255, 255));
+                //modo2(janela);
             }
         }
 
@@ -127,7 +127,7 @@ int main(){
                 evento.mouse.x <= 420 &&
                 evento.mouse.y >= 360 &&
                 evento.mouse.y <= 680){
-                al_clear_to_color(al_map_rgb(255, 255, 255));
+                return 0;
             }
         }
         al_set_target_bitmap(al_get_backbuffer(janela));
