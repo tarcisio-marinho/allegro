@@ -1,4 +1,6 @@
 #include <allegro5/allegro.h>
+#include <allegro5/allegro_audio.h>
+#include <allegro5/allegro_acodec.h>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
@@ -7,7 +9,7 @@
 typedef struct animal{
     char nome[30];
     ALLEGRO_BITMAP * imagem;
-    // som do animal
+    ALLEGRO_SAMPLE * som;
 }Animal;
 
 const int LARGURA_TELA = 1350;
@@ -30,6 +32,9 @@ int main(){
     al_init_font_addon();
     al_init_ttf_addon();
     al_install_mouse();
+    al_install_audio();
+    al_init_acodec_addon();
+    al_reserve_samples(1);
     
     
     janela = al_create_display(LARGURA_TELA, ALTURA_TELA);
@@ -165,10 +170,15 @@ void modo1(ALLEGRO_DISPLAY *janela){
     ALLEGRO_FONT *fonte = NULL;
 
     ALLEGRO_BITMAP * wallpaper = NULL;
-
+    
+    //ALLEGRO_AUDIO_STREAM *musica = NULL;
+    ALLEGRO_SAMPLE *sample = NULL;
 
 
     if(1){
+        
+        sample = al_load_sample("sound/animais/lobo.wav");
+
 
         fonte = al_load_font("fontes/coolvetica.ttf", 40, 0);
 
@@ -258,6 +268,9 @@ void modo1(ALLEGRO_DISPLAY *janela){
         zebra.imagem = al_load_bitmap("img/zebra.jpg");
 
     }
+
+    //al_attach_audio_stream_to_mixer(musica, al_get_default_mixer());
+    //al_set_audio_stream_playing(musica, true);
 
     fila_eventos = al_create_event_queue();
     al_register_event_source(fila_eventos, al_get_display_event_source(janela));
@@ -436,11 +449,16 @@ void modo1(ALLEGRO_DISPLAY *janela){
         al_draw_bitmap(baleia.imagem, 450, 0, 0);
         al_draw_bitmap(tigre.imagem, 450, 390, 0);
         al_flip_display();
-
+        
+        if(1){ // condicao pra tocar musica
+            al_play_sample(sample, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+        }
     }
 
     al_destroy_font(fonte);
     al_destroy_event_queue(fila_eventos);
+   // al_destroy_audio_stream(musica);
+    al_destroy_sample(sample);
 
 }
 
