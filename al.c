@@ -168,7 +168,8 @@ void modo1(ALLEGRO_DISPLAY *janela){
 
     ALLEGRO_EVENT_QUEUE *fila_eventos = NULL;
 
-    ALLEGRO_BITMAP *quadrado1 = 0, *quadrado2 = 0, *quadrado3 = 0, *quadrado4 = 0, *retornar = 0, *tocar = 0;
+    ALLEGRO_BITMAP *quadrado1 = 0, *quadrado2 = 0, *quadrado3 = 0;
+    ALLEGRO_BITMAP *quadrado4 = 0, *retornar = 0, *tocar = 0, *proximo = 0;
     ALLEGRO_FONT *fonte = NULL;
     int i = 0, aleatorio; 
     ALLEGRO_BITMAP * wallpaper = NULL;
@@ -295,6 +296,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
     quadrado4 = al_create_bitmap(420, 320);
     retornar = al_create_bitmap(100, 100);
     tocar = al_create_bitmap(100, 100);
+    proximo = al_create_bitmap(100, 100);
 
     /* Loop principal do jogo */
 
@@ -439,8 +441,8 @@ void modo1(ALLEGRO_DISPLAY *janela){
                 /* Verificamos se ele está sobre a região do retângulo central */
                 if (evento.mouse.x >=  1250 &&
                     evento.mouse.x <=  1350 &&
-                    evento.mouse.y >=  300 &&
-                    evento.mouse.y <= 400){
+                    evento.mouse.y >=  200 &&
+                    evento.mouse.y <= 300){
                     al_clear_to_color(al_map_rgb(145, 9, 9));
                 }
                 else{
@@ -451,9 +453,33 @@ void modo1(ALLEGRO_DISPLAY *janela){
             else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
                 if (evento.mouse.x >= 1250 &&
                     evento.mouse.x <= 1350 &&
-                    evento.mouse.y >= 300 &&
-                    evento.mouse.y <= 400){
+                    evento.mouse.y >= 200 &&
+                    evento.mouse.y <= 300){
                     al_play_sample(elefante.som, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                }
+            }
+
+            /* proximo */
+            al_set_target_bitmap(proximo);
+            if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
+                /* Verificamos se ele está sobre a região do retângulo central */
+                if (evento.mouse.x >=  1250 &&
+                    evento.mouse.x <=  1350 &&
+                    evento.mouse.y >=  400 &&
+                    evento.mouse.y <= 500){
+                    al_clear_to_color(al_map_rgb(145, 9, 9));
+                }
+                else{
+                    al_clear_to_color(al_map_rgb(255, 0, 0));
+                }
+            }
+            /* Ou se o evento foi um clique do mouse */
+            else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
+                if (evento.mouse.x >= 1250 &&
+                    evento.mouse.x <= 1350 &&
+                    evento.mouse.y >= 400 &&
+                    evento.mouse.y <= 500){
+                    // vai pro proximo animal
                 }
             }
 
@@ -467,12 +493,17 @@ void modo1(ALLEGRO_DISPLAY *janela){
             al_draw_bitmap(quadrado3, 0, 360, 0);
             al_draw_bitmap(quadrado4, 440, 360, 0);
             al_draw_bitmap(retornar, 1250, 600, 0);
-            al_draw_bitmap(tocar, 1250, 300, 0);
+            al_draw_bitmap(tocar, 1250, 200, 0);
+            al_draw_bitmap(proximo, 1250, 400, 0);
 
+            /* Fontes */
             al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 50, ALLEGRO_ALIGN_RIGHT, "Qual animal emite");
             al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 100, ALLEGRO_ALIGN_RIGHT, "esse som? ");
             al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 600, ALLEGRO_ALIGN_CENTRE, "Menu");
-            al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 300, ALLEGRO_ALIGN_CENTRE, "Tocar");
+            al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 200, ALLEGRO_ALIGN_CENTRE, "Tocar");
+            al_draw_text(fonte, al_map_rgb(255, 255, 255), 1280 , 400, ALLEGRO_ALIGN_CENTRE, "Proximo");
+            
+            /* Animais */
             al_draw_bitmap(vaca.imagem, 0, 0, 0);
             al_draw_bitmap(cabra.imagem, 0, 390, 0);
             al_draw_bitmap(baleia.imagem, 450, 0, 0);
