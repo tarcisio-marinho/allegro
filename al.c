@@ -136,7 +136,6 @@ int main(){
         al_draw_bitmap(quadrado2, 440, 0, 0);
         al_draw_bitmap(sair, 0, 360, 0);
         al_flip_display();
-        al_rest(2);
     }
 
 
