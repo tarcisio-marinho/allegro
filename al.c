@@ -41,8 +41,8 @@ int main(){
     ALLEGRO_BITMAP * wallpaper = NULL;
     ALLEGRO_DISPLAY *janela = NULL;
     init();
-    
-    
+
+
     janela = al_create_display(LARGURA_TELA, ALTURA_TELA);
     al_set_system_mouse_cursor(janela, ALLEGRO_SYSTEM_MOUSE_CURSOR_DEFAULT);
     fonte = al_load_font("fontes/coolvetica.ttf", 40, 0);
@@ -52,7 +52,7 @@ int main(){
     fila_eventos = al_create_event_queue();
     al_register_event_source(fila_eventos, al_get_display_event_source(janela));
     al_register_event_source(fila_eventos, al_get_mouse_event_source());
-    
+
     quadrado1 = al_create_bitmap(200, 200);
     quadrado2 = al_create_bitmap(200, 200);
     sair = al_create_bitmap(100, 100);
@@ -153,8 +153,8 @@ int main(){
         al_draw_text(fonte, al_map_rgb(0, 0, 0), 1000 , 100, ALLEGRO_ALIGN_CENTRE, "Escolha qual animal emite o som tocado");
         al_draw_text(fonte, al_map_rgb(0, 0, 0), 900 , 400, ALLEGRO_ALIGN_CENTRE, "Diferença entre sílabas");
         al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 600, ALLEGRO_ALIGN_CENTRE, "Sair");
-        
-        
+
+
         al_flip_display();
     }
 
@@ -175,16 +175,13 @@ void modo1(ALLEGRO_DISPLAY *janela){
     ALLEGRO_BITMAP *quadrado1 = 0, *quadrado2 = 0, *quadrado3 = 0;
     ALLEGRO_BITMAP *quadrado4 = 0, *retornar = 0, *tocar = 0, *proximo = 0;
     ALLEGRO_FONT *fonte = NULL;
-    int i = 0, aleatorio; 
+    int i = 0, aleatorio;
     ALLEGRO_BITMAP * wallpaper = NULL;
-    
+
     //ALLEGRO_AUDIO_STREAM *musica = NULL;
 
 
     if(1){
-        
-
-
         fonte = al_load_font("fontes/coolvetica.ttf", 40, 0);
 
         wallpaper = al_load_bitmap("img/wallpaper.jpg");
@@ -241,7 +238,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
         gato.imagem = al_load_bitmap("img/gato.jpg");
         gato.som = al_load_sample("sound/animais/gato.wav");
         gato.id = NULL;
-        
+
         strcpy(girafa.nome, "girafa");
         girafa.imagem = al_load_bitmap("img/girafa.jpg");
 
@@ -303,17 +300,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
     //al_attach_audio_stream_to_mixer(musica, al_get_default_mixer());
     //al_set_audio_stream_playing(musica, true);
 
-    fila_eventos = al_create_event_queue();
-    al_register_event_source(fila_eventos, al_get_display_event_source(janela));
-    al_register_event_source(fila_eventos, al_get_mouse_event_source());
 
-    quadrado1 = al_create_bitmap(420, 320);
-    quadrado2 = al_create_bitmap(420, 320);
-    quadrado3 = al_create_bitmap(420, 320);
-    quadrado4 = al_create_bitmap(420, 320);
-    retornar = al_create_bitmap(100, 100);
-    tocar = al_create_bitmap(100, 100);
-    proximo = al_create_bitmap(100, 100);
 
     /* Loop principal do jogo */
 
@@ -321,12 +308,24 @@ void modo1(ALLEGRO_DISPLAY *janela){
 
         //  PARTE 1
         while(1){
+            fila_eventos = al_create_event_queue();
+            al_register_event_source(fila_eventos, al_get_display_event_source(janela));
+            al_register_event_source(fila_eventos, al_get_mouse_event_source());
+
+            quadrado1 = al_create_bitmap(420, 320);
+            quadrado2 = al_create_bitmap(420, 320);
+            quadrado3 = al_create_bitmap(420, 320);
+            quadrado4 = al_create_bitmap(420, 320);
+            retornar = al_create_bitmap(100, 100);
+            tocar = al_create_bitmap(100, 100);
+            proximo = al_create_bitmap(100, 100);
+
             ALLEGRO_EVENT evento;
             ALLEGRO_TIMEOUT timeout;
             al_init_timeout(&timeout, 0.05);
-    
+
             int tem_eventos = al_wait_for_event_until(fila_eventos, &evento, &timeout);
-    
+
             /* Sair */
 
             if (tem_eventos && evento.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
@@ -356,7 +355,6 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.y <= 320){
                     acertou("elefante");
                     al_stop_sample(&elefante.id);
-                    al_rest(2);
                     break;
                 }
             }
@@ -383,7 +381,6 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.y <= 320){
                     errou("baleia");
                     al_stop_sample(&elefante.id);
-                    al_rest(2);
                     break;
                 }
             }
@@ -410,7 +407,6 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.y <= 680){
                     errou("cabra");
                     al_stop_sample(&elefante.id);
-                    al_rest(2);
                     break;
                 }
             }
@@ -437,7 +433,6 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.y <= 680){
                     errou("tigre");
                     al_stop_sample(&elefante.id);
-                    al_rest(2);
                     break;
                 }
             }
@@ -531,28 +526,40 @@ void modo1(ALLEGRO_DISPLAY *janela){
             al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 600, ALLEGRO_ALIGN_CENTRE, "Menu");
             al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 200, ALLEGRO_ALIGN_CENTRE, "Tocar");
             al_draw_text(fonte, al_map_rgb(255, 255, 255), 1280 , 400, ALLEGRO_ALIGN_CENTRE, "Proximo");
-            
+
             /* Animais */
             al_draw_bitmap(elefante.imagem, 0, 0, 0);
-            al_draw_bitmap(cabra.imagem, 0, 390, 0);
             al_draw_bitmap(baleia.imagem, 450, 0, 0);
+            al_draw_bitmap(cabra.imagem, 0, 390, 0);
             al_draw_bitmap(tigre.imagem, 450, 390, 0);
             al_flip_display();
             i++; // condicional para tocar musica
-            
+
             if(i < 1){ // condicao pra tocar musica
                 //al_play_sample(porco.som, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
             }
         }
 
+        printf("Vai entrar no segundo loop\n");
         //  PARTE 2
         while(1){
+            fila_eventos = al_create_event_queue();
+            al_register_event_source(fila_eventos, al_get_display_event_source(janela));
+            al_register_event_source(fila_eventos, al_get_mouse_event_source());
+
+            quadrado1 = al_create_bitmap(420, 320);
+            quadrado2 = al_create_bitmap(420, 320);
+            quadrado3 = al_create_bitmap(420, 320);
+            quadrado4 = al_create_bitmap(420, 320);
+            retornar = al_create_bitmap(100, 100);
+            tocar = al_create_bitmap(100, 100);
+            proximo = al_create_bitmap(100, 100);
             ALLEGRO_EVENT evento;
             ALLEGRO_TIMEOUT timeout;
             al_init_timeout(&timeout, 0.05);
-    
+
             int tem_eventos = al_wait_for_event_until(fila_eventos, &evento, &timeout);
-    
+
             /* Sair */
 
             if (tem_eventos && evento.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
@@ -580,9 +587,10 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.x <= 420 &&
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
-                    acertou("elefante");
-                    al_stop_sample(&elefante.id);
-                    break; //  pra ser um break
+                    errou("coruja");
+                    al_stop_sample(&cachorro.id);
+                    al_rest(2);
+                    return;
                 }
             }
 
@@ -606,7 +614,10 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.x <= 860 &&
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
-                    al_clear_to_color(al_map_rgb(255, 255, 255));
+                    errou("aguia");
+                    al_stop_sample(&cachorro.id);
+                    al_rest(2);
+                    return;
                 }
             }
 
@@ -630,7 +641,10 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.x <= 420 &&
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
-                    al_clear_to_color(al_map_rgb(255, 255, 255));
+                    acertou("cachorro");
+                    al_stop_sample(&cachorro.id);
+                    al_rest(2);
+                    return;
                 }
             }
 
@@ -654,7 +668,10 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.x <= 860 &&
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
-                    al_clear_to_color(al_map_rgb(255, 255, 255));
+                    errou("cobra");
+                    al_stop_sample(&cachorro.id);
+                    al_rest(2);
+                    return;
                 }
             }
             /* retornar */
@@ -700,7 +717,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.x <= 1350 &&
                     evento.mouse.y >= 200 &&
                     evento.mouse.y <= 300){
-                    al_play_sample(elefante.som, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, elefante.id);
+                    al_play_sample(cachorro.som, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, elefante.id);
                 }
             }
 
@@ -747,15 +764,15 @@ void modo1(ALLEGRO_DISPLAY *janela){
             al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 600, ALLEGRO_ALIGN_CENTRE, "Menu");
             al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 200, ALLEGRO_ALIGN_CENTRE, "Tocar");
             al_draw_text(fonte, al_map_rgb(255, 255, 255), 1280 , 400, ALLEGRO_ALIGN_CENTRE, "Proximo");
-            
+
             /* Animais */
-            al_draw_bitmap(elefante.imagem, 0, 0, 0);
-            al_draw_bitmap(cabra.imagem, 0, 390, 0);
-            al_draw_bitmap(baleia.imagem, 450, 0, 0);
-            al_draw_bitmap(tigre.imagem, 450, 390, 0);
+            al_draw_bitmap(coruja.imagem, 0, 0, 0);
+            al_draw_bitmap(aguia.imagem, 450, 0, 0);
+            al_draw_bitmap(cachorro.imagem, 0, 390, 0);
+            al_draw_bitmap(cobra.imagem, 450, 390, 0);
             al_flip_display();
             i++; // condicional para tocar musica
-            
+
             if(i < 1){ // condicao pra tocar musica
                 //al_play_sample(porco.som, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
             }
@@ -764,7 +781,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
 
     al_destroy_font(fonte);
     al_destroy_event_queue(fila_eventos);
-   
+
 
 }
 
@@ -779,7 +796,7 @@ void modo2(ALLEGRO_DISPLAY *janela){
     wallpaper = al_load_bitmap("img/wallpaper.jpg");
 
 
-    
+
     al_draw_bitmap(wallpaper, 0, 0, 0);
     al_flip_display();
     al_rest(2);
@@ -789,7 +806,7 @@ void modo2(ALLEGRO_DISPLAY *janela){
 
 void acertou(char string[]){
     printf("PARABENS VOCE ACERTOU\nÉ um %s\n", string);
-    // masked_blit 
+    // masked_blit
 }
 
 void errou(char string[]){
