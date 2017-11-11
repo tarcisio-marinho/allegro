@@ -560,7 +560,7 @@ void modo2(ALLEGRO_DISPLAY *janela){
 
 }
 
-void acertou(char string[]){
+void acertou(char string[], ALLEGRO_FONT *font){
     printf("PARABENS VOCE ACERTOU\nÉ um %s\n", string);
-
+    // masked_blit 
 }
