@@ -8,7 +8,13 @@
 #include<stdlib.h>
 #include<time.h>
 
-// SÓ TROCAR A COR QUANDO CLICAR
+// SÓ TROCAR A COR QUANDO CLICAR - escolher o animal
+// quantos errou e quantos acertou
+// nome da criança que vai jogar
+// salvar em arquivo
+// botão para ler do arquivo qual score das crianças
+// botão de como jogar
+// animação de erro e acerto
 
 
 typedef struct animal{
