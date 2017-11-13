@@ -5,6 +5,8 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 #include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
 
 typedef struct animal{
     char nome[30];
@@ -175,7 +177,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
     ALLEGRO_BITMAP *quadrado1 = 0, *quadrado2 = 0, *quadrado3 = 0;
     ALLEGRO_BITMAP *quadrado4 = 0, *retornar = 0, *tocar = 0, *proximo = 0;
     ALLEGRO_FONT *fonte = NULL;
-    int i = 0, aleatorio;
+    int i = 0, vez = 0;
     ALLEGRO_BITMAP * wallpaper = NULL;
 
     //ALLEGRO_AUDIO_STREAM *musica = NULL;
@@ -183,7 +185,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
     fila_eventos = al_create_event_queue();
     al_register_event_source(fila_eventos, al_get_display_event_source(janela));
     al_register_event_source(fila_eventos, al_get_mouse_event_source());
-    
+
     if(1){
         fonte = al_load_font("fontes/coolvetica.ttf", 40, 0);
 
@@ -308,7 +310,8 @@ void modo1(ALLEGRO_DISPLAY *janela){
     /* Loop principal do jogo */
 
     
-
+   
+        
     //  PARTE 1
     while(1){
         
@@ -354,9 +357,16 @@ void modo1(ALLEGRO_DISPLAY *janela){
                 evento.mouse.x <= 420 &&
                 evento.mouse.y >= 0 &&
                 evento.mouse.y <= 320){
-                acertou("elefante");
-                al_stop_sample(&elefante.id);
-                break;
+                if(vez == 0){
+                    acertou("elefante");
+                    al_stop_sample(&elefante.id);
+                    vez++;
+                }else if(vez == 1){
+                    vez++;
+                }else if(vez == 2){
+                    vez++;
+                }
+                
             }
         }
 
@@ -380,9 +390,11 @@ void modo1(ALLEGRO_DISPLAY *janela){
                 evento.mouse.x <= 860 &&
                 evento.mouse.y >= 0 &&
                 evento.mouse.y <= 320){
-                errou("baleia");
-                al_stop_sample(&elefante.id);
-                break;
+                if(vez == 0){
+                    errou("baleia");
+                    al_stop_sample(&elefante.id);
+                    vez++;
+                }
             }
         }
 
@@ -406,9 +418,11 @@ void modo1(ALLEGRO_DISPLAY *janela){
                 evento.mouse.x <= 420 &&
                 evento.mouse.y >= 360 &&
                 evento.mouse.y <= 680){
-                errou("cabra");
-                al_stop_sample(&elefante.id);
-                break;
+                if(vez == 0){
+                    errou("cabra");
+                    al_stop_sample(&elefante.id);
+                    vez++;
+                }
             }
         }
 
@@ -432,9 +446,11 @@ void modo1(ALLEGRO_DISPLAY *janela){
                 evento.mouse.x <= 860 &&
                 evento.mouse.y >= 360 &&
                 evento.mouse.y <= 680){
-                errou("tigre");
-                al_stop_sample(&elefante.id);
-                break;
+                if(vez == 0){
+                    errou("tigre");
+                    al_stop_sample(&elefante.id);
+                    vez++;
+                }
             }
         }
         /* retornar */
@@ -504,12 +520,33 @@ void modo1(ALLEGRO_DISPLAY *janela){
         al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 600, ALLEGRO_ALIGN_CENTRE, "Menu");
         al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 200, ALLEGRO_ALIGN_CENTRE, "Tocar");
         
-        /* Animais */
-        al_draw_bitmap(elefante.imagem, 0, 0, 0);
-        al_draw_bitmap(baleia.imagem, 450, 0, 0);
-        al_draw_bitmap(cabra.imagem, 0, 390, 0);
-        al_draw_bitmap(tigre.imagem, 450, 390, 0);
-        al_flip_display();
+        if(vez == 0){
+            /* Animais */
+            al_draw_bitmap(elefante.imagem, 0, 0, 0);
+            al_draw_bitmap(baleia.imagem, 450, 0, 0);
+            al_draw_bitmap(cabra.imagem, 0, 390, 0);
+            al_draw_bitmap(tigre.imagem, 450, 390, 0);
+            al_flip_display();
+        }else if(vez == 1){
+            al_draw_bitmap(cachorro.imagem, 0, 0, 0);
+            al_draw_bitmap(cavalo.imagem, 450, 0, 0);
+            al_draw_bitmap(tatu.imagem, 0, 390, 0);
+            al_draw_bitmap(touro.imagem, 450, 390, 0);
+        }else if(vez == 2){
+            al_draw_bitmap(zebra.imagem, 0, 0, 0);
+            al_draw_bitmap(gato.imagem, 450, 0, 0);
+            al_draw_bitmap(girafa.imagem, 0, 390, 0);
+            al_draw_bitmap(leao.imagem, 450, 390, 0);
+        }else if(vez == 3){
+            al_draw_bitmap(macaco.imagem, 0, 0, 0);
+            al_draw_bitmap(pato.imagem, 450, 0, 0);
+            al_draw_bitmap(peixe.imagem, 0, 390, 0);
+            al_draw_bitmap(coruja.imagem, 450, 390, 0);
+        }else if(vez == 4){
+
+        }
+
+
         i++; // condicional para tocar musica
 
         if(i < 1){ // condicao pra tocar musica
@@ -517,6 +554,8 @@ void modo1(ALLEGRO_DISPLAY *janela){
         }
     }
 
+    
+    
     
 
 
@@ -553,3 +592,5 @@ void acertou(char string[]){
 void errou(char string[]){
     printf("Você errou :( \n não é um %s\n", string);
 }
+
+
