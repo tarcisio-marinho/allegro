@@ -173,7 +173,6 @@ void modo1(ALLEGRO_DISPLAY *janela){
     Animal elefante, galo, gato, girafa, leao, lobo, macaco, passarinho, pato, peixe;
     Animal porco, sapo, tatu, tigre, touro, vaca, zebra;
 
-    ALLEGRO_EVENT_QUEUE *fila_eventos = NULL, *fila_eventos2 = NULL, *fila_eventos3 = NULL;
 
     ALLEGRO_BITMAP *quadrado1 = 0, *quadrado2 = 0, *quadrado3 = 0;
     ALLEGRO_BITMAP *quadrado4 = 0, *retornar = 0, *tocar = 0, *proximo = 0;
@@ -298,15 +297,6 @@ void modo1(ALLEGRO_DISPLAY *janela){
         zebra.imagem = al_load_bitmap("img/zebra.jpg");
 
     }
-
-    //al_attach_audio_stream_to_mixer(musica, al_get_default_mixer());
-    //al_set_audio_stream_playing(musica, true);
-
-
-
-    /* Loop principal do jogo */
-
-    
    
         
     //  PARTE 1
@@ -939,7 +929,6 @@ void modo1(ALLEGRO_DISPLAY *janela){
     }
 
     al_destroy_font(fonte);
-    al_destroy_event_queue(fila_eventos);
 }
 
 
