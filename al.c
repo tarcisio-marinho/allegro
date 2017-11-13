@@ -8,6 +8,9 @@
 #include<stdlib.h>
 #include<time.h>
 
+// SÓ TROCAR A COR QUANDO CLICAR
+
+
 typedef struct animal{
     char nome[30];
     ALLEGRO_BITMAP * imagem;
@@ -39,7 +42,7 @@ void init(){
 }
 
 int main(){
-    ALLEGRO_BITMAP *quadrado1 = 0, *quadrado2 = 0, *sair = 0;
+    ALLEGRO_BITMAP *quadrado1 = 0, *quadrado2 = 0, *sair = 0, *como_jogar = 0;
     ALLEGRO_FONT *fonte = NULL;
     ALLEGRO_BITMAP * wallpaper = NULL;
     ALLEGRO_DISPLAY *janela = NULL;
@@ -59,6 +62,7 @@ int main(){
     quadrado1 = al_create_bitmap(200, 200);
     quadrado2 = al_create_bitmap(200, 200);
     sair = al_create_bitmap(100, 100);
+    como_jogar = al_create_bitmap(100, 100);
 
     /* Loop para decidir o modo do jogo */
     while(1){
@@ -144,11 +148,36 @@ int main(){
                 return 0;
             }
         }
+
+        /* como jogar */
+        al_set_target_bitmap(como_jogar);
+        if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
+            /* Verificamos se ele está sobre a região do retângulo central */
+            if (evento.mouse.x >=  1250 &&
+                evento.mouse.x <=  1350 &&
+                evento.mouse.y >= 300 &&
+                evento.mouse.y <= 400 ){
+                al_clear_to_color(al_map_rgb(145, 9, 9));
+            }
+            else{
+                al_clear_to_color(al_map_rgb(255, 0, 0));
+            }
+        }
+        /* Ou se o evento foi um clique do mouse */
+        else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
+            if (evento.mouse.x >= 1250 &&
+                evento.mouse.x <= 1350 &&
+                evento.mouse.y >= 600 &&
+                evento.mouse.y <= 700){
+                // INSTRUÇÃO DE JOGO
+            }
+        }
         al_set_target_bitmap(al_get_backbuffer(janela));
         al_draw_bitmap(wallpaper, 0, 0, 0);
         al_draw_bitmap(quadrado1, 400, 100, 0);
         al_draw_bitmap(quadrado2, 400, 400, 0);
         al_draw_bitmap(sair, 1250, 600, 0);
+        al_draw_bitmap(como_jogar, 1250, 300, 0);
 
         al_draw_text(fonte, al_map_rgb(0, 0, 0), 1000 , 0, ALLEGRO_ALIGN_RIGHT, "Bem vindo ao jogo da audição");
         al_draw_text(fonte, al_map_rgb(255, 255, 255), 500 , 100, ALLEGRO_ALIGN_CENTRE, "Modo 1");
@@ -156,15 +185,17 @@ int main(){
         al_draw_text(fonte, al_map_rgb(0, 0, 0), 1000 , 100, ALLEGRO_ALIGN_CENTRE, "Escolha qual animal emite o som tocado");
         al_draw_text(fonte, al_map_rgb(0, 0, 0), 900 , 400, ALLEGRO_ALIGN_CENTRE, "Diferença entre sílabas");
         al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 600, ALLEGRO_ALIGN_CENTRE, "Sair");
+        al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 300, ALLEGRO_ALIGN_CENTRE, "Como");
+        al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 340, ALLEGRO_ALIGN_CENTRE, "jogar");
 
 
         al_flip_display();
     }
 
 
-   al_destroy_font(fonte);
-   al_destroy_event_queue(fila_eventos);
-   al_destroy_display(janela);
+    al_destroy_font(fonte);
+    al_destroy_event_queue(fila_eventos);
+    al_destroy_display(janela);
     return 0;
 }
 
