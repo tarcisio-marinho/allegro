@@ -311,7 +311,6 @@ void modo1(ALLEGRO_DISPLAY *janela){
     //  PARTE 1
     while(1){
         
-
         quadrado1 = al_create_bitmap(420, 320);
         quadrado2 = al_create_bitmap(420, 320);
         quadrado3 = al_create_bitmap(420, 320);
@@ -357,8 +356,11 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     acertou("elefante");
                     al_stop_sample(&elefante.id);
                     vez++;
+                    continue;
                 }else if(vez == 1){
+                    
                     vez++;
+                    
                 }else if(vez == 2){
                     vez++;
                 }
@@ -523,6 +525,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
             al_draw_bitmap(baleia.imagem, 450, 0, 0);
             al_draw_bitmap(cabra.imagem, 0, 390, 0);
             al_draw_bitmap(tigre.imagem, 450, 390, 0);
+
         }else if(vez == 1){
             al_draw_bitmap(cachorro.imagem, 0, 0, 0);
             al_draw_bitmap(cavalo.imagem, 450, 0, 0);
