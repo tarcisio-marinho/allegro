@@ -18,6 +18,8 @@ typedef struct animal{
 const int LARGURA_TELA = 1350;
 const int ALTURA_TELA = 700;
 
+ALLEGRO_EVENT_QUEUE *fila_eventos = NULL;
+
 void modo1(ALLEGRO_DISPLAY *janela); // som +  foto de animais, objetos
 void modo2(ALLEGRO_DISPLAY *janela); // silaba inicial do animal + foto de animais, objetos
 void modo3(ALLEGRO_DISPLAY *janela); // silabas são iguais ou diferentes, KA KA, KA LA
@@ -37,7 +39,6 @@ void init(){
 }
 
 int main(){
-    ALLEGRO_EVENT_QUEUE *fila_eventos = NULL;
     ALLEGRO_BITMAP *quadrado1 = 0, *quadrado2 = 0, *sair = 0;
     ALLEGRO_FONT *fonte = NULL;
     ALLEGRO_BITMAP * wallpaper = NULL;
@@ -172,7 +173,6 @@ void modo1(ALLEGRO_DISPLAY *janela){
     Animal elefante, galo, gato, girafa, leao, lobo, macaco, passarinho, pato, peixe;
     Animal porco, sapo, tatu, tigre, touro, vaca, zebra;
 
-    ALLEGRO_EVENT_QUEUE *fila_eventos = NULL;
 
     ALLEGRO_BITMAP *quadrado1 = 0, *quadrado2 = 0, *quadrado3 = 0;
     ALLEGRO_BITMAP *quadrado4 = 0, *retornar = 0, *tocar = 0, *proximo = 0;
@@ -181,10 +181,6 @@ void modo1(ALLEGRO_DISPLAY *janela){
     ALLEGRO_BITMAP * wallpaper = NULL;
 
     //ALLEGRO_AUDIO_STREAM *musica = NULL;
-
-    fila_eventos = al_create_event_queue();
-    al_register_event_source(fila_eventos, al_get_display_event_source(janela));
-    al_register_event_source(fila_eventos, al_get_mouse_event_source());
 
     if(1){
         fonte = al_load_font("fontes/coolvetica.ttf", 40, 0);
@@ -473,6 +469,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
                 evento.mouse.x <= 1350 &&
                 evento.mouse.y >= 600 &&
                 evento.mouse.y <= 700){
+                al_stop_sample(&elefante.id);
                 return;
             }
         }
@@ -545,7 +542,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
             al_draw_bitmap(coruja.imagem, 450, 390, 0);
     
         }else if(vez == 4){
-            
+
         }
 
         al_flip_display();
