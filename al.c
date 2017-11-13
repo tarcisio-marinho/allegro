@@ -352,18 +352,9 @@ void modo1(ALLEGRO_DISPLAY *janela){
                 evento.mouse.x <= 420 &&
                 evento.mouse.y >= 0 &&
                 evento.mouse.y <= 320){
-                if(vez == 0){
-                    acertou("elefante");
-                    al_stop_sample(&elefante.id);
-                    vez++;
-                }else if(vez == 1){
-                    
-                    vez++;
-                    
-                }else if(vez == 2){
-                    vez++;
-                }
-                
+                acertou("elefante");
+                al_stop_sample(&elefante.id);
+                break;    
             }
         }
 
@@ -387,11 +378,9 @@ void modo1(ALLEGRO_DISPLAY *janela){
                 evento.mouse.x <= 860 &&
                 evento.mouse.y >= 0 &&
                 evento.mouse.y <= 320){
-                if(vez == 0){
-                    errou("baleia");
-                    al_stop_sample(&elefante.id);
-                    vez++;
-                }
+                errou("baleia");
+                al_stop_sample(&elefante.id);
+                break;
             }
         }
 
@@ -415,11 +404,9 @@ void modo1(ALLEGRO_DISPLAY *janela){
                 evento.mouse.x <= 420 &&
                 evento.mouse.y >= 360 &&
                 evento.mouse.y <= 680){
-                if(vez == 0){
-                    errou("cabra");
-                    al_stop_sample(&elefante.id);
-                    vez++;
-                }
+                errou("cabra");
+                al_stop_sample(&elefante.id);
+                break;
             }
         }
 
@@ -443,11 +430,9 @@ void modo1(ALLEGRO_DISPLAY *janela){
                 evento.mouse.x <= 860 &&
                 evento.mouse.y >= 360 &&
                 evento.mouse.y <= 680){
-                if(vez == 0){
-                    errou("tigre");
-                    al_stop_sample(&elefante.id);
-                    vez++;
-                }
+                errou("tigre");
+                al_stop_sample(&elefante.id);
+                break;
             }
         }
         /* retornar */
@@ -517,35 +502,12 @@ void modo1(ALLEGRO_DISPLAY *janela){
         al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 100, ALLEGRO_ALIGN_RIGHT, "esse som? ");
         al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 600, ALLEGRO_ALIGN_CENTRE, "Menu");
         al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 200, ALLEGRO_ALIGN_CENTRE, "Tocar");
-        
-        if(vez == 0){
-            /* Animais */
-            al_draw_bitmap(elefante.imagem, 0, 0, 0);
-            al_draw_bitmap(baleia.imagem, 450, 0, 0);
-            al_draw_bitmap(cabra.imagem, 0, 390, 0);
-            al_draw_bitmap(tigre.imagem, 450, 390, 0);
 
-        }else if(vez == 1){
-            al_draw_bitmap(cachorro.imagem, 0, 0, 0);
-            al_draw_bitmap(cavalo.imagem, 450, 0, 0);
-            al_draw_bitmap(tatu.imagem, 0, 390, 0);
-            al_draw_bitmap(touro.imagem, 450, 390, 0);
-            
-        }else if(vez == 2){
-            al_draw_bitmap(zebra.imagem, 0, 0, 0);
-            al_draw_bitmap(gato.imagem, 450, 0, 0);
-            al_draw_bitmap(girafa.imagem, 0, 390, 0);
-            al_draw_bitmap(leao.imagem, 450, 390, 0);
-
-        }else if(vez == 3){
-            al_draw_bitmap(macaco.imagem, 0, 0, 0);
-            al_draw_bitmap(pato.imagem, 450, 0, 0);
-            al_draw_bitmap(peixe.imagem, 0, 390, 0);
-            al_draw_bitmap(coruja.imagem, 450, 390, 0);
-    
-        }else if(vez == 4){
-
-        }
+        /* Animais */
+        al_draw_bitmap(elefante.imagem, 0, 0, 0);
+        al_draw_bitmap(baleia.imagem, 450, 0, 0);
+        al_draw_bitmap(cabra.imagem, 0, 390, 0);
+        al_draw_bitmap(tigre.imagem, 450, 390, 0);
 
         al_flip_display();
 
@@ -556,19 +518,243 @@ void modo1(ALLEGRO_DISPLAY *janela){
         }
     }
 
-    
-    
-    
+    al_clear_to_color(al_map_rgb(0, 0, 0));
+    printf("Entrar no outro loop\n");
+    al_flip_display();
+    al_rest(2);
 
+    //  PARTE 1
+    while(1){
+        
+        quadrado1 = al_create_bitmap(420, 320);
+        quadrado2 = al_create_bitmap(420, 320);
+        quadrado3 = al_create_bitmap(420, 320);
+        quadrado4 = al_create_bitmap(420, 320);
+        retornar = al_create_bitmap(100, 100);
+        tocar = al_create_bitmap(100, 100);
+        //proximo = al_create_bitmap(100, 100);
+
+        ALLEGRO_EVENT evento;
+        ALLEGRO_TIMEOUT timeout;
+        al_init_timeout(&timeout, 0.05);
+
+        int tem_eventos = al_wait_for_event_until(fila_eventos, &evento, &timeout);
+
+        /* Sair */
+
+        if (tem_eventos && evento.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
+            exit(-1);
+        }
+
+
+        /* quadrado1 */
+        al_set_target_bitmap(quadrado1);
+        if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
+            /* Verificamos se ele está sobre a região do retângulo central */
+            if (evento.mouse.x >= 0 &&
+                evento.mouse.x <= 420 &&
+                evento.mouse.y >= 0 &&
+                evento.mouse.y <= 320){
+                al_clear_to_color(al_map_rgb(153, 0, 153));
+            }
+            else{
+                al_clear_to_color(al_map_rgb(0, 3, 123));
+            }
+        }
+        /* Ou se o evento foi um clique do mouse */
+        else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
+            if (evento.mouse.x >= 0 &&
+                evento.mouse.x <= 420 &&
+                evento.mouse.y >= 0 &&
+                evento.mouse.y <= 320){
+                errou("cachorro");
+                al_stop_sample(&cavalo.id);
+                break;    
+            }
+        }
+
+        /* quadrado2 */
+        al_set_target_bitmap(quadrado2);
+        if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
+            /* Verificamos se ele está sobre a região do retângulo central */
+            if (evento.mouse.x >= 440 &&
+                evento.mouse.x <=  860 &&
+                evento.mouse.y >=  0&&
+                evento.mouse.y <= 320){
+                al_clear_to_color(al_map_rgb(153, 0, 153));
+            }
+            else{
+                al_clear_to_color(al_map_rgb(0, 3, 123));
+            }
+        }
+        /* Ou se o evento foi um clique do mouse */
+        else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
+            if (evento.mouse.x >= 440 &&
+                evento.mouse.x <= 860 &&
+                evento.mouse.y >= 0 &&
+                evento.mouse.y <= 320){
+                acertou("cavalo");
+                al_stop_sample(&cavalo.id);
+                break;
+            }
+        }
+
+        /* quadrado3 */
+        al_set_target_bitmap(quadrado3);
+        if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
+            /* Verificamos se ele está sobre a região do retângulo central */
+            if (evento.mouse.x >=  0 &&
+                evento.mouse.x <=  420 &&
+                evento.mouse.y >= 360 &&
+                evento.mouse.y <= 680 ){
+                al_clear_to_color(al_map_rgb(153, 0, 153));
+            }
+            else{
+                al_clear_to_color(al_map_rgb(0, 3, 123));
+            }
+        }
+        /* Ou se o evento foi um clique do mouse */
+        else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
+            if (evento.mouse.x >= 0 &&
+                evento.mouse.x <= 420 &&
+                evento.mouse.y >= 360 &&
+                evento.mouse.y <= 680){
+                errou("tatu");
+                al_stop_sample(&cavalo.id);
+                break;
+            }
+        }
+
+        /* quadrado4 */
+        al_set_target_bitmap(quadrado4);
+        if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
+            /* Verificamos se ele está sobre a região do retângulo central */
+            if (evento.mouse.x >=  440 &&
+                evento.mouse.x <=  860 &&
+                evento.mouse.y >=  360 &&
+                evento.mouse.y <= 680){
+                al_clear_to_color(al_map_rgb(153, 0, 153));
+            }
+            else{
+                al_clear_to_color(al_map_rgb(0, 3, 123));
+            }
+        }
+        /* Ou se o evento foi um clique do mouse */
+        else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
+            if (evento.mouse.x >= 440 &&
+                evento.mouse.x <= 860 &&
+                evento.mouse.y >= 360 &&
+                evento.mouse.y <= 680){
+                errou("touro");
+                al_stop_sample(&cavalo.id);
+                break;
+            }
+        }
+        /* retornar */
+        al_set_target_bitmap(retornar);
+        if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
+            /* Verificamos se ele está sobre a região do retângulo central */
+            if (evento.mouse.x >=  1250 &&
+                evento.mouse.x <=  1350 &&
+                evento.mouse.y >=  600 &&
+                evento.mouse.y <= 700){
+                al_clear_to_color(al_map_rgb(145, 9, 9));
+            }
+            else{
+                al_clear_to_color(al_map_rgb(255, 0, 0));
+            }
+        }
+        /* Ou se o evento foi um clique do mouse */
+        else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
+            if (evento.mouse.x >= 1250 &&
+                evento.mouse.x <= 1350 &&
+                evento.mouse.y >= 600 &&
+                evento.mouse.y <= 700){
+                al_stop_sample(&cavalo.id);
+                return;
+            }
+        }
+        /* tocar dnv */
+        al_set_target_bitmap(tocar);
+        if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
+            /* Verificamos se ele está sobre a região do retângulo central */
+            if (evento.mouse.x >=  1250 &&
+                evento.mouse.x <=  1350 &&
+                evento.mouse.y >=  200 &&
+                evento.mouse.y <= 300){
+                al_clear_to_color(al_map_rgb(145, 9, 9));
+            }
+            else{
+                al_clear_to_color(al_map_rgb(255, 0, 0));
+            }
+        }
+        /* Ou se o evento foi um clique do mouse */
+        else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
+            if (evento.mouse.x >= 1250 &&
+                evento.mouse.x <= 1350 &&
+                evento.mouse.y >= 200 &&
+                evento.mouse.y <= 300){
+                al_play_sample(cavalo.som, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, cavalo.id);
+            }
+        }
+
+        
+
+        /* Configura a janela */
+        al_set_target_bitmap(al_get_backbuffer(janela));
+        al_draw_bitmap(wallpaper, 0, 0, 0);
+
+        /* Desenhamos os retângulos na tela */
+        al_draw_bitmap(quadrado1, 0, 0, 0);
+        al_draw_bitmap(quadrado2, 440, 0, 0);
+        al_draw_bitmap(quadrado3, 0, 360, 0);
+        al_draw_bitmap(quadrado4, 440, 360, 0);
+        al_draw_bitmap(retornar, 1250, 600, 0);
+        al_draw_bitmap(tocar, 1250, 200, 0);
+
+        /* Fontes */
+        al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 50, ALLEGRO_ALIGN_RIGHT, "Qual animal emite");
+        al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 100, ALLEGRO_ALIGN_RIGHT, "esse som? ");
+        al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 600, ALLEGRO_ALIGN_CENTRE, "Menu");
+        al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 200, ALLEGRO_ALIGN_CENTRE, "Tocar");
+
+        /* Animais */
+        al_draw_bitmap(cachorro.imagem, 0, 0, 0);  
+        al_draw_bitmap(cavalo.imagem, 450, 0, 0);
+        al_draw_bitmap(tatu.imagem, 0, 390, 0);
+        al_draw_bitmap(touro.imagem, 450, 390, 0);
+        al_flip_display();
+
+        i++; // condicional para tocar musica
+
+        if(i < 1){ // condicao pra tocar musica
+            //al_play_sample(porco.som, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+        }
+    }
 
     al_destroy_font(fonte);
     al_destroy_event_queue(fila_eventos);
-
-
 }
 
 
+/*
+ 
+            al_draw_bitmap(cachorro.imagem, 0, 0, 0);
+            al_draw_bitmap(cavalo.imagem, 450, 0, 0);
+            al_draw_bitmap(tatu.imagem, 0, 390, 0);
+            al_draw_bitmap(touro.imagem, 450, 390, 0);
+            
+            al_draw_bitmap(zebra.imagem, 0, 0, 0);
+            al_draw_bitmap(gato.imagem, 450, 0, 0);
+            al_draw_bitmap(girafa.imagem, 0, 390, 0);
+            al_draw_bitmap(leao.imagem, 450, 390, 0);
 
+            al_draw_bitmap(macaco.imagem, 0, 0, 0);
+            al_draw_bitmap(pato.imagem, 450, 0, 0);
+            al_draw_bitmap(peixe.imagem, 0, 390, 0);
+            al_draw_bitmap(coruja.imagem, 450, 390, 0);
+    
+*/
 
 
 void modo2(ALLEGRO_DISPLAY *janela){
