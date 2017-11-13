@@ -204,12 +204,12 @@ void modo1(ALLEGRO_DISPLAY *janela){
         cabra.id = NULL;
 
         strcpy(cachorro.nome, "cachorro");
-        cachorro.imagem = al_load_bitmap("img/cachorro.jpeg");
+        cachorro.imagem = al_load_bitmap("img/cachorro.jpg");
         cachorro.som = al_load_sample("sound/animais/cachorro.wav");
         cachorro.id = NULL;
 
         strcpy(camelo.nome, "camelo");
-        camelo.imagem = al_load_bitmap("img/camelo.JPG");
+        camelo.imagem = al_load_bitmap("img/camelo.jpg");
 
         strcpy(cavalo.nome, "cavalo");
         cavalo.imagem = al_load_bitmap("img/cavalo.jpg");
@@ -518,12 +518,12 @@ void modo1(ALLEGRO_DISPLAY *janela){
         }
     }
 
-    al_clear_to_color(al_map_rgb(0, 0, 0));
-    printf("Entrar no outro loop\n");
-    al_flip_display();
-    al_rest(2);
 
-    //  PARTE 1
+    al_clear_to_color(al_map_rgb(0, 0, 0));
+    //al_flip_display();
+    //al_rest(2);
+
+    //  PARTE 2
     while(1){
         
         quadrado1 = al_create_bitmap(420, 320);
@@ -724,7 +724,6 @@ void modo1(ALLEGRO_DISPLAY *janela){
         al_draw_bitmap(tatu.imagem, 0, 390, 0);
         al_draw_bitmap(touro.imagem, 450, 390, 0);
         al_flip_display();
-
         i++; // condicional para tocar musica
 
         if(i < 1){ // condicao pra tocar musica
