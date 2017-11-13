@@ -526,26 +526,29 @@ void modo1(ALLEGRO_DISPLAY *janela){
             al_draw_bitmap(baleia.imagem, 450, 0, 0);
             al_draw_bitmap(cabra.imagem, 0, 390, 0);
             al_draw_bitmap(tigre.imagem, 450, 390, 0);
-            al_flip_display();
         }else if(vez == 1){
             al_draw_bitmap(cachorro.imagem, 0, 0, 0);
             al_draw_bitmap(cavalo.imagem, 450, 0, 0);
             al_draw_bitmap(tatu.imagem, 0, 390, 0);
             al_draw_bitmap(touro.imagem, 450, 390, 0);
+            
         }else if(vez == 2){
             al_draw_bitmap(zebra.imagem, 0, 0, 0);
             al_draw_bitmap(gato.imagem, 450, 0, 0);
             al_draw_bitmap(girafa.imagem, 0, 390, 0);
             al_draw_bitmap(leao.imagem, 450, 390, 0);
+
         }else if(vez == 3){
             al_draw_bitmap(macaco.imagem, 0, 0, 0);
             al_draw_bitmap(pato.imagem, 450, 0, 0);
             al_draw_bitmap(peixe.imagem, 0, 390, 0);
             al_draw_bitmap(coruja.imagem, 450, 390, 0);
+    
         }else if(vez == 4){
-
+            
         }
 
+        al_flip_display();
 
         i++; // condicional para tocar musica
 
