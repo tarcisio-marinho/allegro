@@ -356,7 +356,6 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     acertou("elefante");
                     al_stop_sample(&elefante.id);
                     vez++;
-                    continue;
                 }else if(vez == 1){
                     
                     vez++;
