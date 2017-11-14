@@ -24,17 +24,23 @@ typedef struct animal{
     ALLEGRO_SAMPLE_ID *id;
 }Animal;
 
+typedef struct salvar{
+    char nome[30];
+    int acertos, erros;
+}Salvar;
+
 const int LARGURA_TELA = 1350;
 const int ALTURA_TELA = 700;
 
 ALLEGRO_EVENT_QUEUE *fila_eventos = NULL;
 
-void modo1(ALLEGRO_DISPLAY *janela); // som +  foto de animais, objetos
+void modo1(ALLEGRO_DISPLAY *janela, char nome[]); // som +  foto de animais, objetos
 void modo2(ALLEGRO_DISPLAY *janela); // silaba inicial do animal + foto de animais, objetos
 void modo3(ALLEGRO_DISPLAY *janela); // silabas são iguais ou diferentes, KA KA, KA LA
 void modo4(ALLEGRO_DISPLAY *janela); // palavras são iguais ou diferentes, faca e vaca
 void acertou(char string[]);
 void errou(char string[]);
+void salvar(Salvar jogador);
 
 void init(){
     al_init();
@@ -45,6 +51,7 @@ void init(){
     al_install_audio();
     al_init_acodec_addon();
     al_reserve_samples(1);
+    al_install_keyboard();
 }
 
 int main(){
@@ -52,6 +59,9 @@ int main(){
     ALLEGRO_FONT *fonte = NULL;
     ALLEGRO_BITMAP * wallpaper = NULL;
     ALLEGRO_DISPLAY *janela = NULL;
+    
+    char nome[30];
+
     init();
 
 
@@ -64,6 +74,8 @@ int main(){
     fila_eventos = al_create_event_queue();
     al_register_event_source(fila_eventos, al_get_display_event_source(janela));
     al_register_event_source(fila_eventos, al_get_mouse_event_source());
+    al_register_event_source(fila_eventos, al_get_keyboard_event_source());
+ 
 
     quadrado1 = al_create_bitmap(200, 200);
     quadrado2 = al_create_bitmap(200, 200);
@@ -103,7 +115,7 @@ int main(){
                 evento.mouse.x <= 600 &&
                 evento.mouse.y >= 100 &&
                 evento.mouse.y <= 300){
-                modo1(janela);
+                modo1(janela, nome);
             }
         }
 
@@ -205,11 +217,13 @@ int main(){
     return 0;
 }
 
-void modo1(ALLEGRO_DISPLAY *janela){
+void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
     Animal aguia, baleia, cabra, cachorro, camelo, caranguejo, cavalo, cobra, coelho, coruja;
     Animal elefante, galo, gato, girafa, leao, lobo, macaco, passarinho, pato, peixe;
     Animal porco, sapo, tatu, tigre, touro, vaca, zebra;
     
+    Salvar jogador;
+
     int acertos = 0, erros = 0;
 
     ALLEGRO_BITMAP *quadrado1 = 0, *quadrado2 = 0, *quadrado3 = 0;
@@ -1417,8 +1431,14 @@ void modo1(ALLEGRO_DISPLAY *janela){
     }
 
     printf("acertos: %d, erros: %d\n", acertos, erros);
+    
+    jogador.acertos = acertos;
+    jogador.erros = erros;
+    strcpy(jogador.nome, nome);
+    salvar(jogador);
     al_rest(3);
     al_destroy_font(fonte);
+    exit(0);
 }
 
 
@@ -1449,3 +1469,36 @@ void errou(char string[]){
 }
 
 
+
+void salvar(Salvar jogador){
+    FILE * f;
+    f = fopen("jogadores.txt", "r+");
+    if(f == NULL){
+        f = fopen("jogadores.txt", "w");
+    }
+
+    fseek(f, 0, 2);
+    fwrite(&jogador, sizeof(jogador), 1, f);
+}
+
+void ler(){
+    FILE *f;
+    Salvar jogador;
+    int status;
+    f = open("jogadores.txt", "r");
+    if(f == NULL){
+        printf("Nenhuma criança cadastrada\n");
+    }else{
+        fseek(f, 0, 0);
+        while(1){
+            status = fread(&jogador, sizeof(jogador), 1, f);
+            if(status != 1){
+                if(!feof(f)){
+                    printf("Erro\n");
+                }
+            }else{
+                printf("Nome = %s, acertos = %d, erros = %d\n\n", jogador.nome, jogador.acertos, jogador.erros);
+            }
+        }
+    }
+}
