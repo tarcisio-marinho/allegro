@@ -1474,6 +1474,7 @@ void salvar(Salvar jogador){
 
     fseek(f, 0, 2);
     fwrite(&jogador, sizeof(jogador), 1, f);
+    fclose(f);
 }
 
 void ler(){
@@ -1496,8 +1497,9 @@ void ler(){
             }
         }
     }
+    fclose(f);
 }
 
 void instrucoes(ALLEGRO_DISPLAY *janela){
-    
+
 }
