@@ -35,11 +35,8 @@ const int ALTURA_TELA = 700;
 ALLEGRO_EVENT_QUEUE *fila_eventos = NULL;
 
 void modo1(ALLEGRO_DISPLAY *janela, char nome[]); // som +  foto de animais, objetos
-void modo2(ALLEGRO_DISPLAY *janela); // silaba inicial do animal + foto de animais, objetos
-void modo3(ALLEGRO_DISPLAY *janela); // silabas são iguais ou diferentes, KA KA, KA LA
-void modo4(ALLEGRO_DISPLAY *janela); // palavras são iguais ou diferentes, faca e vaca
-void acertou(char string[]);
-void errou(char string[]);
+void acertou(ALLEGRO_DISPLAY *janela, char string[]);
+void errou(ALLEGRO_DISPLAY *janela, char string[]);
 void salvar(Salvar jogador);
 
 void init(){
@@ -400,7 +397,7 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 420 &&
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
-                    acertou("elefante");
+                    acertou(janela, "elefante");
                     acertos++;
                     al_stop_sample(&elefante.id);
                     sair = 1;
@@ -427,7 +424,7 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 860 &&
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
-                    errou("baleia");
+                    errou(janela, "baleia");
                     erros++;
                     al_stop_sample(&elefante.id);
                     sair = 1;
@@ -454,7 +451,7 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 420 &&
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
-                    errou("cabra");
+                    errou(janela, "cabra");
                     erros++;
                     al_stop_sample(&elefante.id);
                     sair = 1;
@@ -481,7 +478,7 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 860 &&
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
-                    errou("tigre");
+                    errou(janela, "tigre");
                     erros++;
                     al_stop_sample(&elefante.id);
                     sair = 1;
@@ -616,7 +613,7 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 420 &&
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
-                    errou("cachorro");
+                    errou(janela, "cachorro");
                     erros++;
                     al_stop_sample(&cavalo.id);
                     sair = 1;    
@@ -643,7 +640,7 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 860 &&
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
-                    acertou("cavalo");
+                    acertou(janela, "cavalo");
                     acertos++;
                     al_stop_sample(&cavalo.id);
                     sair = 1;
@@ -670,7 +667,7 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 420 &&
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
-                    errou("tatu");
+                    errou(janela, "tatu");
                     erros++;
                     al_stop_sample(&cavalo.id);
                     sair = 1;
@@ -697,7 +694,7 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 860 &&
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
-                    errou("touro");
+                    errou(janela, "touro");
                     erros++;
                     al_stop_sample(&cavalo.id);
                     sair = 1;
@@ -830,7 +827,7 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 420 &&
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
-                    errou("zebra");  
+                    errou(janela, "zebra");  
                     erros++;
                     al_stop_sample(&gato.id);
                     sair = 1;    
@@ -857,7 +854,7 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 860 &&
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
-                    acertou("gato");
+                    acertou(janela, "gato");
                     acertos++;
                     al_stop_sample(&gato.id);
                     sair = 1;
@@ -884,7 +881,7 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 420 &&
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
-                    errou("girafa");
+                    errou(janela, "girafa");
                     erros++;
                     al_stop_sample(&gato.id);
                     sair = 1;
@@ -911,7 +908,7 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 860 &&
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
-                    errou("leao");
+                    errou(janela, "leao");
                     erros++;
                     al_stop_sample(&gato.id);
                     sair = 1;
@@ -1045,7 +1042,7 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 420 &&
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
-                    errou("pato");  
+                    errou(janela, "pato");  
                     erros++;
                     al_stop_sample(&macaco.id);
                     sair = 1;    
@@ -1072,7 +1069,7 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 860 &&
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
-                    errou("peixe");
+                    errou(janela, "peixe");
                     erros++;
                     al_stop_sample(&macaco.id);
                     sair = 1;
@@ -1099,7 +1096,7 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 420 &&
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
-                    acertou("macaco");
+                    acertou(janela, "macaco");
                     acertos++;
                     al_stop_sample(&macaco.id);
                     sair = 1;
@@ -1126,7 +1123,7 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 860 &&
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
-                    errou("coruja");
+                    errou(janela, "coruja");
                     erros++;
                     al_stop_sample(&macaco.id);
                     sair = 1;
@@ -1260,7 +1257,7 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 420 &&
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
-                    errou("aguia"); 
+                    errou(janela, "aguia"); 
                     erros++; 
                     al_stop_sample(&pato.id);
                     sair = 1;    
@@ -1287,7 +1284,7 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 860 &&
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
-                    errou("caranguejo"); 
+                    errou(janela, "caranguejo"); 
                     erros++;
                     al_stop_sample(&pato.id);
                     sair = 1;
@@ -1314,7 +1311,7 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 420 &&
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
-                    errou("porco");
+                    errou(janela, "porco");
                     erros++;
                     al_stop_sample(&pato.id);
                     sair = 1;
@@ -1341,7 +1338,7 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 860 &&
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
-                    acertou("pato");
+                    acertou(janela, "pato");
                     acertos++;
                     al_stop_sample(&pato.id);
                     sair = 1;
@@ -1444,28 +1441,24 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
 
 
 
-void modo2(ALLEGRO_DISPLAY *janela){
 
 
-    ALLEGRO_BITMAP * wallpaper = NULL;
-    wallpaper = al_load_bitmap("img/wallpaper.jpg");
-
-
-
-    al_draw_bitmap(wallpaper, 0, 0, 0);
-    al_flip_display();
-    al_rest(2);
-    al_destroy_display(janela);
-
+void acertou(ALLEGRO_DISPLAY *janela, char string[]){
+    ALLEGRO_FONT *fonte;
+    fonte = al_load_font("fontes/coolvetica.ttf", 40, 0);
+    char mensagem [100] = "PARABENS VOCE ACERTOU, É UM ";
+    strcat(mensagem, string);
+    al_clear_to_color(al_map_rgb(255, 255, 200));
+    al_draw_text(fonte, al_map_rgb(0, 0, 0), 1000, 400, 0, mensagem);
 }
 
-void acertou(char string[]){
-    printf("PARABENS VOCE ACERTOU\nÉ um %s\n", string);
-    // masked_blit
-}
-
-void errou(char string[]){
-    printf("Você errou :( \n não é um %s\n", string);
+void errou(ALLEGRO_DISPLAY *janela, char string[]){
+    ALLEGRO_FONT *fonte;
+    fonte = al_load_font("fontes/coolvetica.ttf", 40, 0);
+    char mensagem [100] = "VOCÊ ERROU :( , NÃO É U, ";
+    strcat(mensagem, string);
+    al_clear_to_color(al_map_rgb(255, 255, 200));
+    al_draw_text(fonte, al_map_rgb(0, 0, 0), 1000, 400, 0, mensagem);
 }
 
 
