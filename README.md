@@ -1,10 +1,29 @@
-toca um som e a crianca tem que escolher a figura do animal correta
+# INSTALAÇÃO ALLEGRO 5 LINUX
 
-qual dos animais que começam com o som "sa" -> sapo, "ca" -> cavalo
-animais, instrumentos musicais, objetos(liquidificador), violao 
+    sudo apt-get install build-essential subversion cmake xorg-dev libgl1-mesa-dev libglu-dev
+    
+    sudo apt-get install libpng-dev libz-dev libcurl4-gnutls-dev libfreetype6-dev libjpeg-dev libvorbis-dev libopenal-dev libphysfs-dev libgtk2.0-dev libasound-dev libflac-dev libdumb1-dev
+    
+    sudo apt-get install exuberant-ctags dvi2ps dvipdfmx latex2html pandoc
+    
+    svn co https://alleg.svn.sourceforge.net/svnroot/alleg/allegro/branches/5.0 allegro-5.0
 
-dizer se duas silabas sons são iguais ou diferentes - KA KA, KA LA, BA PA, DA TA, f e v, p e b, t e d, kakekikoku, gagegigogu, ka ga, ko go, sa za, cha ja, fa e va
+# COMPILAÇÃO ALLEGRO5
+    cd allegro-5.0
 
-dizer se as palavras são iguais ou diferentes -  cola e gola, faca e vaca, dado e gado, dado e dado, bola e cola, cinco e zinco
+    cmake -DCMAKE_INSTALL_PREFIX=/usr .
+    
+    make
+ 
+    sudo make install
 
-aparece a imagem do animal, 
+# BAIXAR E COMPILAR O JOGO NA SUA MAQUINA:
+    git clone https://github.com/tarcisio-marinho/allegro.git
+
+    cd allegro
+
+    sh comp.sh
+
+# SEMPRE QUE QUISER JOGAR O JOGO:
+
+    ./main
