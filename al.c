@@ -39,6 +39,7 @@ void acertou(ALLEGRO_DISPLAY *janela, char string[]);
 void errou(ALLEGRO_DISPLAY *janela, char string[]);
 void salvar(Salvar jogador);
 void instrucoes(ALLEGRO_DISPLAY *janela);
+void ler();
 
 void init(){
     al_init();
@@ -137,7 +138,8 @@ int main(){
                 evento.mouse.x <= 860 &&
                 evento.mouse.y >= 0 &&
                 evento.mouse.y <= 320){
-                //modo2(janela);
+                printf("lendo");
+                ler();
             }
         }
 
