@@ -209,7 +209,8 @@ void modo1(ALLEGRO_DISPLAY *janela){
     Animal aguia, baleia, cabra, cachorro, camelo, caranguejo, cavalo, cobra, coelho, coruja;
     Animal elefante, galo, gato, girafa, leao, lobo, macaco, passarinho, pato, peixe;
     Animal porco, sapo, tatu, tigre, touro, vaca, zebra;
-
+    
+    int acertos = 0, erros = 0;
 
     ALLEGRO_BITMAP *quadrado1 = 0, *quadrado2 = 0, *quadrado3 = 0;
     ALLEGRO_BITMAP *quadrado4 = 0, *retornar = 0, *tocar = 0, *proximo = 0;
@@ -386,6 +387,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
                     acertou("elefante");
+                    acertos++;
                     al_stop_sample(&elefante.id);
                     sair = 1;
                 }
@@ -412,6 +414,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
                     errou("baleia");
+                    erros++;
                     al_stop_sample(&elefante.id);
                     sair = 1;
                 }
@@ -438,6 +441,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
                     errou("cabra");
+                    erros++;
                     al_stop_sample(&elefante.id);
                     sair = 1;
                 }
@@ -464,6 +468,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
                     errou("tigre");
+                    erros++;
                     al_stop_sample(&elefante.id);
                     sair = 1;
                 }
@@ -598,6 +603,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
                     errou("cachorro");
+                    erros++;
                     al_stop_sample(&cavalo.id);
                     sair = 1;    
                 }
@@ -624,6 +630,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
                     acertou("cavalo");
+                    acertos++;
                     al_stop_sample(&cavalo.id);
                     sair = 1;
                 }
@@ -650,6 +657,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
                     errou("tatu");
+                    erros++;
                     al_stop_sample(&cavalo.id);
                     sair = 1;
                 }
@@ -676,6 +684,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
                     errou("touro");
+                    erros++;
                     al_stop_sample(&cavalo.id);
                     sair = 1;
                 }
@@ -808,6 +817,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
                     errou("zebra");  
+                    erros++;
                     al_stop_sample(&gato.id);
                     sair = 1;    
                 }
@@ -834,6 +844,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
                     acertou("gato");
+                    acertos++;
                     al_stop_sample(&gato.id);
                     sair = 1;
                 }
@@ -860,6 +871,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
                     errou("girafa");
+                    erros++;
                     al_stop_sample(&gato.id);
                     sair = 1;
                 }
@@ -886,6 +898,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
                     errou("leao");
+                    erros++;
                     al_stop_sample(&gato.id);
                     sair = 1;
                 }
@@ -1019,6 +1032,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
                     errou("pato");  
+                    erros++;
                     al_stop_sample(&macaco.id);
                     sair = 1;    
                 }
@@ -1045,6 +1059,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
                     errou("peixe");
+                    erros++;
                     al_stop_sample(&macaco.id);
                     sair = 1;
                 }
@@ -1071,6 +1086,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
                     acertou("macaco");
+                    acertos++;
                     al_stop_sample(&macaco.id);
                     sair = 1;
                 }
@@ -1097,6 +1113,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
                     errou("coruja");
+                    erros++;
                     al_stop_sample(&macaco.id);
                     sair = 1;
                 }
@@ -1229,7 +1246,8 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.x <= 420 &&
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
-                    errou("aguia");  
+                    errou("aguia"); 
+                    erros++; 
                     al_stop_sample(&pato.id);
                     sair = 1;    
                 }
@@ -1256,6 +1274,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
                     errou("caranguejo"); 
+                    erros++;
                     al_stop_sample(&pato.id);
                     sair = 1;
                 }
@@ -1282,6 +1301,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
                     errou("porco");
+                    erros++;
                     al_stop_sample(&pato.id);
                     sair = 1;
                 }
@@ -1308,6 +1328,7 @@ void modo1(ALLEGRO_DISPLAY *janela){
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
                     acertou("pato");
+                    acertos++;
                     al_stop_sample(&pato.id);
                     sair = 1;
                 }
@@ -1395,6 +1416,8 @@ void modo1(ALLEGRO_DISPLAY *janela){
         }
     }
 
+    printf("acertos: %d, erros: %d\n", acertos, erros);
+    al_rest(3);
     al_destroy_font(fonte);
 }
 
