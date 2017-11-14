@@ -38,6 +38,7 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]); // som +  foto de animais, obj
 void acertou(ALLEGRO_DISPLAY *janela, char string[]);
 void errou(ALLEGRO_DISPLAY *janela, char string[]);
 void salvar(Salvar jogador);
+void instrucoes(ALLEGRO_DISPLAY *janela);
 
 void init(){
     al_init();
@@ -185,6 +186,7 @@ int main(){
                 evento.mouse.y >= 600 &&
                 evento.mouse.y <= 700){
                 // INSTRUÇÃO DE JOGO
+                instrucoes(janela);
             }
         }
         al_set_target_bitmap(al_get_backbuffer(janela));
@@ -195,10 +197,10 @@ int main(){
         al_draw_bitmap(como_jogar, 1250, 300, 0);
 
         al_draw_text(fonte, al_map_rgb(0, 0, 0), 1000 , 0, ALLEGRO_ALIGN_RIGHT, "Bem vindo ao jogo da audição");
-        al_draw_text(fonte, al_map_rgb(255, 255, 255), 500 , 100, ALLEGRO_ALIGN_CENTRE, "Modo 1");
-        al_draw_text(fonte, al_map_rgb(255, 255, 255), 500 , 400, ALLEGRO_ALIGN_CENTRE, "Modo 2");
+        al_draw_text(fonte, al_map_rgb(255, 255, 255), 500 , 100, ALLEGRO_ALIGN_CENTRE, "Jogar");
+        al_draw_text(fonte, al_map_rgb(255, 255, 255), 500 , 400, ALLEGRO_ALIGN_CENTRE, "Pontuação");
         al_draw_text(fonte, al_map_rgb(0, 0, 0), 1000 , 100, ALLEGRO_ALIGN_CENTRE, "Escolha qual animal emite o som tocado");
-        al_draw_text(fonte, al_map_rgb(0, 0, 0), 900 , 400, ALLEGRO_ALIGN_CENTRE, "Diferença entre sílabas");
+        al_draw_text(fonte, al_map_rgb(0, 0, 0), 900 , 400, ALLEGRO_ALIGN_CENTRE, "Ver a pontuação das crianças");
         al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 600, ALLEGRO_ALIGN_CENTRE, "Sair");
         al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 300, ALLEGRO_ALIGN_CENTRE, "Como");
         al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 340, ALLEGRO_ALIGN_CENTRE, "jogar");
@@ -547,8 +549,8 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
             al_draw_bitmap(tocar, 1250, 200, 0);
 
             /* Fontes */
-            al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 50, ALLEGRO_ALIGN_RIGHT, "Qual animal emite");
-            al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 100, ALLEGRO_ALIGN_RIGHT, "esse som? ");
+            al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 50, ALLEGRO_ALIGN_RIGHT, "QUAL ANIMAL EMITE");
+            al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 100, ALLEGRO_ALIGN_RIGHT, "ESSE SOM? ");
             al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 600, ALLEGRO_ALIGN_CENTRE, "Menu");
             al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 200, ALLEGRO_ALIGN_CENTRE, "Tocar");
 
@@ -763,8 +765,8 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
             al_draw_bitmap(tocar, 1250, 200, 0);
 
             /* Fontes */
-            al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 50, ALLEGRO_ALIGN_RIGHT, "Qual animal emite");
-            al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 100, ALLEGRO_ALIGN_RIGHT, "esse som? ");
+            al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 50, ALLEGRO_ALIGN_RIGHT, "QUAL ANIMAL EMITE");
+            al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 100, ALLEGRO_ALIGN_RIGHT, "ESSE SOM? ");
             al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 600, ALLEGRO_ALIGN_CENTRE, "Menu");
             al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 200, ALLEGRO_ALIGN_CENTRE, "Tocar");
 
@@ -977,8 +979,8 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
             al_draw_bitmap(tocar, 1250, 200, 0);
 
             /* Fontes */
-            al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 50, ALLEGRO_ALIGN_RIGHT, "Qual animal emite");
-            al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 100, ALLEGRO_ALIGN_RIGHT, "esse som? ");
+            al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 50, ALLEGRO_ALIGN_RIGHT, "QUAL ANIMAL EMITE");
+            al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 100, ALLEGRO_ALIGN_RIGHT, "ESSE SOM ? ");
             al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 600, ALLEGRO_ALIGN_CENTRE, "Menu");
             al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 200, ALLEGRO_ALIGN_CENTRE, "Tocar");
 
@@ -1192,8 +1194,8 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
             al_draw_bitmap(tocar, 1250, 200, 0);
 
             /* Fontes */
-            al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 50, ALLEGRO_ALIGN_RIGHT, "Qual animal emite");
-            al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 100, ALLEGRO_ALIGN_RIGHT, "esse som? ");
+            al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 50, ALLEGRO_ALIGN_RIGHT, "QUAL ANIMAL EMITE");
+            al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 100, ALLEGRO_ALIGN_RIGHT, "ESSE SOM? ");
             al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 600, ALLEGRO_ALIGN_CENTRE, "Menu");
             al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 200, ALLEGRO_ALIGN_CENTRE, "Tocar");
 
@@ -1407,8 +1409,8 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
             al_draw_bitmap(tocar, 1250, 200, 0);
 
             /* Fontes */
-            al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 50, ALLEGRO_ALIGN_RIGHT, "Qual animal emite");
-            al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 100, ALLEGRO_ALIGN_RIGHT, "esse som? ");
+            al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 50, ALLEGRO_ALIGN_RIGHT, "QUAL ANIMAL EMITE");
+            al_draw_text(fonte, al_map_rgb(0, 0, 0), LARGURA_TELA , 100, ALLEGRO_ALIGN_RIGHT, "ESSE SOM? ");
             al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 600, ALLEGRO_ALIGN_CENTRE, "Menu");
             al_draw_text(fonte, al_map_rgb(255, 255, 255), 1300 , 200, ALLEGRO_ALIGN_CENTRE, "Tocar");
 
@@ -1478,7 +1480,7 @@ void ler(){
     FILE *f;
     Salvar jogador;
     int status;
-    f = open("jogadores.txt", "r");
+    f = fopen("jogadores.txt", "r");
     if(f == NULL){
         printf("Nenhuma criança cadastrada\n");
     }else{
@@ -1494,4 +1496,8 @@ void ler(){
             }
         }
     }
+}
+
+void instrucoes(ALLEGRO_DISPLAY *janela){
+    
 }
