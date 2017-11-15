@@ -1447,12 +1447,52 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
 
 
 void acertou(ALLEGRO_DISPLAY *janela, char string[]){
-    ALLEGRO_FONT *fonte;
-    fonte = al_load_font("fontes/coolvetica.ttf", 40, 0);
-    char mensagem [100] = "PARABENS VOCE ACERTOU, É UM ";
-    strcat(mensagem, string);
-    al_clear_to_color(al_map_rgb(255, 255, 200));
-    al_draw_text(fonte, al_map_rgb(0, 0, 0), 1000, 400, 0, mensagem);
+    int sair = 0;
+    ALLEGRO_BITMAP *continuar = 0;
+    continuar = al_create_bitmap(200, 200);
+
+    while(sair == 0){
+        ALLEGRO_EVENT evento;
+        ALLEGRO_TIMEOUT timeout;
+        al_init_timeout(&timeout, 0.05);
+
+        int tem_eventos = al_wait_for_event_until(fila_eventos, &evento, &timeout);
+
+        ALLEGRO_FONT *fonte;
+        fonte = al_load_font("fontes/coolvetica.ttf", 40, 0);
+        char mensagem [100] = "PARABENS VOCE ACERTOU, É UM ";
+        strcat(mensagem, string);
+        al_set_target_bitmap(al_get_backbuffer(janela));
+        al_clear_to_color(al_map_rgb(255, 255, 200));
+        al_draw_text(fonte, al_map_rgb(0, 0, 0), 1000, 400, 1, mensagem);
+        
+        al_set_target_bitmap(continuar);
+        if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
+            /* Verificamos se ele está sobre a região do retângulo central */
+            if (evento.mouse.x >=  1000 &&
+                evento.mouse.x <=  1200 &&
+                evento.mouse.y >= 500 &&
+                evento.mouse.y <= 700 ){
+                al_clear_to_color(al_map_rgb(145, 9, 9));
+            }
+            else{
+                al_clear_to_color(al_map_rgb(255, 0, 0));
+            }
+        }
+        /* Ou se o evento foi um clique do mouse */
+        else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
+            if (evento.mouse.x >= 1000 &&
+                evento.mouse.x <= 1200 &&
+                evento.mouse.y >= 500 &&
+                evento.mouse.y <= 700){
+                // INSTRUÇÃO DE JOGO
+                sair = 1;
+            }
+        }
+
+        al_draw_bitmap(continuar, 1000, 500, 0);
+        al_flip_display();
+    }
 }
 
 void errou(ALLEGRO_DISPLAY *janela, char string[]){
@@ -1482,6 +1522,7 @@ void ler(){
     FILE *f;
     Salvar jogador;
     int status;
+    char linha[100];
     f = fopen("jogadores.txt", "r");
     if(f == NULL){
         printf("Nenhuma criança cadastrada\n");
