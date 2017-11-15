@@ -1590,6 +1590,7 @@ void ler(ALLEGRO_DISPLAY *janela){
     f = fopen("jogadores.txt", "r");
     if(f == NULL){
         printf("Nenhuma criança cadastrada\n");
+        return;
     }else{
         fseek(f, 0, 0);
         while(1){
