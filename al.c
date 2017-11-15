@@ -400,9 +400,9 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 420 &&
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
+                    al_stop_sample(&elefante.id);
                     acertou(janela, "elefante");
                     acertos++;
-                    al_stop_sample(&elefante.id);
                     sair = 1;
                 }
             }
@@ -427,9 +427,9 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 860 &&
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
+                    al_stop_sample(&elefante.id);
                     errou(janela, "baleia");
                     erros++;
-                    al_stop_sample(&elefante.id);
                     sair = 1;
                 }
             }
@@ -454,9 +454,9 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 420 &&
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
+                    al_stop_sample(&elefante.id);
                     errou(janela, "cabra");
                     erros++;
-                    al_stop_sample(&elefante.id);
                     sair = 1;
                 }
             }
@@ -481,9 +481,9 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 860 &&
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
+                    al_stop_sample(&elefante.id);
                     errou(janela, "tigre");
                     erros++;
-                    al_stop_sample(&elefante.id);
                     sair = 1;
                 }
             }
@@ -616,9 +616,9 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 420 &&
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
+                    al_stop_sample(&cavalo.id);
                     errou(janela, "cachorro");
                     erros++;
-                    al_stop_sample(&cavalo.id);
                     sair = 1;    
                 }
             }
@@ -643,9 +643,9 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 860 &&
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
+                    al_stop_sample(&cavalo.id);
                     acertou(janela, "cavalo");
                     acertos++;
-                    al_stop_sample(&cavalo.id);
                     sair = 1;
                 }
             }
@@ -670,9 +670,9 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 420 &&
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
+                    al_stop_sample(&cavalo.id);
                     errou(janela, "tatu");
                     erros++;
-                    al_stop_sample(&cavalo.id);
                     sair = 1;
                 }
             }
@@ -697,9 +697,9 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 860 &&
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
+                    al_stop_sample(&cavalo.id);
                     errou(janela, "touro");
                     erros++;
-                    al_stop_sample(&cavalo.id);
                     sair = 1;
                 }
             }
@@ -830,9 +830,9 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 420 &&
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
+                    al_stop_sample(&gato.id);
                     errou(janela, "zebra");  
                     erros++;
-                    al_stop_sample(&gato.id);
                     sair = 1;    
                 }
             }
@@ -857,9 +857,9 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 860 &&
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
+                    al_stop_sample(&gato.id);
                     acertou(janela, "gato");
                     acertos++;
-                    al_stop_sample(&gato.id);
                     sair = 1;
                 }
             }
@@ -884,9 +884,9 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 420 &&
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
+                    al_stop_sample(&gato.id);
                     errou(janela, "girafa");
                     erros++;
-                    al_stop_sample(&gato.id);
                     sair = 1;
                 }
             }
@@ -911,9 +911,9 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 860 &&
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
+                    al_stop_sample(&gato.id);
                     errou(janela, "leao");
                     erros++;
-                    al_stop_sample(&gato.id);
                     sair = 1;
                 }
             }
@@ -1045,9 +1045,9 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 420 &&
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
+                    al_stop_sample(&macaco.id);
                     errou(janela, "pato");  
                     erros++;
-                    al_stop_sample(&macaco.id);
                     sair = 1;    
                 }
             }
@@ -1072,9 +1072,9 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 860 &&
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
+                    al_stop_sample(&macaco.id);
                     errou(janela, "peixe");
                     erros++;
-                    al_stop_sample(&macaco.id);
                     sair = 1;
                 }
             }
@@ -1099,9 +1099,9 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 420 &&
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
+                    al_stop_sample(&macaco.id);
                     acertou(janela, "macaco");
                     acertos++;
-                    al_stop_sample(&macaco.id);
                     sair = 1;
                 }
             }
@@ -1126,9 +1126,9 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 860 &&
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
+                    al_stop_sample(&macaco.id);
                     errou(janela, "coruja");
                     erros++;
-                    al_stop_sample(&macaco.id);
                     sair = 1;
                 }
             }
@@ -1260,9 +1260,9 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 420 &&
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
+                    al_stop_sample(&pato.id);
                     errou(janela, "aguia"); 
                     erros++; 
-                    al_stop_sample(&pato.id);
                     sair = 1;    
                 }
             }
@@ -1287,9 +1287,9 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 860 &&
                     evento.mouse.y >= 0 &&
                     evento.mouse.y <= 320){
+                    al_stop_sample(&pato.id);
                     errou(janela, "caranguejo"); 
                     erros++;
-                    al_stop_sample(&pato.id);
                     sair = 1;
                 }
             }
@@ -1314,9 +1314,9 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 420 &&
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
+                    al_stop_sample(&pato.id);
                     errou(janela, "porco");
                     erros++;
-                    al_stop_sample(&pato.id);
                     sair = 1;
                 }
             }
@@ -1341,9 +1341,9 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
                     evento.mouse.x <= 860 &&
                     evento.mouse.y >= 360 &&
                     evento.mouse.y <= 680){
+                    al_stop_sample(&pato.id);
                     acertou(janela, "pato");
                     acertos++;
-                    al_stop_sample(&pato.id);
                     sair = 1;
                 }
             }
