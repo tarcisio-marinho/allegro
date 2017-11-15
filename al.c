@@ -40,6 +40,9 @@ void errou(ALLEGRO_DISPLAY *janela, char string[]);
 void salvar(Salvar jogador);
 void instrucoes(ALLEGRO_DISPLAY *janela);
 void ler();
+void pegar_nome();
+void manipular_entrada(ALLEGRO_EVENT evento, char palavra[]);
+void exibir_texto_centralizado(ALLEGRO_DISPLAY *janela, char nome[]);
 
 void init(){
     al_init();
@@ -114,6 +117,7 @@ int main(){
                 evento.mouse.x <= 600 &&
                 evento.mouse.y >= 100 &&
                 evento.mouse.y <= 300){
+                pegar_nome(janela, nome);
                 modo1(janela, nome);
             }
         }
@@ -1608,4 +1612,79 @@ void ler(){
 
 void instrucoes(ALLEGRO_DISPLAY *janela){
 
+}
+
+void pegar_nome(ALLEGRO_DISPLAY *janela, char nome[]){
+    ALLEGRO_FONT *fonte;
+    fonte = al_load_font("fontes/coolvetica.ttf", 40, 0);
+    int sair = 0, concluido = 0;
+
+	while (sair == 0) {
+		while (!al_is_event_queue_empty(fila_eventos)) {
+			ALLEGRO_EVENT evento;
+			al_wait_for_event(fila_eventos, &evento);
+			if (concluido == 0) {
+                al_set_target_bitmap(al_get_backbuffer(janela));
+				al_clear_to_color(al_map_rgb(255, 255, 200));
+				al_draw_text(fonte, al_map_rgb(0, 0, 0), 700, 400, 0, "Digite seu nome: ");
+				al_flip_display();
+				manipular_entrada(evento, nome);
+
+				if (evento.type == ALLEGRO_EVENT_KEY_DOWN && evento.keyboard.keycode == ALLEGRO_KEY_ENTER) {
+					concluido = 1;
+				}
+				if (evento.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+					sair = 1;
+				}
+			}
+		}
+		exibir_texto_centralizado(janela, nome);
+		al_flip_display();
+		al_rest(1.0);
+		if (concluido)
+			break;
+	}
+}
+
+void manipular_entrada(ALLEGRO_EVENT evento, char palavra[])
+{
+	if (evento.type == ALLEGRO_EVENT_KEY_CHAR)
+	{
+		if (strlen(palavra) <= 10)
+		{
+			char temp[] = { evento.keyboard.unichar, '\0' };
+			if (evento.keyboard.unichar == ' ')
+			{
+				strcat(palavra, temp);
+			}
+			else if (evento.keyboard.unichar >= '0' &&
+				evento.keyboard.unichar <= '9')
+			{
+				strcat(palavra, temp);
+			}
+			else if (evento.keyboard.unichar >= 'A' &&
+				evento.keyboard.unichar <= 'Z')
+			{
+				strcat(palavra, temp);
+			}
+			else if (evento.keyboard.unichar >= 'a' &&
+				evento.keyboard.unichar <= 'z')
+			{
+				strcat(palavra, temp);
+			}
+		}
+
+		if (evento.keyboard.keycode == ALLEGRO_KEY_BACKSPACE && strlen(palavra) != 0)
+		{
+			palavra[strlen(palavra) - 1] = '\0';
+		}
+	}
+}
+
+void exibir_texto_centralizado(ALLEGRO_DISPLAY *janela, char nome[]) {
+    ALLEGRO_FONT *fonte;
+    fonte = al_load_font("fontes/coolvetica.ttf", 40, 0);
+
+	if (strlen(nome) > 0)
+		al_draw_text(fonte, al_map_rgb(0, 0, 0), 1000 , 300 , 1, nome);
 }
