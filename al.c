@@ -1623,6 +1623,7 @@ void instrucoes(ALLEGRO_DISPLAY *janela){
 				al_draw_text(fonte, al_map_rgb(0, 0, 0), 100, 200, 0, "[+] Em cada tela, clique em tocar, para tocar o som do animal");
 				al_draw_text(fonte, al_map_rgb(0, 0, 0), 100, 250, 0, "[+] A criança terá que escolher qual animal emite o som");
 				al_draw_text(fonte, al_map_rgb(0, 0, 0), 100, 300, 0, "[+] Ao fim do jogo, será salvo a pontuação da criança");
+				al_draw_text(fonte, al_map_rgb(0, 0, 0), 100, 350, 0, "[+] Pressione ENTER para voltar para o menu");
 				al_flip_display();
 
 				if (evento.type == ALLEGRO_EVENT_KEY_DOWN && evento.keyboard.keycode == ALLEGRO_KEY_ENTER) {
