@@ -9,12 +9,7 @@
 #include<time.h>
 
 // SÓ TROCAR A COR QUANDO CLICAR - escolher o animal
-// quantos errou e quantos acertou
-// nome da criança que vai jogar
-// salvar em arquivo
-// botão para ler do arquivo qual score das crianças
 // botão de como jogar
-// animação de erro e acerto
 
 
 typedef struct animal{
@@ -188,8 +183,8 @@ int main(){
         else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
             if (evento.mouse.x >= 1250 &&
                 evento.mouse.x <= 1350 &&
-                evento.mouse.y >= 600 &&
-                evento.mouse.y <= 700){
+                evento.mouse.y >= 300 &&
+                evento.mouse.y <= 400){
                 // INSTRUÇÃO DE JOGO
                 instrucoes(janela);
             }
@@ -1611,7 +1606,38 @@ void ler(){
 }
 
 void instrucoes(ALLEGRO_DISPLAY *janela){
+    ALLEGRO_FONT *fonte;
+    fonte = al_load_font("fontes/coolvetica.ttf", 40, 0);
+    int sair = 0, concluido = 0;
 
+	while (sair == 0) {
+		while (!al_is_event_queue_empty(fila_eventos)) {
+			ALLEGRO_EVENT evento;
+			al_wait_for_event(fila_eventos, &evento);
+			if (concluido == 0) {
+                al_set_target_bitmap(al_get_backbuffer(janela));
+				al_clear_to_color(al_map_rgb(255, 255, 200));
+				al_draw_text(fonte, al_map_rgb(0, 0, 0), 100, 50, 0, "[+] O botão pontuação mostra a pontuação de cada criança que jogou");
+				al_draw_text(fonte, al_map_rgb(0, 0, 0), 100, 100, 0, "[+] Clique no botão Jogar para começar o jogo");
+				al_draw_text(fonte, al_map_rgb(0, 0, 0), 100, 150, 0, "[+] Insira o nome da criança que irá jogar");
+				al_draw_text(fonte, al_map_rgb(0, 0, 0), 100, 200, 0, "[+] Em cada tela, clique em tocar, para tocar o som do animal");
+				al_draw_text(fonte, al_map_rgb(0, 0, 0), 100, 250, 0, "[+] A criança terá que escolher qual animal emite o som");
+				al_draw_text(fonte, al_map_rgb(0, 0, 0), 100, 300, 0, "[+] Ao fim do jogo, será salvo a pontuação da criança");
+				al_flip_display();
+
+				if (evento.type == ALLEGRO_EVENT_KEY_DOWN && evento.keyboard.keycode == ALLEGRO_KEY_ENTER) {
+					concluido = 1;
+				}
+				if (evento.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+					sair = 1;
+				}
+			}
+		}
+		al_flip_display();
+		al_rest(1.0);
+		if (concluido)
+            break;
+    }
 }
 
 void pegar_nome(ALLEGRO_DISPLAY *janela, char nome[]){
