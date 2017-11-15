@@ -135,10 +135,9 @@ int main(){
         /* Ou se o evento foi um clique do mouse */
         else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
             if (evento.mouse.x >= 440 &&
-                evento.mouse.x <= 860 &&
-                evento.mouse.y >= 0 &&
-                evento.mouse.y <= 320){
-                printf("lendo");
+                evento.mouse.x <= 600 &&
+                evento.mouse.y >= 400 &&
+                evento.mouse.y <= 600){
                 ler();
             }
         }
@@ -1493,6 +1492,9 @@ void ler(){
             if(status != 1){
                 if(!feof(f)){
                     printf("Erro\n");
+                    break;
+                }else{
+                    break;
                 }
             }else{
                 printf("Nome = %s, acertos = %d, erros = %d\n\n", jogador.nome, jogador.acertos, jogador.erros);
