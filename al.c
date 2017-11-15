@@ -8,9 +8,6 @@
 #include<stdlib.h>
 #include<time.h>
 
-// SÓ TROCAR A COR QUANDO CLICAR - escolher o animal
-// botão de como jogar
-
 
 typedef struct animal{
     char nome[30];
@@ -34,7 +31,7 @@ void acertou(ALLEGRO_DISPLAY *janela, char string[]);
 void errou(ALLEGRO_DISPLAY *janela, char string[]);
 void salvar(Salvar jogador);
 void instrucoes(ALLEGRO_DISPLAY *janela);
-void ler();
+void ler(ALLEGRO_DISPLAY *janela);
 void pegar_nome();
 void manipular_entrada(ALLEGRO_EVENT evento, char palavra[]);
 void exibir_texto_centralizado(ALLEGRO_DISPLAY *janela, char nome[]);
@@ -137,7 +134,7 @@ int main(){
                 evento.mouse.x <= 600 &&
                 evento.mouse.y >= 400 &&
                 evento.mouse.y <= 600){
-                ler();
+                ler(janela);
             }
         }
 
@@ -1578,11 +1575,18 @@ void salvar(Salvar jogador){
     fclose(f);
 }
 
-void ler(){
+void ler(ALLEGRO_DISPLAY *janela){
+    ALLEGRO_FONT *fonte;
+    int sair = 0, concluido = 0;
     FILE *f;
     Salvar jogador;
-    int status;
+    int status, i=0, k = 50;
     char linha[100];
+    char *vet[30];
+    char aux1[3], aux2[3];
+
+    fonte = al_load_font("fontes/coolvetica.ttf", 40, 0);
+
     f = fopen("jogadores.txt", "r");
     if(f == NULL){
         printf("Nenhuma criança cadastrada\n");
@@ -1598,11 +1602,52 @@ void ler(){
                     break;
                 }
             }else{
-                printf("Nome = %s, acertos = %d, erros = %d\n\n", jogador.nome, jogador.acertos, jogador.erros);
+                strcpy(linha,"Nome = ");
+                strcat(linha, jogador.nome);
+                strcat(linha, ", acertos = ");
+                sprintf(aux1, "%d", jogador.acertos);
+                strcat(linha, aux1);
+                strcat(linha, ", erros = ");
+                sprintf(aux2, "%d", jogador.erros);
+                strcat(linha, aux2);
+                vet[i] = (char *)malloc(sizeof(char) * (strlen(linha) + 30));
+                strcpy(vet[i], linha);
+                printf("%s\n\n", linha);
+                i++;
             }
         }
     }
+
+    al_set_target_bitmap(al_get_backbuffer(janela));
+    al_clear_to_color(al_map_rgb(255, 255, 200));
+	while (sair == 0) {
+		while (!al_is_event_queue_empty(fila_eventos)) {
+			ALLEGRO_EVENT evento;
+			al_wait_for_event(fila_eventos, &evento);
+			if (concluido == 0) {
+                for(int j = 0; j < i; j++){
+                    al_draw_text(fonte, al_map_rgb(0, 0, 0), 100, k, 0, vet[j]);
+                    k = k + 50;
+                }
+				al_flip_display();
+
+				if (evento.type == ALLEGRO_EVENT_KEY_DOWN && evento.keyboard.keycode == ALLEGRO_KEY_ENTER) {
+					concluido = 1;
+				}
+				if (evento.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+					sair = 1;
+				}
+			}
+		}
+		al_flip_display();
+		al_rest(1.0);
+		if (concluido)
+            break;
+    }
+    
+    
     fclose(f);
+    
 }
 
 void instrucoes(ALLEGRO_DISPLAY *janela){
