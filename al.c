@@ -1626,7 +1626,7 @@ void pegar_nome(ALLEGRO_DISPLAY *janela, char nome[]){
 			if (concluido == 0) {
                 al_set_target_bitmap(al_get_backbuffer(janela));
 				al_clear_to_color(al_map_rgb(255, 255, 200));
-				al_draw_text(fonte, al_map_rgb(0, 0, 0), 700, 400, 0, "Digite seu nome: ");
+				al_draw_text(fonte, al_map_rgb(0, 0, 0), 500, 400, 0, "Digite seu nome: ");
 				al_flip_display();
 				manipular_entrada(evento, nome);
 
@@ -1646,8 +1646,7 @@ void pegar_nome(ALLEGRO_DISPLAY *janela, char nome[]){
 	}
 }
 
-void manipular_entrada(ALLEGRO_EVENT evento, char palavra[])
-{
+void manipular_entrada(ALLEGRO_EVENT evento, char palavra[]){
 	if (evento.type == ALLEGRO_EVENT_KEY_CHAR)
 	{
 		if (strlen(palavra) <= 10)
@@ -1686,5 +1685,5 @@ void exibir_texto_centralizado(ALLEGRO_DISPLAY *janela, char nome[]) {
     fonte = al_load_font("fontes/coolvetica.ttf", 40, 0);
 
 	if (strlen(nome) > 0)
-		al_draw_text(fonte, al_map_rgb(0, 0, 0), 1000 , 300 , 1, nome);
+		al_draw_text(fonte, al_map_rgb(0, 0, 0), 1000 , 400 , 1, nome);
 }
