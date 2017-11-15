@@ -1449,7 +1449,14 @@ void modo1(ALLEGRO_DISPLAY *janela, char nome[]){
 void acertou(ALLEGRO_DISPLAY *janela, char string[]){
     int sair = 0;
     ALLEGRO_BITMAP *continuar = 0;
+    Animal acertou;
     continuar = al_create_bitmap(200, 200);
+
+    strcpy(acertou.nome, "acertou");
+    acertou.imagem = al_load_bitmap("img/correto.png");
+    acertou.som = al_load_sample("sound/acerto.wav");
+    acertou.id = NULL;
+    al_play_sample(acertou.som, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, acertou.id);
 
     while(sair == 0){
         ALLEGRO_EVENT evento;
@@ -1462,15 +1469,13 @@ void acertou(ALLEGRO_DISPLAY *janela, char string[]){
         fonte = al_load_font("fontes/coolvetica.ttf", 40, 0);
         char mensagem [100] = "PARABENS VOCE ACERTOU, É UM ";
         strcat(mensagem, string);
-        al_set_target_bitmap(al_get_backbuffer(janela));
-        al_clear_to_color(al_map_rgb(255, 255, 200));
-        al_draw_text(fonte, al_map_rgb(0, 0, 0), 1000, 400, 1, mensagem);
+        
         
         al_set_target_bitmap(continuar);
         if (evento.type == ALLEGRO_EVENT_MOUSE_AXES){
             /* Verificamos se ele está sobre a região do retângulo central */
-            if (evento.mouse.x >=  1000 &&
-                evento.mouse.x <=  1200 &&
+            if (evento.mouse.x >=  1150 &&
+                evento.mouse.x <=  1350 &&
                 evento.mouse.y >= 500 &&
                 evento.mouse.y <= 700 ){
                 al_clear_to_color(al_map_rgb(145, 9, 9));
@@ -1481,16 +1486,21 @@ void acertou(ALLEGRO_DISPLAY *janela, char string[]){
         }
         /* Ou se o evento foi um clique do mouse */
         else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
-            if (evento.mouse.x >= 1000 &&
-                evento.mouse.x <= 1200 &&
+            if (evento.mouse.x >= 1150 &&
+                evento.mouse.x <= 1350 &&
                 evento.mouse.y >= 500 &&
                 evento.mouse.y <= 700){
                 // INSTRUÇÃO DE JOGO
                 sair = 1;
             }
         }
-
-        al_draw_bitmap(continuar, 1000, 500, 0);
+        
+        al_set_target_bitmap(al_get_backbuffer(janela));
+        al_clear_to_color(al_map_rgb(255, 255, 200));
+        al_draw_text(fonte, al_map_rgb(0, 0, 0), 1000, 400, 1, mensagem);
+        al_draw_bitmap(acertou.imagem, 0, 0, 0);  
+        al_draw_bitmap(continuar, 1150, 500, 0);
+        al_draw_text(fonte, al_map_rgb(0, 0, 0), 1150, 500, 0, "continuar");
         al_flip_display();
     }
 }
