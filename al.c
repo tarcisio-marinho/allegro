@@ -1795,9 +1795,8 @@ void ler(ALLEGRO_DISPLAY *janela){
     int sair = 0, concluido = 0;
     FILE *f;
     Salvar jogador;
-    int status, i=0, k = 50;
+    int status, k = 50;
     char linha[100];
-    char *vet[30];
     char aux1[3], aux2[3];
 
     fonte = al_load_font("fontes/coolvetica.ttf", 40, 0);
@@ -1807,15 +1806,33 @@ void ler(ALLEGRO_DISPLAY *janela){
         printf("Nenhuma criança cadastrada\n");
         return;
     }else{
+        
         fseek(f, 0, 0);
+
+        al_set_target_bitmap(al_get_backbuffer(janela));
+        al_clear_to_color(al_map_rgb(255, 255, 200));
         while(1){
             status = fread(&jogador, sizeof(jogador), 1, f);
             if(status != 1){
                 if(!feof(f)){
-                    printf("Erro\n");
                     break;
                 }else{
-                    break;
+                    while (sair == 0) {
+                        while (!al_is_event_queue_empty(fila_eventos)) {
+                            ALLEGRO_EVENT evento;
+                            al_wait_for_event(fila_eventos, &evento);
+                            if (concluido == 0) {
+
+                                if (evento.type == ALLEGRO_EVENT_KEY_DOWN && evento.keyboard.keycode == ALLEGRO_KEY_ENTER) {
+                                    return;
+                                }
+                                if (evento.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+                                    return;
+                                }
+                            }
+                        }
+                        al_flip_display();
+                    }
                 }
             }else{
                 strcpy(linha,"Nome = ");
@@ -1826,41 +1843,13 @@ void ler(ALLEGRO_DISPLAY *janela){
                 strcat(linha, ", erros = ");
                 sprintf(aux2, "%d", jogador.erros);
                 strcat(linha, aux2);
-                vet[i] = (char *)malloc(sizeof(char) * (strlen(linha) + 30));
-                strcpy(vet[i], linha);
                 printf("%s\n\n", linha);
-                i++;
+                al_draw_text(fonte, al_map_rgb(0, 0, 0), 100, k, 0, linha);
+                al_flip_display();
+                k = k + 50;
             }
         }
     }
-
-    al_set_target_bitmap(al_get_backbuffer(janela));
-    al_clear_to_color(al_map_rgb(255, 255, 200));
-	while (sair == 0) {
-		while (!al_is_event_queue_empty(fila_eventos)) {
-			ALLEGRO_EVENT evento;
-			al_wait_for_event(fila_eventos, &evento);
-			if (concluido == 0) {
-                for(int j = 0; j < i; j++){
-                    al_draw_text(fonte, al_map_rgb(0, 0, 0), 100, k, 0, vet[j]);
-                    k = k + 50;
-                }
-				al_flip_display();
-
-				if (evento.type == ALLEGRO_EVENT_KEY_DOWN && evento.keyboard.keycode == ALLEGRO_KEY_ENTER) {
-					concluido = 1;
-				}
-				if (evento.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
-					sair = 1;
-				}
-			}
-		}
-		al_flip_display();
-		al_rest(1.0);
-		if (concluido)
-            break;
-    }
-    
     
     fclose(f);
     
